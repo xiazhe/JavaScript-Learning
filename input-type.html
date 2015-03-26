@@ -1,0 +1,23 @@
+<!DOCTYPE HTML >
+<html>
+    <head>
+        <title>input type test</title>
+    </head>
+    <body>
+        <label>input type=number</label> <input type="number" id="number" onblur="getValue(this)" />
+        <br />
+        <label>input type=tel</label> <input type="tel" id="telephone"  onblur="getValue(this)"  />
+        <br />
+        <label>input type=color</label> <input type="color" id="color"  onblur="getValue(this)"  />
+        <br />
+        <label>input type=date</label> <input type="date" id="date"  onblur="getValue(this)"  />
+        <br />
+        <label>input type=text</label> <input type="text" id="text"  onblur="getValue(this)"  />
+        <br />
+    <script>
+        function getValue(obj){
+            console.log(obj.value);
+        }
+    </script>
+    </body>
+</html>
