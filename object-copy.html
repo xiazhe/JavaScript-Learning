@@ -6,28 +6,57 @@
 </head>
 <body>
 <script>
-    //object copy - 浅复制
+    //http://mao.li/javascript/javascript/
+
+    //object copy - shallow copy
     Object.prototype.clone = function () {
         var newObj = new Object();
         for(elements in this){
             newObj[elements] = this[elements];
         }
         return newObj;
-    }
+    };
+
+    //deep copy
+    Object.prototype.cloneAll = function(){
+        function clonePrototype(){};
+        clonePrototype.prototype = this;
+        var obj = new clonePrototype();
+        for(var ele in obj){
+            if(typeof(obj[ele])=="object"){
+                obj[ele] = obj[ele].cloneAll();
+            }
+        }
+
+        return obj;
+    };
+
 
     var obj1 = {
-        name : "Nick",
+        name : "obj1",
         child : {
             a : "a",
             b : "b"
         }
-    }
+    };
 
     var obj2 = obj1.clone();
+    obj2.name = "obj2";
+    obj2.child.a = "obj2 info"; //will change obj1.child.a value
+    console.log(obj1);
     console.log(obj2);
-    obj1.name = "cc";
-    console.log(obj1.name);
-    console.log(obj2.name);
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 </body>
 </html>
