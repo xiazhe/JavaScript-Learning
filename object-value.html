@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>引用类型</title>
+</head>
+<body>
+<script>
+//基本类型值指的是简单的数据段, 而引用类型值指那些可能由多个值构成的对象.
+
+    var obj1 = new Object();
+    var obj2 = obj1;
+    obj1.name = "Nick";
+    console.log("obj2.name: " + obj2.name);
+
+    obj1.child = {a : "a", b : "b"};
+
+
+</script>
+
+</body>
+</html>
