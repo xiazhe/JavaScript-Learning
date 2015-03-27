@@ -23,6 +23,7 @@
         clonePrototype.prototype = this;
         var obj = new clonePrototype();
         for(var ele in obj){
+            //如果检测到原对象中存在另一个对象的引用,那么递归,实现复制引用对象
             if(typeof(obj[ele])=="object"){
                 obj[ele] = obj[ele].cloneAll();
             }
