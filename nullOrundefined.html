@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title></title>
+    <title>null and undefined</title>
 </head>
 <body>
 <script>
@@ -14,7 +14,12 @@
         console.log("false, obj is a null/undefined/''/0/false value.");
     }
 
-    console.log(obj==null);
+    console.log(obj==null); //false
+
+    //http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html
+    console.log(Number(null)); //0
+
+    console.log(5 + null); //5
 </script>
 </body>
 </html>

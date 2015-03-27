@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Closure</title>
+</head>
+<body>
+<p>
+    閉包是由函式和與其相關的參照環境組合而成的實體。
+    <br />
+    https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Obsolete_Pages/Obsolete_Pages/Obsolete_Pages/%E9%96%89%E5%8C%85%E7%9A%84%E9%81%8B%E7%94%A8
+</p>
+<script>
+    function init(){
+        var name = "Mozilla";
+        function displayName(){
+            alert(name);
+        }
+        displayName();
+    }
+
+
+    init();
+</script>
+
+</body>
+</html>
