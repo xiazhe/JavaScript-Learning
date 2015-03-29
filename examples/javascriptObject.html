@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title> New Document </title>
+    <meta name="Generator" content="EditPlus">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+</head>
+
+<body>
+    <script type="text/javascript">
+        //string object
+        var message = "Hello World!";
+        var x = message.length;
+        //console.log(x);
+        document.write(x);
+        document.write("<br />");
+
+        //string UpperCase
+        var upperCaseMessage = message.toUpperCase();
+        document.write(upperCaseMessage);
+        document.write("<br />");
+
+        //new Object()
+        var person = new Object();
+        person.name = "Lucker Xia";
+        person.sex = "male";
+        person.age = 25;
+        person.eyecolor = "black";
+
+        document.write(person.name + " is " + person.age + " years old.");
+        document.write("<br />");
+
+        //Using an Object Constructor
+        function animal(category, age, color) {
+            this.category = category;
+            this.age = age;
+            this.color = color;
+        }
+
+        var cat = new animal("cat", "1.5", "yellow");
+        var dog = new animal("dog", "3", "white");
+
+        document.write("The " + cat.color + " " + cat.category + " is " + cat.age + " years old.");
+        document.write("<br />");
+        document.write("The " + dog.color + " " + dog.category + " is " + dog.age + " years old.");
+        document.write("<br />");
+
+        var article = function (title, content, comment, url) {
+            this.title = title;
+            this.content = content;
+            this.comment = comment;
+
+            this.changeTitle = changeTitle;
+            function changeTitle(newTitle) {
+                this.title = newTitle;
+            }
+        }
+
+        var myArticle = new article('Javascript Objects', 'Object is the main data type in JavaScript. "Everything" in JavaScript is an Object.In addition, JavaScript allows you to define your own objects.', 'This is simple!', 'http://www.w3schools.com/js/js_object_definition.asp');
+
+        myArticle.changeTitle('Javascript Object 2014 Version');
+        document.write("The article's title is " + myArticle.title);
+        document.write("<br />");
+        document.write("Content is " + myArticle.content);
+        document.write("<br />");
+
+        //Javascript for...in loop object elements
+        var animals = {
+            count: 3,
+            type: 'crawling',
+            eat: true
+        };
+
+        for (item in animals) {
+            document.write(item + " :" + animals[item]);
+            document.write("<br />");
+        }
+
+
+
+
+    </script>
+</body>
+</html>

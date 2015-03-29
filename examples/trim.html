@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> trim </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+  <script type="text/javascript">
+   String.prototype.trim = function() {
+    return this.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+  }
+	var string = "t h i s ";
+	console.log(string.trim());
+
+	console.log(string.replace(/^\s+|\s+$/g,''));
+
+	console.log(string.replace(/^\s\s*/, '').replace(/\s\s*$/, ''));
+
+//	console.log(ltrim(rtrim(string, ' '),' '));
+
+function trim(str, chars) {
+	return ltrim(rtrim(str, chars), chars);
+}
+ 
+function ltrim(str, chars) {
+	chars = chars || "\\s";
+	return str.replace(new RegExp("^[" + chars + "]+", "g"), "");
+}
+ 
+function rtrim(str, chars) {
+	chars = chars || "\\s";
+	return str.replace(new RegExp("[" + chars + "]+$", "g"), "");
+}
+	console.log(trim(string,' '));
+
+	console.log(string.replace(/^\s\s*/, '').replace(/\s\s*$/, ''));
+
+	console.log(string.replace(/\s|\xA0/g,""));
+  </script>
+ </body>
+</html>

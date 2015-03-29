@@ -1,0 +1,56 @@
+<strong>HTML</strong>
+<div id="container">
+    <p style="text-align:center;">CSS3 TABS. <b><i>NO JAVASCRIPT </i></b></p>
+    <div id="tabs">
+        <ul>
+            <li id="One"><a href="#One" id="first">One</a>
+                <div>
+                    <p>In today’s tutorial I am going to share a simple way to make News Ticker and Notification Bar using CSS3, NO JAVASCRIPT. Previously it was very difficult to code it in javascript and make it work with other plugins, but today I decided to make it possible in CSS3 and voila, I succeeded So lets</p>
+                </div>
+            </li>
+            <li id="Two"><a href="#Two" id="sec">Two</a>
+                <div>
+                    <p>While reading more about HTML5 & CSS3 I just found an amazing css3 button styling. This time I wanted to do something which I was doing from past 2 years using JQuery. In this tutorial I am going to teach you how to make a toggle slideDown and slideUp function using CSS3 and HTML5. To</p>
+                </div>
+            </li>
+            <li id="Three"><a href="#Three" id="third">Three</a>
+                <div>
+                    <p>Lets start learning CSS3 before its too late, I just saw a website which amazed me with its animation effects. First I thought that the site is using some JQuery libraries but when I actually went into the code, I found it is CSS3. So I started learning it, and today I made my first Read more...</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+ 
+<strong>CSS</strong>
+li div {
+    -moz-transition: all 0.5s ease 0s;
+    -webkit-transition: all 0.5s ease 0s;
+    border: 1px solid #888888;
+    float: left;
+    opacity: 0;
+    padding: 0 15px;
+    position: absolute;
+    visibility: hidden;
+    width: 250px;
+    left:0;
+    background: -moz-linear-gradient(center top , #E3E3E3, #FFFFFF 85px) repeat scroll 0 0 transparent;
+}
+ 
+#tabs li a{
+    background: -moz-linear-gradient(center top , #E3E3E3, #FFFFFF 18px) repeat scroll 0 0 transparent;
+    border: 1px solid #888888;
+    margin: 0 3px 0 0;
+    padding: 5px 25px;
+    position: relative;
+    z-index:1;
+    font-size: 14px;
+    border-radius:10px 10px 0 0;
+    display:block;
+    top:1px;
+}
+ 
+#One:target div, #Two:target div, #Three:target div{
+    opacity:1;
+    visibility:visible;
+}

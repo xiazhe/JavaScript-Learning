@@ -1,0 +1,60 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title> New Document </title>
+    <meta name="Generator" content="EditPlus">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+</head>
+
+<body>
+    <form>
+        <textarea id="ta"></textarea>
+        <p>
+            <input type="button" onclick="testTa()" value="Submit" />
+        </p>
+    </form>
+    <script type="text/javascript">
+        var testTa = function () {
+            var theValue = document.getElementById("ta").value;
+
+
+            var reg = new RegExp("\r\n", "g");
+            var reg2 = new RegExp("\r", "g");
+            var regn = new RegExp("\n", "g");
+            //str = str.replace(reg, "\r\n");
+            theValue = theValue.replace(reg, "<br/>").replace(reg2, "<br/>").replace(regn, "<br/>");
+
+            var testValue = "a\r\nb\r\nc";
+            //testValue = testValue.replace(reg, "<br/>");
+            //console.log(theValue);
+            console.log(theValue);
+            document.getElementById("ta").value = theValue;
+        }
+
+
+
+        function replaceRN(str) {
+            var reg = new RegExp("\r\n", "g");
+            var regR = new RegExp("\r", "g");
+            var regN = new RegExp("\n", "g");
+
+            str = str.replace(reg, "<br/>").replace(regR, "<br/>").replace(regN, "<br/>");
+
+            return str;
+        }
+
+
+        function replaceBrP(str) {
+            var regBr = new RegExp("<br>", "g");
+            var regP = new RegExp("<p>", "g");
+            var regBrSlash = new RegExp("<br/>", "g");
+            var regPSlash = new RegExp("</p>", "g");
+
+            str = str.replace(regBr, "\r\n").replace(regP, "\r\n").replace(regBrSlash, "\r\n").replace(regPSlash, "\r\n");
+            return str;
+        }
+    </script>
+</body>
+</html>

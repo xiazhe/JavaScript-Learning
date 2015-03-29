@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title> New Document </title>
+    <meta name="Generator" content="EditPlus">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+</head>
+
+<body>
+    <script type="text/javascript">
+        //function copy(source, destination) {
+        //    if (isWindow(source) || isScope(source)) {
+        //        throw ngMinErr('cpws',
+        //          "Can't copy! Making copies of Window or Scope instances is not supported.");
+        //    }
+
+        //    if (!destination) {
+        //        destination = source;
+        //        if (source) {
+        //            if (isArray(source)) {
+        //                destination = copy(source, []);
+        //            } else if (isDate(source)) {
+        //                destination = new Date(source.getTime());
+        //            } else if (isRegExp(source)) {
+        //                destination = new RegExp(source.source);
+        //            } else if (isObject(source)) {
+        //                destination = copy(source, {});
+        //            }
+        //        }
+        //    } else {
+        //        if (source === destination) throw ngMinErr('cpi',
+        //          "Can't copy! Source and destination are identical.");
+        //        if (isArray(source)) {
+        //            destination.length = 0;
+        //            for (var i = 0; i < source.length; i++) {
+        //                destination.push(copy(source[i]));
+        //            }
+        //        } else {
+        //            var h = destination.$$hashKey;
+        //            forEach(destination, function (value, key) {
+        //                delete destination[key];
+        //            });
+        //            for (var key in source) {
+        //                destination[key] = copy(source[key]);
+        //            }
+        //            setHashKey(destination, h);
+        //        }
+        //    }
+        //    return destination;
+        //}
+
+        var obj = { name: "123", age: "male" };
+
+        var obj2 = new Object();
+
+        //copy(obj, obj2);
+
+        //obj2 = obj;
+
+        obj2 = clone(obj);
+
+
+        obj2.name = "345";
+
+        console.log(obj2);
+
+        console.log(obj);
+
+
+
+
+        //function clone the object's attrbute.
+        function clone(obj) {
+            if (null == obj || "object" != typeof obj) return obj;
+            var copy = obj.constructor();
+            for (var attr in obj) {
+                if (obj.hasOwnProperty(attr)) copy[attr] = obj[attr];
+            }
+            return copy;
+        }
+
+
+
+    </script>
+</body>
+</html>

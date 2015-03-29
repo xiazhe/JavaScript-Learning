@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title> New Document </title>
+    <meta name="Generator" content="EditPlus">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+</head>
+
+<body>
+    <script type="text/javascript">
+        var arr = ["Jerry", "Tom", "Candy", "Thomas"];
+        arr.pop();
+        console.log(arr);
+
+        //Array[3] 0: "Jerry"1: "Tom"2: "Candy"length: 3__proto__: Array[0] array.html:15
+        console.log(arr.pop());
+        //Candy VM65:2
+        //undefined
+        console.log(arr);
+        //["Jerry", "Tom"] VM90:2
+        //undefined
+        console.log(arr.join());
+        //Jerry,Tom VM97:2
+        //undefined
+        arr.push("Nick")
+        //3
+        console.log(arr);
+        //["Jerry", "Tom", "Nick"] VM120:2
+        //undefined
+        arr.push("lilei","hanmeimei")
+        //5
+        console.log(arr);
+        //["Jerry", "Tom", "Nick", "lilei", "hanmeimei"] VM122:2
+        //undefined
+        arr.reverse()
+        //["hanmeimei", "lilei", "Nick", "Tom", "Jerry"]
+        arr.shift()
+        //"hanmeimei"
+        console.log(arr);
+        //["lilei", "Nick", "Tom", "Jerry"] VM205:2
+        //undefined
+        arr.sort()
+        //["Jerry", "Nick", "Tom", "lilei"]
+
+
+    </script>
+</body>
+</html>

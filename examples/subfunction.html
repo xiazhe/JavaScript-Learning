@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title> New Document </title>
+    <meta name="Generator" content="EditPlus">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+</head>
+
+<body>
+
+    <div id="demo"></div>
+    <script>
+
+        //Functions are objects, but objects are not functions. Of course you can store functions as object properties but you can't make a plain object "callable". Or what do you actually want to achieve? What should be the advantage of your second approach? –  Felix Kling Feb 5 '11 at 12:02 
+        var test = function () {          
+
+            console.log(test.data);
+            //return str;
+        };
+
+        test.str = "ab";
+        console.log(test.str);
+
+        test instanceof Object;
+
+        //Javascript type undefined, number, boolean, object, string, function
+
+
+        test.data = 'hello';
+
+        //test.set = function (data) {
+        //    test.data = data;
+        //};
+
+        //test.set('Test');
+        //test();
+        //This outputs Test to my javascript console. Now I was wondering, if there was a way to do it using something like this?
+
+        //var test = {
+        //    this: function () {
+        //        console.log(test.data);
+        //    },
+
+        //    data: 'hello',
+
+        //    set: function (data) {
+        //        test.data = data;
+        //    }
+        //};
+
+    </script>
+</body>
+</html>

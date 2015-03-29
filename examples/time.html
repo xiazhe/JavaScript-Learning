@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> New Document </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+ </head>
+
+ <body>
+
+  <div id="demo"></div>
+    <script>
+	function myFunction()
+	{
+	var d = new Date();
+	var x = document.getElementById("demo");
+	x.innerHTML=d.toUTCString();
+	}
+
+	myFunction();
+
+	var today = new Date();
+	document.write("today : ");
+	document.write(today);
+	document.write("<br />");
+
+	var day = today.getDay();
+	document.write("weekday : ");
+	document.write(day);
+	document.write("<br />");
+
+	var month = today.getMonth();
+	document.write("month index : ");
+	document.write(month);
+	document.write("<br />");
+
+	var monthArr = new Array();
+	monthArr[0] = "January";
+	monthArr[1] = "February";
+	monthArr[2] = "March";
+	monthArr[3] = "April";
+	monthArr[4] = "May";
+	monthArr[5] = "June";
+	monthArr[6] = "July";
+	monthArr[7] = "August";
+	monthArr[8] = "September";
+	monthArr[9] = "October";
+	monthArr[10] = "November";
+	monthArr[11] = "December";
+
+	var currMonth = monthArr[month];
+	document.write("current month : ");
+	document.write(currMonth);
+	document.write("<br />");
+
+	var weekday = new Array(7);
+	weekday[0] = "Sunday";
+	weekday[1] = "Monday";
+	weekday[2] = "Tuesday";
+	weekday[3] = "Wednesday";
+	weekday[4] = "Thursday";
+	weekday[5] = "Friday";
+	weekday[6] = "Saturday";
+	var currWeekday = weekday[day];
+	document.write("current weekday : ");
+	document.write(currWeekday);
+	document.write("<br />");
+
+	var monthDay = today.getDate();
+	document.write("current month day : ");
+	document.write(monthDay);
+	document.write("<br />");
+
+
+
+
+
+
+
+
+
+
+
+	//object
+	var moment = new Object();
+	moment.name="123";
+	document.write(moment.name);
+
+	var datenow = function(){
+		this.pro = "date picker";
+		return pro;
+	}
+
+	"test string in code line";
+	
+	var year = today.getYear();
+	console.log(year);
+
+	var fullYear = today.getFullYear()
+	console.log(fullYear);
+
+	console.log(datenow());
+	
+  </script>
+ </body>
+</html>
