@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Using document.createElement() to test for browser support for an element</title>
+</head>
+<body>
+<style type="text/css">
+    .myelement {
+        behavior: url(test.htc);
+    }
+</style>
+
+<script>
+    //http://www.javascriptkit.com/javatutors/createelementcheck.shtml
+
+    //Use document.createElement() to dynamically create the element as if the browser supports it.
+
+    //Checking for support for the canvas element of HTML 5
+    var test_canvas = document.createElement("canvas");
+    var canvascheck = (test_canvas.getContext) ? true : false;
+    alert(canvascheck);
+
+    //Checking for support for the audio and video elements of HTML 5
+    var test_audio = document.createElement("audio");
+    var test_video = document.createElement("video");
+    var mediasupport = {audio: (test_audio.play) ? true : false, video: (test_video.play()) ? true : false}
+
+    console.log(mediasupport); //{ audio: true, video: true}
+
+    alert("Audio Element support: " + mediasupport.audio + "\n" + "Video Element support: " + mediasupport.video);
+
+    //Checking the <style> element for IE behaviors support
+    var dummystyle = document.createElement("style");
+    var behaviortest = (dummystyle.addBehavior() ? true : false);
+    alert(behaviortest);
+
+    //Checking the <input> element for HTML5 specific types
+    var testrange = document.createElement("input");
+    testrange.setAttribute("type", "range");
+    if(testrange.type == "range"){
+        //browser supports range INPUT!
+    }
+
+    var testdatepicker = document.createElement("input");
+    testdatepicker.setAttribute("type", "date"); //set INPUT element to the type we're testing for
+    if(testdatepicker.type == "text"){ //if browser doesn't support INPUT type=="calender"
+        //implement custom calendar control instead
+    }
+
+
+
+</script>
+</body>
+</html>

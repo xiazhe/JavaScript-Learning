@@ -12,6 +12,24 @@
     console.log(typeof(""));
     console.log(typeof(undefined));
     console.log(typeof(function(){}));
+    console.log(typeof(aaa));  //undefined
+
+
+
+    var aaa;
+    console.log(aaa); //undefined
+    console.log(typeof(aaa)); //undefined
+
+    //fail
+    if(aaa){
+        console.log("true");
+    }
+
+    //pass
+    if(typeof(aaa)){
+        console.log("true");
+    }
+
 </script>
 </body>
 </html>
