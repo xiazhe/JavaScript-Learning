@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    var x = 10;
+
+    var foo = {
+        x: 20,
+        bar: function(){
+            var x = 30;
+            console.log(this.x);
+        }
+    }
+
+    //console.log(foo.bar());
+    //20
+    //undefined
+
+    //console.log((foo.bar)());
+    //10
+    //undefined
+
+    console.log((foo.bar = foo.bar)());
+    //10
+    //undefined
+
+    console.log(foo.bar.call(window));
+
+    console.log(foo.bar.call(foo));
+
+</script>
+</body>
+</html>
