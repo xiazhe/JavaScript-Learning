@@ -6,19 +6,31 @@
 </head>
 <body>
 <script>
-    if (!String.prototype.trim) {
-        (function() {
-            // Make sure we trim BOM and NBSP
-            var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
-            String.prototype.trim = function() {
-                return this.replace(rtrim, '');
-            };
-        })();
-    }
+//    if (!String.prototype.trim) {
+//        (function() {
+//            // Make sure we trim BOM and NBSP
+//            var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
+//            String.prototype.trim = function() {
+//                return this.replace(rtrim, '');
+//            };
+//        })();
+//    }
+//
+//
 
+
+
+    String.prototype.trim=function(){return this.replace(/^\s+|\s+$/g, '');};
+
+    String.prototype.ltrim=function(){return this.replace(/^\s+/,'');};
+
+    String.prototype.rtrim=function(){return this.replace(/\s+$/,'');};
+
+    String.prototype.fulltrim=function(){return this.replace(/(?:(?:^|\n)\s+|\s+(?:$|\n))/g,'').replace(/\s+/g,' ');};
 
     var str = "   1 2 3    ";
-    console.log(str.trim());
+    console.log(str.fulltrim());
+
 </script>
 </body>
 </html>

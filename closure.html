@@ -24,8 +24,21 @@
 
     //http://www.zhihu.com/question/19554716
     var foo = (function(){
+        var secret = "secret";
+        return {
+            get_secret: function(){
+                return secret;
+            },
+            set_secret: function(new_secret){
+                secret = new_secret;
+            }
+        }
+    }());
 
-    });
+    foo.get_secret(); //secret
+    foo.secret; // Type error
+    foo.set_secret("a new secret") //set foo.secret
+    foo.get_secret();// "a new secret"
 
 
 </script>
