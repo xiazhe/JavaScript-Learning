@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function Person(name, age, job){
+        if(this instanceof Person){
+            console.log(this); //Person
+            this.name = name;
+            this.age = age;
+            this.job = job;
+        }else{
+            console.log(this); //Window
+            return new Person(name, age, job);
+        }
+    }
+
+
+    var person1 = Person("Nicholas", 29, "Software Engineer");
+    console.log(window.name); //""
+    console.log(person1.name); //Nicholas
+
+    var person2 = Person("Shelby", 34, "Ergonomist");
+    console.log(person2.name); //"Shelby"
+
+
+</script>
+</body>
+</html>

@@ -13,6 +13,23 @@
     }
     console.log(arr.length);
 
+    if(arr instanceof Array){
+        //do something to array
+    }
+
+    if(Array.isArray(arr)){
+        //nonsupport ie6/7/8
+    }
+
+    //Scope Safe Constructors
+    console.log(Object.prototype.toString.call(arr)); //"[object Array]"
+
+    function isArray(value){
+        return Object.prototype.toString().call(value) == "[Object Array]"
+    }
+
+
+
 
 
 </script>

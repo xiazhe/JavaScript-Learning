@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    function isFunction(value){
+        return Object.toString().call(value) == "[Object Function]";
+    }
+
+    function isRegExp(value){
+        return Object.toString().call(value) == "[Object RegExp]";
+    }
+
+    function isJSON(value){
+        return Object.toString().call(value) == "[Object JSON]";
+    }
+</script>
+</body>
+</html>
