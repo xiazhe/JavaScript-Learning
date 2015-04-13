@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    sayHi(); //TypeError: undefined is not a function (evaluating 'sayHi()')
+
+    //anonymous function
+    var sayHi = function(){
+        console.log("Hi");
+    }
+
+    sayHi();
+
+    //在把函数 当成值来使用的情况下,都可以使用匿名函数。不过,这并不是匿名函数唯一的用途。 JavaScript高级程序设计 p177
+</script>
+</body>
+</html>

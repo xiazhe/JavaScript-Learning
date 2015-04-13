@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<script>
+    "use strict"
+    function factorial(num){
+        if(num <= 1){
+            return 1;
+        }else{
+            return num * arguments.callee(num-1); //error
+        }
+    }
+
+
+    var factorial = (function f(num){
+        if(num <= 1){
+            return 1;
+        }else{
+            return num * f(num-1);
+        }
+    });
+</script>
+</body>
+</html>
