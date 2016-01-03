@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+  <script type="text/javascript">
+	function f(){
+    var o = {};
+    var o2 = {};
+    o.a = o2; // o 引用 o2
+    o2.a = o; // o2 引用 o
+
+    return "azerty";
+  };
+
+  var str = f();
+  // 两个对象被创建，并互相引用，形成了一个循环
+  // 他们被调用之后不会离开函数作用域
+  // 所以他们已经没有用了，可以被回收了
+  // 然而，引用计数算法考虑到他们互相都有至少一次引用，所以他们不会被回收
+  console.log(str);
+  </script>
+ </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>event.preventDefault() function not working in IE</title>
+</head>
+<body>
+<div onclick="boxClick(event)">
+    <button onclick="btnClick(event)">click</button>
+</div>
+
+<script type="text/javascript">
+    function btnClick(e){
+        //IE 10, IE 9 supported
+        e.preventDefault();
+        e.stopPropagation();
+        console.log("button be click!");
+    };
+
+    function boxClick(e){
+        console.log(e);
+        alert("box click");
+    };
+
+</script>
+</body>
+</html>
