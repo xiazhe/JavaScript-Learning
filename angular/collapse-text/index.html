@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Example - collapse text</title>
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.2/angular.min.js"></script>
+  <script src="script.js"></script>
+  <script src="collapsetext.js"></script>
+  <link type="text/css" href="collapsetext.css" rel="stylesheet" />
+
+
+</head>
+
+<body ng-app="collapsetextExampleApp">
+  <div ng-controller="EventController">
+    <button ng-click="clickMe($event)">Click Me</button>
+    <p collapse-text="10">{{longtext}}</p>
+
+
+    <p collapse-text="10"  collapse-value="longtext"></p>
+  </div>
+</body>
+
+</html>

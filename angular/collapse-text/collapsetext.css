@@ -1,0 +1,17 @@
+.collapse-text-toggle {
+    font-size: 0.9em;
+    color: #66b2e7;
+    cursor: pointer;
+}
+
+    .collapse-text-toggle:hover {
+        color: #222222;
+    }
+
+    .collapse-text-toggle:before {
+        content: '\00a0[';
+    }
+
+    .collapse-text-toggle:after {
+        content: ']';
+    }
