@@ -10,8 +10,12 @@ angular.module('oneTimeBidingExampleApp', []).
     $scope.clickMe = function(clickEvent) {
       $scope.name = names[counter % names.length];
       counter++;
+
+      var item = counter.toString();
       
-      $scope.names.push(counter);
+      $scope.names.push(item);
+
+      $scope.names[0] = $scope.names[0] + item;
       
       //console.log(angular.toJson($scope.names));
       //$scope.names = ['Igor', 'Misko', 'Chirayu', 'Lucas'];
