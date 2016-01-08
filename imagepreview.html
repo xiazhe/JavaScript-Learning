@@ -1,15 +1,33 @@
-﻿<form id="imgup" method="post" enctype="multipart/form-data" action="picup.ashx">  
- <input type="file" name="upf" id="fileup" onchange="dox(this)" />  
- </form>  
- <div id="tp" style="width:200px;height:200px"></div>  
- <script type="text/javascript" charset="utf-8" language="javascript">  
- function dox(obj)  
- {  
- obj.select();  
- obj.blur();  
- var nfile = document.selection.createRange().text;  
- alert("当前选择的文件完整路径是:"+nfile);  
- document.selection.empty();  
- document.getElementById("tp").style.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src='"+nfile+"')"; 
- }  
- </script> 
+﻿<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+ </head>
+ <body>
+ 	<h1>Only work in IE9</h1>
+  	<form id="imgup" method="post" enctype="multipart/form-data" action="picup.ashx">  
+		<input type="file" name="upf" id="fileup" onchange="dox(this)" />  
+	</form>  
+
+ 	<div id="tp" style="width:200px;height:200px"></div>  
+
+	<script type="text/javascript" charset="utf-8" language="javascript">  
+		function dox(obj)  
+		{  
+			obj.select();  
+			obj.blur();  
+			var filepath = document.selection.createRange().text;  
+			alert("file path:"+filepath);  
+			document.selection.empty();  
+			document.getElementById("tp").style.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src='"+ filepath +"')"; 
+		}  
+	</script> 
+ </body>
+</html>
+
+

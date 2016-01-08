@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <script type="text/javascript">
+  	function checkFile(){
+  		var fileElement = document.getElementById("upload");
+        var fileExtension = "";
+        if (fileElement.value.lastIndexOf(".") > 0) {
+            fileExtension = fileElement.value.substring(fileElement.value.lastIndexOf(".") + 1, fileElement.value.length).toLowerCase();
+        }
+        if (fileExtension === "gif" || fileExtension === 'jpeg' || fileExtension === 'png' || fileExtension === 'jpg' || fileExtension === 'bmp') {
+            return true;
+        }
+        else {
+            alert("You must select a image file(.gif, .jpeg, .jpg, .png, .bmp) for upload");
+            return false;
+        }
+  	}
+  </script>
+ </head>
+ <body>
+ 	<form action="" enctype="multipart/form-data" onsubmit = "return checkFile();">
+  		<input type="file" name="upload" id="upload" accept="image/jpeg, image/png">
+  		<input type="submit" />
+  	</form>
+ </body>
+</html>
