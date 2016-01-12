@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Example - orderby</title>
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.2/angular.min.js"></script>
+  <script src="script.js"></script>
+</head>
+
+<body ng-app="exampleApp">
+  <div ng-controller="EventController">
+    <button ng-click="clickMe($event)">Click Me</button>
+    {{entropy}}
+    <ul ng-repeat="item in list| orderBy: ['order', '-name']">
+      <li>{{item.name}} - {{item.order}}</li>
+    </ul>
+
+  </div>
+</body>
+
+</html>
