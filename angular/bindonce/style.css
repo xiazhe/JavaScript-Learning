@@ -1,0 +1,32 @@
+body {
+    padding: 0 20px;
+}
+legend a {
+    margin-right: 20px;
+    vertical-align: middle;
+}
+.male {
+    color: #55468C;
+}
+.female {
+    color: #C4969E;
+}
+.title {
+    padding: 10px 5px;
+    color: red;
+}
+tr {
+    text-align: left;
+}
+tr th {
+    width: 20%;
+}
+tr td span {
+    padding: 2px 10px;
+}
+img {
+    width: 30px;
+}
+input {
+    width: 100%;
+}

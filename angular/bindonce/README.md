@@ -1,0 +1,3 @@
+##This demo shows the performance boost that BindOnce can give to your UI.
+In order to test the UI reactivness try to press and hold a key inside the input field, when the AngularJs watchers list is small you'll see the character displayed in both the view and the input with the same smooth speed. Once you start loading a large amount of persons in the table AngularJs become unresponsive and pressing a key in the input will freeze the UI. Using BindOnce you can load as many persons as you want and the UI will be still reactive.
+Here you can try the same test using only AngularJs so you can see the difference: http://plnkr.co/edit/jwrHVb?p=preview

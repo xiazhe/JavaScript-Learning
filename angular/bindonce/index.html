@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="twoway">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Twoway Databinding with BindOnce</title>
+    <link data-require="bootstrap-css@3.1.1" data-semver="2.3.2" rel="stylesheet" href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+    <script data-require="angular.js@*" data-semver="1.1.5" src="http://code.angularjs.org/1.1.5/angular.js"></script>
+    <script data-require="bindonce@0.3.1" data-semver="0.3.1" src="http://pasvaz.github.io/bindonce/javascripts/bindonce-0.3.1/bindonce.min.js"></script>
+    <script>
+        document.write('<base href="' + document.location + '" />');
+    </script>
+    <link rel="stylesheet" href="style.css" />
+    <script src="app.js"></script>
+    <script src="services.js"></script>
+</head>
+
+<body ng-controller="MainCtrl">
+    <h3>Reactiveness Test - <span class="text-info">BindOnce version</span></h3>
+    <form>
+        <div class="title">{{ name || 'Press & hold a key until it fills the input to test the reactiveness' }}</div>
+        <input type="text" ng-model="name" />
+        <div class="controls">
+            <button class="btn btn-primary" ng-click="reset()">Reset</button>
+            <button class="btn btn-success" ng-click="loadPersons(500)">Load 500</button>
+            <button class="btn btn-warning" ng-click="loadPersons(1000)">Load 1000</button>
+            <button class="btn btn-danger" ng-click="loadPersons(2000)">Load 2000</button>
+            <a target="_parent" href="http://plnkr.co/edit/jwrHVb?p=preview" style="float:right" class="btn btn-inverse">without BindOnce</a>
+        </div>
+    </form>
+    <hr />
+    <p>轮询</p>
+    <button ng-click="clickMe($event)">Click Me!</button>
+    <hr />
+
+    <legend>
+        <span ng-bind="Persons.length" class="badge badge-important"></span>
+        <a>Persons</a>
+        <span ng-bind="watchers" class="badge badge-important"></span>
+        <a href="" ng-click="wcount()">$Watchers</a>
+    </legend>
+    
+    <h5>This demo uses <a target="_new" href="https://github.com/Pasvaz/bindonce">BindOnce</a>, do you want to test the <a target="_parent" href="http://plnkr.co/edit/jwrHVb?p=preview">version without BindOnce</a>?</h5>
+
+    <table class="table table-bordered">
+        <tbody>
+
+            <tr>
+                <th>#</th>
+                <th>Avatar</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Profile</th>
+            </tr>
+
+            <tr bindonce ng-repeat="person in Persons" bo-class="{'male':person.gender=='M','female':person.gender=='F'}">
+                <td bo-bind="$index + 1"></td>
+                <td><img bo-src="person.picture" /></td>
+                <td bo-bind="person.firstname"></td>
+                <td bo-bind="person.lastname"></td>
+                <!-- BAD PRACTICE FOR STYLE ON PURPOSE: Using a function as binder is not good -->
+                <td><span bo-bind="person.age" bo-style="ageColor(person.age)" style=""></span></td>
+                <td bo-bind="person.gender"></td>
+                <td>
+                    <a bo-href="person.url">
+                        <spam bo-bind="(person.url)?'link':'missing'" bo-class="{'label label-important':!person.url}"></spam>
+                    </a>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</body>
+
+</html>
