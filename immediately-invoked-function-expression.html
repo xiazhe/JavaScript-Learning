@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Immediately-Invoked Function Expression</title>
+</head>
+<body>
+<p>
+    Immediately-Invoked Function Expression
+    <br />
+    An immediately-invoked function expression (or IIFE, pronounced "iffy"[1]) is a JavaScript design pattern which produces a lexical scope using JavaScript's function scoping
+    <br />
+    https://en.wikipedia.org/wiki/Immediately-invoked_function_expression
+</p>
+<script>
+    //变量声明部分 ---------------------------------------------------------------------------------------------
+    var log = 'abc';
+
+    //方法声明部分 ---------------------------------------------------------------------------------------------
+    var printStr = function(str){
+        console.log(str);
+    };
+
+    function makeCounter(){
+        //'i' 的作用域只在 makeCounter 方法中
+        var i = 0;
+
+        return function(){
+            console.log(++i);
+        }
+    };
+    
+    //测试使用部分 ---------------------------------------------------------------------------------------------
+    //Part I
+    var counter = makeCounter();
+    // counter(); //1
+    // counter(); //2
+
+    var counter2 = makeCounter();
+    // counter2(); //1
+    // counter2(); //2
+
+    (function(){
+        //全局变量可以直接获取
+        // console.log(log); //abc
+        var person = {
+            name: 'Jim'
+        };
+
+        //printStr('123');
+        //Uncaught TypeError: printStr is not a function
+        //方法需要引用才能使用
+
+
+
+    }());
+
+
+    //Part II
+    (function(printStr){
+
+        // printStr('two'); //two
+
+    }(printStr));
+
+    //Part III
+    //Self-executing function
+    //function foo() { foo(); }
+
+    //foo();
+    //Uncaught RangeError: Maximum call stack size exceeded
+
+    //Self-executing anonymous function
+    //var foo = function() { arguments.callee(); };
+
+    //foo();
+    //Uncaught RangeError: Maximum call stack size exceeded
+
+    
+
+
+</script>
+
+</body>
+</html>
