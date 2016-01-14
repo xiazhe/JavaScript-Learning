@@ -3689,6 +3689,7 @@ function annotate(fn, strictDi, name) {
     if (!($inject = fn.$inject)) {
       $inject = [];
       if (fn.length) {
+        console.warn("此函数没有注入注解，将导致编译后运行错误:", fn);
         if (strictDi) {
           if (!isString(name) || !name) {
             name = fn.name || anonFn(fn);

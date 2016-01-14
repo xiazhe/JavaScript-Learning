@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>ngRepeat - Example</title>
+
+
+  <script src="angular.min.js"></script>
+  <script type="text/javascript">
+    (function(angular) {
+    'use strict';
+    angular.module('oneTimeBindingExampleApp', []).
+      controller('EventController', ['$scope', function($scope) {   
+        var counter = 0;
+ 
+        /*
+         * expose the event object to the scope
+         */
+        $scope.clickMe = function(clickEvent) {
+          counter++;
+
+          for(var i = 0; i < $scope.persons.length; i++){
+            $scope.persons[i].name += counter;
+          }
+
+          console.log(angular.toJson($scope.persons));
+
+          $scope.persons.push({name: new Date().getTime(), age: counter});
+        };
+        
+
+        $scope.persons = [{
+          name: 'Igor',
+          age: 10
+        },
+        {
+          name: 'Misko',
+          age: 20
+        },
+        {
+          name: 'Chirayu',
+          age: 30
+        },
+        {
+          name: 'Lucas',
+          age: 40
+        }];
+      }]);
+    })(window.angular);
+  </script>
+
+
+
+</head>
+
+<body ng-app="oneTimeBindingExampleApp">
+  <div ng-controller="EventController">
+    <h1>ngRepeat once binding</h1>
+    <button ng-click="clickMe($event)" >ClickMe</button>
+    <ul>
+      <!-- 一般情况 -->
+      <!-- <li ng-repeat="item in persons">{{item.name}};</li> -->
+      <!-- 给数组加上：： -->
+      <!-- <li ng-repeat="item in ::persons">{{item.name}};</li> -->
+      <!-- 给遍历的item加上：： success -->
+      <li ng-repeat="item in persons">{{::item.name}};</li>
+
+    </ul>
+  </div>
+</body>
+</html>

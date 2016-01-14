@@ -12,16 +12,37 @@ angular.module('oneTimeBidingExampleApp', []).
       counter++;
 
       var item = counter.toString();
+      var randomNum = new Date().getTime();
       
       $scope.names.push(item);
 
       $scope.names[0] = $scope.names[0] + item;
+      $scope.persons[0].name += item;
+
+      $scope.persons.push({'name': randomNum, 'age': item});
       
       //console.log(angular.toJson($scope.names));
       //$scope.names = ['Igor', 'Misko', 'Chirayu', 'Lucas'];
     };
     
     $scope.names = ['Igor', 'Misko', 'Chirayu', 'Lucas'];
+
+    $scope.persons = [{
+      name: 'Igor',
+      age: 10
+    },
+    {
+      name: 'Misko',
+      age: 20
+    },
+    {
+      name: 'Chirayu',
+      age: 30
+    },
+    {
+      name: 'Lucas',
+      age: 40
+    }];
     
     
     
