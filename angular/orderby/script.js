@@ -2,7 +2,7 @@
   'use strict';
 angular.module('exampleApp', []).
   controller('EventController', ['$scope', function($scope) {
-   
+    //resources
     $scope.list = [
         {
           "order": 1,
