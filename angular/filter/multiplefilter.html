@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Multiple filter - Example</title>
+  <script src="../angular.min.js"></script>
+  <script type="text/javascript">
+    (function(angular) {
+    'use strict';
+    angular.module('exampleApp', []).
+      controller('EventController', ['$scope', function($scope) {   
+        
+        
+
+        $scope.persons = [{
+          name: 'Igor',
+          age: 10,
+          dep: 'solution'
+        },
+        {
+          name: 'Misko1',
+          age: 20,
+          dep: 'solution'
+        },
+        {
+          name: 'Chirayu',
+          age: 30,
+          dep: 'sale'
+        },
+        {
+          name: 'Lucas',
+          age: 40,
+          dep: 'sale'
+        }];
+      }]);
+
+      //filter Multiple by single value or multiple value
+      angular.module('exampleApp').filter('filterMultiple', ['$filter', function($filter) {
+        return function(items, keyObj) {
+          var filterObj = {
+            data: items,
+            filteredData: [],
+            //obj > value, key > name
+            applyFilter: function(obj, key) {
+              console.log(this.filteredData)
+              var fData = [];
+
+              var listData = this.data;
+
+              if (obj) {
+                var fObj = {};
+                if (!angular.isArray(obj)) {
+                  fObj[key] = obj;
+                  fData = fData.concat($filter('filter')(listData, fObj));
+
+                } else if (angular.isArray(obj)) {
+
+                  if (obj.length > 0) {
+
+                    for (var i = 0; i < obj.length; i++) {
+
+                      if (angular.isDefined(obj[i])) {
+                        fObj[key] = obj[i];
+                        fData = fData.concat($filter('filter')(listData, fObj));
+                      }
+
+                    }
+
+                  }
+                }
+
+                if (fData.length > 0) {
+                  for(var i=0; i<fData.length; i++){
+                    if(this.filteredData.indexOf(fData[i]) === -1){
+                      this.filteredData.push(fData[i]);  
+                    }
+                  }
+                  
+                }
+
+              }else{
+                this.filteredData = listData;
+              }
+            }
+          };
+
+          if (keyObj) {
+            angular.forEach(keyObj, function(obj, key) {
+              filterObj.applyFilter(obj, key);
+            });
+          }
+
+          return filterObj.filteredData;
+        }
+      }]);
+
+      // angular.module('exampleApp').filter('unique', function() {
+      //   return function(input, key) {
+      //     var unique = {};
+      //     var uniqueList = [];
+      //     for (var i = 0; i < input.length; i++) {
+      //       if (typeof unique[input[i][key]] == "undefined") {
+      //         unique[input[i][key]] = "";
+      //         uniqueList.push(input[i]);
+      //       }
+      //     }
+      //     return uniqueList;
+      //   };
+      // });
+
+    })(window.angular);
+  </script>
+</head>
+
+<body ng-app="exampleApp">
+  <div ng-controller="EventController">
+    <h1>filter</h1>
+    <input ng-model="keyword" />
+    <ul>
+      <!-- need orderBy -->
+      <li ng-repeat="item in persons | filterMultiple:{name:keyword, dep:keyword} | orderBy: '-age'">{{item.name}} - {{item.age}} - {{item.dep}}</li>
+    </ul>
+  </div>
+</body>
+</html>

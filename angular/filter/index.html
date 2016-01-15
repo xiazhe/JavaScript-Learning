@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>filter - Example</title>
+
+
+  <script src="../angular.min.js"></script>
+  <script type="text/javascript">
+    (function(angular) {
+    'use strict';
+    angular.module('exampleApp', []).
+      controller('EventController', ['$scope', function($scope) {   
+        
+        
+
+        $scope.persons = [{
+          name: 'Igor',
+          age: 10,
+          dep: 'solution'
+        },
+        {
+          name: 'Misko',
+          age: 20,
+          dep: 'solution'
+        },
+        {
+          name: 'Chirayu',
+          age: 30,
+          dep: 'sale'
+        },
+        {
+          name: 'Lucas',
+          age: 40,
+          dep: 'sale'
+        }];
+      }]);
+    })(window.angular);
+  </script>
+
+
+
+</head>
+
+<body ng-app="exampleApp">
+  <div ng-controller="EventController">
+    <h1>filter</h1>
+    <input ng-model="keyword" />
+    <ul>
+      <!-- not work -->
+      <li ng-repeat="item in persons | filter:{name: keyword} | filter: {age: keyword} | orderBy: '-age'">{{item.name}} - {{item.age}}</li>
+    </ul>
+  </div>
+</body>
+</html>
