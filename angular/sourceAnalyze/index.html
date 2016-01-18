@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title> - Example</title>
+
+
+  <script src="angular.js"></script>
+  <script type="text/javascript">
+    (function(angular) {
+    'use strict';
+    angular.module('exampleApp', []).
+      controller('eventController', ['$scope', function($scope) {   
+          $scope.name = 'angular';
+       
+      }]);
+    })(window.angular);
+  </script>
+
+
+
+</head>
+
+<body ng-app="exampleApp">
+  <div ng-controller="eventController">
+    <h1>Source Analyze</h1>
+      {{name}}
+  </div>
+</body>
+</html>
