@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Array filter</title>
+ </head>
+ <body>
+  <script type="text/javascript">
+  	function isBigEnough(element){
+  		return element >= 12;
+  	}
+
+  	var filterd = [12, 5, 8, 130, 44].filter(isBigEnough);
+
+  	console.log(filterd);
+  	//[12, 130, 44]
+  </script>
+ </body>
+</html>
