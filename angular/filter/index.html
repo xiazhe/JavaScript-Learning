@@ -1,56 +1,58 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>filter - Example</title>
+    <meta charset="UTF-8">
+    <title>filter - Example</title>
 
-
-  <script src="../angular.min.js"></script>
-  <script type="text/javascript">
-    (function(angular) {
-    'use strict';
-    angular.module('exampleApp', []).
-      controller('EventController', ['$scope', function($scope) {   
-        
-        
-
-        $scope.persons = [{
-          name: 'Igor',
-          age: 10,
-          dep: 'solution'
-        },
-        {
-          name: 'Misko',
-          age: 20,
-          dep: 'solution'
-        },
-        {
-          name: 'Chirayu',
-          age: 30,
-          dep: 'sale'
-        },
-        {
-          name: 'Lucas',
-          age: 40,
-          dep: 'sale'
-        }];
-      }]);
-    })(window.angular);
-  </script>
-
-
-
+    <script src="../angular.min.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', []).
+              controller('EventController', ['$scope', function ($scope) {
+                  $scope.persons = [{
+                      name: 'Igor',
+                      age: 10,
+                      dep: 'solution'
+                  },
+                  {
+                      name: 'Misko',
+                      age: 20,
+                      dep: 'solution'
+                  },
+                  {
+                      name: 'Chirayu',
+                      age: 30,
+                      dep: 'sale'
+                  },
+                  {
+                      name: 'Lucas',
+                      age: 40,
+                      dep: 'sale'
+                  }];
+              }]);
+        })(window.angular);
+    </script>
 </head>
 
 <body ng-app="exampleApp">
-  <div ng-controller="EventController">
-    <h1>filter</h1>
-    <input ng-model="keyword" />
-    <ul>
-      <!-- not work -->
-      <li ng-repeat="item in persons | filter:{name: keyword} | filter: {age: keyword} | orderBy: '-age'">{{item.name}} - {{item.age}}</li>
-    </ul>
-  </div>
+    <div ng-controller="EventController">
+        <h1>filter</h1>
+        <input ng-model="keyword" />
+        <ul>
+            <!-- not work -->
+            <li ng-repeat="item in persons | filter:{name: keyword} | filter: {age: keyword} | orderBy: '-age'">{{item.name}} - {{item.age}}</li>
+        </ul>
+
+        <h1>filter normal</h1>
+        name: <input ng-model="name" type="text" />
+        age: <input ng-model="age" type="text" />
+        <ul>
+            <li ng-repeat="item in persons | filter: {name: name, age: age}">
+                {{item.name}} - {{item.age}}
+            </li>
+        </ul>
+    </div>
 </body>
 </html>

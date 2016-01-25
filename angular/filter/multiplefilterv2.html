@@ -1,132 +1,131 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Multiple filter - Example</title>
-  <script src="../angular.min.js"></script>
-  <script type="text/javascript">
-    (function(angular) {
-    'use strict';
-    angular.module('exampleApp', []).
-      controller('EventController', ['$scope', '$filter', function($scope, $filter) {   
-        
-        $scope.keyword;
+    <meta charset="UTF-8">
+    <title>Multiple filter - Example</title>
+    <script src="../angular.min.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', []).
+              controller('EventController', ['$scope', '$filter', function ($scope, $filter) {
 
-        $scope.persons = [{
-          name: 'Igor',
-          age: 10,
-          dep: 'solution'
-        },
-        {
-          name: 'Misko1',
-          age: 20,
-          dep: 'solution'
-        },
-        {
-          name: 'Chirayu',
-          age: 30,
-          dep: 'sale'
-        },
-        {
-          name: 'Lucas',
-          age: 40,
-          dep: 'sale'
-        }];
+                  $scope.keyword;
 
-        $scope.personsFiltered = $scope.persons;
+                  $scope.persons = [{
+                      name: 'Igor',
+                      age: 10,
+                      dep: 'solution'
+                  },
+                  {
+                      name: 'Misko1',
+                      age: 20,
+                      dep: 'solution'
+                  },
+                  {
+                      name: 'Chirayu',
+                      age: 30,
+                      dep: 'sale'
+                  },
+                  {
+                      name: 'Lucas',
+                      age: 40,
+                      dep: 'sale'
+                  }];
 
-        $scope.filter = function(){
-          $scope.personsFiltered = $filter('filterMultiple')($scope.persons, {name:$scope.keyword, dep:$scope.keyword});
+                  $scope.personsFiltered = $scope.persons;
 
-        }
+                  $scope.filter = function () {
+                      $scope.personsFiltered = $filter('filterMultiple')($scope.persons, { name: $scope.keyword, dep: $scope.keyword });
+
+                  }
 
 
 
-      }]);
+              }]);
 
-      //filter Multiple by single value or multiple value
-      angular.module('exampleApp').filter('filterMultiple', ['$filter', function($filter) {
-        return function(items, keyObj) {
-          // function isString(value) {return typeof value === 'string';}
+            //filter Multiple by single value or multiple value
+            angular.module('exampleApp').filter('filterMultiple', ['$filter', function ($filter) {
+                return function (items, keyObj) {
+                    // function isString(value) {return typeof value === 'string';}
 
-          // var lowercase = function(string) {return isString(string) ? string.toLowerCase() : string;};
+                    // var lowercase = function(string) {return isString(string) ? string.toLowerCase() : string;};
 
-          var filterObj = {
-            data: items,
-            filteredData: [],
-            //obj > value, key > name
-            applyFilter: function(obj) {
-              console.log(obj);
-              var listData = this.data;
+                    var filterObj = {
+                        data: items,
+                        filteredData: [],
+                        //obj > value, key > name
+                        applyFilter: function (obj) {
+                            console.log(obj);
+                            var listData = this.data;
 
-              if (obj) {
+                            if (obj) {
 
-                for(var i=0; i<listData.length; i++){
-                  var hasValue = false;
-                  console.log(listData[i])
-                  for(var item in obj){
-                    var row = ('' + listData[i][item]).toLowerCase();
-                    if(row.indexOf(('' + obj[item]).toLowerCase()) !== -1){
-                      hasValue = true;
-                      break;
+                                for (var i = 0; i < listData.length; i++) {
+                                    var hasValue = false;
+                                    console.log(listData[i])
+                                    for (var item in obj) {
+                                        var row = ('' + listData[i][item]).toLowerCase();
+                                        if (row.indexOf(('' + obj[item]).toLowerCase()) !== -1) {
+                                            hasValue = true;
+                                            break;
+                                        }
+
+                                    }
+
+                                    if (hasValue) {
+                                        this.filteredData.push(listData[i]);
+                                    }
+                                }
+
+
+                            }
+                        }
+                    };
+
+
+                    if (keyObj) {
+                        var hasKey = false;
+
+                        for (var key in keyObj) {
+                            if (keyObj[key]) {
+                                hasKey = true;
+                                break;
+                            }
+                        }
+
+                        if (hasKey) {
+                            filterObj.applyFilter(keyObj);
+                        } else {
+                            filterObj.filteredData = items;
+                        }
+                    } else {
+                        filterObj.filteredData = items;
                     }
 
-                  }
-
-                  if(hasValue){
-                    this.filteredData.push(listData[i]);
-                  }
+                    return filterObj.filteredData;
                 }
+            }]);
 
-
-              }
-            }
-          };
-
-
-
-          if (keyObj) {
-            var hasKey = false;
-
-            for(var key in keyObj){
-              if(keyObj[key]){
-                hasKey = true;
-                break;
-              }
-            }
-
-            if(hasKey){
-              filterObj.applyFilter(keyObj);              
-            }else{
-              filterObj.filteredData = items;
-            }
-          }else{
-            filterObj.filteredData = items;
-          }
-
-          return filterObj.filteredData;
-        }
-      }]);
-
-    })(window.angular);
-  </script>
+        })(window.angular);
+    </script>
 </head>
 
 <body ng-app="exampleApp">
-  <div ng-controller="EventController">
-    <h1>filter</h1>
-    <input ng-model="keyword" ng-change="filter()" />
-    <ul>
-      <!-- need orderBy -->
-      <li ng-repeat="item in persons | filterMultiple:{name:keyword, dep:keyword} ">{{item.name}} - {{item.age}} - {{item.dep}}</li>
-    </ul>
+    <div ng-controller="EventController">
+        <h1>filter</h1>
+        <input ng-model="keyword" ng-change="filter()" />
+        <ul>
+            <!-- need orderBy -->
+            <li ng-repeat="item in persons | filterMultiple:{name:keyword, dep:keyword} ">{{item.name}} - {{item.age}} - {{item.dep}}</li>
+        </ul>
 
-    <h1>Use a filter in a controller</h1>
+        <h1>Use a filter in a controller</h1>
 
-    <ul>
-      <li ng-repeat="item in personsFiltered">{{item.name}} - {{item.age}} - {{item.dep}}</li>
-    </ul>
-  </div>
+        <ul>
+            <li ng-repeat="item in personsFiltered">{{item.name}} - {{item.age}} - {{item.dep}}</li>
+        </ul>
+    </div>
 </body>
 </html>
