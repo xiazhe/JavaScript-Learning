@@ -1,0 +1,57 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Source Analyze - Example</title>
+
+
+    <script src="angular.js"></script>
+    <script type="text/javascript">
+        //(function (angular) {
+        //    'use strict';
+        //    angular.module('exampleApp', []).
+        //        controller('eventController', ['$scope', function ($scope) {
+        //            $scope.name = 'angular';
+
+        //        }]);
+
+        //})(window.angular);
+
+
+        angular
+            .module('exampleApp', [])
+            .controller('eventController', eventController);
+
+        eventController.$inject = ['$scope'];
+
+        function eventController($scope) {
+            $scope.name = 'angular';
+        }
+
+
+        angular
+            .module('exampleApp')
+            .controller('homeController', homeController);
+
+        homeController.$inject = ['$scope'];
+
+        function homeController($scope) {
+            $scope.name = 'Home Page';
+        }
+
+
+    </script>
+</head>
+
+<body ng-app="exampleApp">
+    <div ng-controller="eventController">
+        <h1>Source Analyze</h1>
+        {{name}}
+    </div>
+
+    <div ng-controller="homeController">
+        {{name}}
+    </div>
+</body>
+</html>

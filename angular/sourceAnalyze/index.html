@@ -2,30 +2,49 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title> - Example</title>
+    <meta charset="UTF-8">
+    <title>Angular Source Analyze - Example</title>
 
 
-  <script src="angular.js"></script>
-  <script type="text/javascript">
-    (function(angular) {
-    'use strict';
-    angular.module('exampleApp', []).
-      controller('eventController', ['$scope', function($scope) {   
-          $scope.name = 'angular';
-       
-      }]);
-    })(window.angular);
-  </script>
+    <script src="angular.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', []).
+              controller('eventController', ['$scope', function ($scope) {
+                  $scope.name = 'angular';
+
+              }]);
+
+        })(window.angular);
+
+        //var string = 'Hello World!';
+        //console.log(angular.lowercase(string));
+        //hello world!
+
+        var person = {
+            name: 'Lucker',
+            age: 27
+        };
+
+        var firend = {
+            name: '张三'
+        };
+
+        angular.extend(person, { firend: firend });
+        console.log(angular.toJson(person));
+        //{"name":"Lucker","age":27,"firend":{"name":"张三"}}
+
+    </script>
 
 
 
 </head>
 
 <body ng-app="exampleApp">
-  <div ng-controller="eventController">
-    <h1>Source Analyze</h1>
-      {{name}}
-  </div>
+    <div ng-controller="eventController">
+        <h1>Source Analyze</h1>
+        {{name}}
+    </div>
 </body>
 </html>
