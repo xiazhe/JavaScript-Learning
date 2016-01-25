@@ -1,17 +1,29 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
 </head>
 <body>
     <script>
         function call(log) {
+            console.log(arguments)
             console.log(log);
         }
 
-        console.log(call.toString());
+
+        call('123', { name: 'Lucker', age: 123 });
+
+
+
+        //console.log(call.toString());
+        //function call(log) {
+        //    console.log(log);
+        //}
+
+
+
     </script>
 </body>
 </html>
