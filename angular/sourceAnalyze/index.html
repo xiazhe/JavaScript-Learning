@@ -14,6 +14,8 @@
               controller('eventController', ['$scope', function ($scope) {
                   $scope.name = 'angular';
 
+                  $scope.list = [];
+
               }]);
 
         })(window.angular);
@@ -22,17 +24,17 @@
         //console.log(angular.lowercase(string));
         //hello world!
 
-        var person = {
-            name: 'Lucker',
-            age: 27
-        };
+        //var person = {
+        //    name: 'Lucker',
+        //    age: 27
+        //};
 
-        var firend = {
-            name: '张三'
-        };
+        //var firend = {
+        //    name: '张三'
+        //};
 
-        angular.extend(person, { firend: firend });
-        console.log(angular.toJson(person));
+        //angular.extend(person, { firend: firend });
+        //console.log(angular.toJson(person));
         //{"name":"Lucker","age":27,"firend":{"name":"张三"}}
 
     </script>
