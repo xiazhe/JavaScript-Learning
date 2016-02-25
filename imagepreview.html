@@ -22,7 +22,7 @@
 			obj.select();  
 			obj.blur();  
 			var filepath = document.selection.createRange().text;  
-			alert("file path:"+filepath);  
+			//alert("file path:"+filepath);  
 			document.selection.empty();  
 			document.getElementById("tp").style.filter="progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='image',src='"+ filepath +"')"; 
 		}  
