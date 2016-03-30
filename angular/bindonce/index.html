@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html ng-app="twoway">
 
 <head>
@@ -55,7 +55,7 @@
                 <th>Profile</th>
             </tr>
 
-            <tr bindonce ng-repeat="person in Persons" bo-class="{'male':person.gender=='M','female':person.gender=='F'}">
+            <tr bindonce ng-repeat="person in Persons"  bo-class="{'male':person.gender=='M','female':person.gender=='F'}">
                 <td bo-bind="$index + 1"></td>
                 <td><img bo-src="person.picture" /></td>
                 <td bo-bind="person.firstname"></td>

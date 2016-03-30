@@ -1,8 +1,2 @@
-.idea/.name
-.idea/encodings.xml
-.idea/misc.xml
-.idea/workspace.xml
-.idea/JavaScript-Learning.iml
-.idea/modules.xml
-.idea/vcs.xml
-.idea/scopes/scope_settings.xml
+.idea
+gulp/node_modules/

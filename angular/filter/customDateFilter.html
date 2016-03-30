@@ -1,0 +1,83 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Custom Date filter - Example</title>
+    <script src="../angular.min.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', []).
+              controller('EventController', ['$scope', function ($scope) {
+                  $scope.testTime = '2016-04-01 00:00:00';
+
+                  $scope.newTime = new Date($scope.testTime);
+
+                  $scope.timestamp = '1454169780000';
+
+                  $scope.transTime = new Date($scope.timestamp*1000);
+
+              }]);
+
+            angular.module('exampleApp').filter('customDateFilter', ['$filter', function ($filter) {
+                return function (originDate, formatString) {
+                    var formatDate = null;
+                    if (originDate instanceof Date) {
+                        formatDate = originDate;
+                    } else {
+                        if (originDate)
+                            formatDate = new Date(originDate.toString().replace(/-/g, "/"));
+                    }
+                    return formatDate == null ? "" : $filter("date")(formatDate, formatString);
+                }
+            }]);
+
+
+
+        })(window.angular);
+    </script>
+</head>
+
+<body ng-app="exampleApp">
+    <div ng-controller="EventController">
+        <h2>custom date filter</h2>
+        <p>
+            <code>
+                 testTime | customDateFilter: 'yyyy-MM-dd HH:mm' 
+
+            </code>
+            <br/>
+            {{ testTime | customDateFilter: 'yyyy-MM-dd HH:mm'  }}
+        </p>
+        <h2>Angular date filter</h2>
+        <p>
+            <code>
+               testTime | date: 'yyyy-MM-dd HH:mm' 
+            </code>
+            <br />
+            {{ testTime | date: 'yyyy-MM-dd HH:mm' }}
+            <br />
+            {{ newTime | date: 'yyyy-MM-dd HH:mm' }}
+        </p>
+
+        <h2>Timestamp</h2>
+        <p>
+            {{timestamp| date: 'yyyy-MM-dd HH:mm' }}
+        </p>
+        <!-- error -->
+        <p>
+            {{timestamp| customDateFilter: 'yyyy-MM-dd HH:mm'}}
+        </p>
+        <p>
+            {{transTime}}
+        </p>
+        <p>
+            {{transTime| customDateFilter: 'yyyy-MM-dd HH:mm'}}
+        </p>
+        <p>
+            {{transTime| date: 'yyyy-MM-dd HH:mm'}}
+        </p>
+    </div>
+</body>
+</html>

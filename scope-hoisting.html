@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><<JavaScript 权威指南>> 第六版 3.10</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <p>
+        JavaScript的函数作用域是指在函数内声明的所有变量在函数体内始终是可见的. 变量在声明之前已经可用(声明提前/hoisting)
+        <br/>
+        JavaScript 函数里声明的所有变量都会被"提前"至函数体的顶部.(预编译/代码执行之前运行)
+    </p>
+    <script type="text/javascript">
+        var scope = 'global';
+
+        function f() {
+            console.log(scope); //undefined
+            var scope = 'local';
+            console.log(scope); //local
+        }
+
+        f();
+
+
+
+        // 函数体内如果没有使用var 定义变量, 则更改的是全局对象 window 下的变量k.
+        k = 'window scope';
+        function test() {           
+            k = 2;
+            if (undefined == null) {
+                var k = 10;
+            }
+            console.log(k); // 10
+            console.log(window.k); //window scope
+        }
+
+        test();
+
+        console.log(scope); //global
+    </script>
+</body>
+</html>
