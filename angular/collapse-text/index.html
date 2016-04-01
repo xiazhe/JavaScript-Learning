@@ -1,27 +1,78 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <title>Example - collapse text</title>
+    <meta charset="UTF-8">
+    <title>Example - collapse text</title>
+
+    <script src="../angular.min.js"></script>
+    <script src="script.js"></script>
+    <script src="collapsetext.js"></script>
+    <link type="text/css" href="collapsetext.css" rel="stylesheet" />
+
+    <style>
+        .text-truncate {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 1px;
+        }
+
+            .text-truncate:hover {
+                white-space: normal;
+                overflow: auto;
+                text-overflow: inherit;
+            }
 
 
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-rc.2/angular.min.js"></script>
-  <script src="script.js"></script>
-  <script src="collapsetext.js"></script>
-  <link type="text/css" href="collapsetext.css" rel="stylesheet" />
+    </style>
 
+    <!-- For IE 9 (or less) you need to have this in your HTML, to fix an IE-specific rendering issue -->
+    <!--[if IE]>
+    <style>
+        table {
+            table-layout: fixed;
+        }
+    </style>
+    <![endif]-->
 
 </head>
-
 <body ng-app="collapsetextExampleApp">
-  <div ng-controller="EventController">
-    <button ng-click="clickMe($event)">Click Me</button>
-    <p collapse-text="10">{{longtext}}</p>
+    <div ng-controller="EventController">
+        <h1>angular collapset</h1>
+        <button ng-click="clickMe($event)">Click Me</button>
+        <p collapse-text="10">{{longtext}}</p>
+
+        <p collapse-text="10" collapse-value="longtext"></p>
+        <h1>CSS collapset</h1>
+        <p class="text-truncate" title="{{longtext}}">{{longtext}}</p>
+    </div>
 
 
-    <p collapse-text="10"  collapse-value="longtext"></p>
-  </div>
+
+    <hr />
+    <!--<table border="1" style="width: 700px;">
+        <colgroup>
+            <col width="100%" />
+            <col width="0%" />
+        </colgroup>
+        <tr>
+            <td class="text-truncate" style="max-width: 1px;">This cell has more content.This cell has more content.This cell has more content.This cell has more content.This cell has more content.This cell has more content.</td>
+            <td style="white-space: nowrap;">Less content here.</td>
+        </tr>
+    </table>-->
+
+    <h1>table cell</h1>
+    <table border="1" style="width: 700px;">
+        <thead>
+            <tr>
+                <th width="30%">name</th>
+                <th width="70%">content</th>
+            </tr>
+        </thead>
+        <tr>
+            <td class="text-truncate">This cell has more content.This cell has more content.This cell has more content.This cell has more content.This cell has more content.This cell has more content.</td>
+            <td style="white-space: nowrap;">Less content here.</td>
+        </tr>
+    </table>
 </body>
-
 </html>

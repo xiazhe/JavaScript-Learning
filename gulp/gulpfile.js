@@ -14,7 +14,8 @@
     fs = require('fs'),
     handlebars = require('gulp-compile-handlebars'),
     rev = require('gulp-rev'),
-    filelist = require('gulp-filelist');
+    filelist = require('gulp-filelist'),
+    inject = require('gulp-inject');
 
 
 //gulp-load-plugins
@@ -207,6 +208,16 @@ gulp.task('filelist', function () {
         .pipe(gulp.dest('./'));
 });
 
+
+//Inject resources
+gulp.task('inject', function () {
+    var target = gulp.src('./misc/index.html');
+    var sources = gulp.src(['./src/**/*.js', './src/**/*.css'], { read: false });
+
+    return target.pipe(inject(sources))
+        .pipe(gulp.dest('./'));
+
+});
 
 
 

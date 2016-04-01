@@ -24,7 +24,8 @@
         "gulp-useref": "^3.0.8",
         "gulp-rev": "^7.0.0",
         "gulp-compile-handlebars": "^0.6.1",
-        "gulp-filelist": "^0.3.0"
+        "gulp-filelist": "^0.3.0",
+        "gulp-inject": "^4.0.0"
     }
 
 }
