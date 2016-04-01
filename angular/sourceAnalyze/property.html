@@ -1,0 +1,26 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Angular Source Analyze - Property</title>
+    <script src="angular.js"></script>
+    <script type="text/javascript">
+        var counter = 0;
+		for (var p in angular) {
+		    counter++;
+		    if (angular.isFunction(angular[p])) {
+		        console.log("function->" + p);
+		    } else {
+		        console.log("property-->" + p + "-->" + angular[p]);
+		    }
+		}
+		console.log(counter);
+    </script>
+</head>
+
+<body>
+    
+</body>
+</html>

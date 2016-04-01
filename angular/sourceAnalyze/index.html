@@ -37,6 +37,17 @@
         //console.log(angular.toJson(person));
         //{"name":"Lucker","age":27,"firend":{"name":"张三"}}
 
+         var counter = 0;
+        for (var p in angular) {
+            counter++;
+            if (angular.isFunction(angular[p])) {
+                console.log("function->" + p);
+            } else {
+                console.log("property-->" + p + "-->" + angular[p]);
+            }
+        }
+        console.log(counter);
+
     </script>
 
 
