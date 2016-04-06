@@ -1,47 +1,174 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title>Closure</title>
 </head>
 <body>
-<p>
-    閉包是由函式和與其相關的參照環境組合而成的實體。
-    <br />
-    https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Obsolete_Pages/Obsolete_Pages/Obsolete_Pages/%E9%96%89%E5%8C%85%E7%9A%84%E9%81%8B%E7%94%A8
-</p>
-<script>
-    function init(){
-        var name = "Mozilla";
-        function displayName(){
-            alert(name);
-        }
-        displayName();
-    }
+    <p>
+        閉包是由函式和與其相關的參照環境組合而成的實體。
+        <br />
+        https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Obsolete_Pages/Obsolete_Pages/Obsolete_Pages/%E9%96%89%E5%8C%85%E7%9A%84%E9%81%8B%E7%94%A8
+    </p>
+    <script>
+        'use strict';
+        //    闭包包含环境部分，它是个只有两项的list，这两项分别是：
+        //    (1)环境
+        //    (2)一个标识符或者标识符列表
+        //    以及控制部分，他是个只有一项的list，唯一的项是个AE
 
+        var global = "Global scope";
 
-    init();
-
-    //http://www.zhihu.com/question/19554716
-    var foo = (function(){
-        var secret = "secret";
-        return {
-            get_secret: function(){
-                return secret;
-            },
-            set_secret: function(new_secret){
-                secret = new_secret;
+        function init() {
+            var name = "Mozilla";
+            function displayName() {
+                alert(name);
             }
+            displayName();
         }
-    }());
-
-    foo.get_secret(); //secret
-    foo.secret; // Type error
-    foo.set_secret("a new secret") //set foo.secret
-    foo.get_secret();// "a new secret"
 
 
-</script>
+        //init();     // "Mozilla"
+        //displayName();  // closure.html:31 Uncaught ReferenceError: displayName is not defined
+
+
+        // (立即调用函数表达式 IIFE / 也叫自执行的匿名函数 Self-executing anonymous function)
+        // 执行上下文/作用域/Scope/环境
+        (function () {
+            //init();   // "Mozilla"
+
+
+
+
+        })();
+                
+
+        // ! ~ - + 皆可
+        !function () {
+            // 局部函数
+            function say(str) {
+                console.log(str);
+            }
+
+
+            //say("hello world!"); // hello world!
+
+            //say(global); // Global scope
+
+            function makeCounter() {
+                var i = 0;
+                // 匿名函数, 将函数作为返回值
+                return function () {
+                    console.log(++i);
+                }
+            }
+
+            //var counter = makeCounter();
+            //counter(); // 1
+            //counter(); // 2
+
+
+           
+
+
+        }();
+
+        //say("hello world!"); //Uncaught ReferenceError: say is not defined
+
+
+
+        //http://www.zhihu.com/question/19554716
+        var foo = (function () {
+            var secret = "secret";
+            return {
+                get_secret: function () {
+                    return secret;
+                },
+                set_secret: function (new_secret) {
+                    secret = new_secret;
+                }
+            }
+        }());
+
+        foo.get_secret();               // secret
+        foo.secret;                     // Type error
+        foo.set_secret("a new secret")  // set foo.secret
+        foo.get_secret();               // "a new secret"
+
+
+        // 闭包的写法
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
 
 </body>
 </html>
