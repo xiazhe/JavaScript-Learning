@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <h1>模块</h1>
+    <p>
+        https://www.zybuluo.com/mwumli/note/326520
+        <br />
+        模块就是实现特定功能的一组方法
+        <br />
+        只要把不同的函数（以及记录状态的变量）简单地放在一起，就算是一个模块。
+        <br />
+        <br />
+        但是一个优秀的模块应该保持自己的独立性, 避免自身的变量污染到应用代码, 而引起不必要的冲突
+        <br />
+        JavaScript 的自执行匿名函数的特性正恰好符合这个要求
+        <br />
+        <br />
+        JavaScript 的模块还依赖于闭包(closure), 因为使用闭包可以实现只暴露你想要暴露的接口, 一定程度上就为模块实现私有成员
+    </p>
+    <p>
+        关于模块的书写目前有三大规范可以遵循： CommonJS(Nodejs), AMD(RequireJS), CMD(Seajs)
+    </p>
+    <script>
+        // 简单模块实现
+        var module1 = (function () {
+            var _count = 0;
+
+            var m1 = function () { };
+
+            var m2 = function () { };
+
+            return {
+                m1: m1,
+                m2: m2
+            };
+
+        })();
+
+        //如果一个模块很大，必须分成几个部分，或者一个模块需要继承另一个模块, 可以这样做 :
+        var module1 = (function (mod) {
+            mod.m3 = function () { };
+
+            return mod;
+        })(module1);
+
+        var jQuery = {}; // 模拟 jQuery
+
+        //如果一个模块需要引入外部的库, 比如 jQuery, 可以这样做 :
+        var module1 = (function ($) {
+            //
+        })(jQuery);
+
+
+
+
+
+    </script>
+
+</body>
+</html>

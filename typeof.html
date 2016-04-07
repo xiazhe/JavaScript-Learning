@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -20,15 +20,56 @@
     console.log(aaa); //undefined
     console.log(typeof(aaa)); //undefined
 
-    //fail
+    // fail
     if(aaa){
         console.log("true");
     }
 
-    //pass
+    // pass
     if(typeof(aaa)){
         console.log("true");
     }
+
+    // typeof 的常用方法
+    function isString(value) {
+        return typeof value === 'string';
+    }
+
+    function isFunction(func) {
+        return typeof func === 'function';
+    }
+
+    function isNumber(value) {
+        return typeof value === 'number';
+    }
+
+    function isUndefined(value) {
+        return typeof value === 'undefined';
+    }
+
+    function isDefined(value) {
+        return typeof value !== 'undefined';
+    }
+
+    function isObject(value) {
+        // http://jsperf.com/isobject4
+        return value !== null && typeof value === 'object';
+    }
+
+
+    //https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/GetPrototypeOf
+    //Object.getPrototypeOf() 方法返回指定对象的原型.
+    function isBlankObject(value) {
+        return value !== null && typeof value === 'object' && !getPrototypeOf(value);
+    }
+
+
+
+
+
+
+
+
 
 </script>
 </body>

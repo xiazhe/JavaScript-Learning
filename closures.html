@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script type="text/javascript">
+
+        //'use strict';
+
+        //闭包是阻止垃圾回收器将变量从内存中移除的方法, 使得在创建变量的执行环境的外面能够访问到该变量
+
+        //JavaScript 实现了自动释放内存的系统, 即垃圾回收器, 简称 gc (garbage collector)
+        //当函数执行完毕的时候, gc 会将函数中所有创建的东西从内存中清理
+
+        //但是如果函数执行完毕后, 依旧有函数可以访问这个变量, 那么这个变量就不会被释放, 这就是 闭包
+
+
+        //闭包通常的使用场景 和 this 对象有关, 比如下面这个场景 :
+
+
+        var name = "Here is Global";
+
+        var local = {
+            name: "Here is Local",
+            getNameFunction: function () {
+                var that = this;
+
+                return function () {
+                    console.log(that.name);
+                    console.log(this.name);
+                }
+
+            }
+        };
+
+        local.getNameFunction()();
+
+
+        // 运行结果:
+        // Here is Local
+        // Here is Global
+
+        // 严格模式下运行结果:
+        // Here is Local
+        // Uncaught TypeError: Cannot read property 'name' of undefined
+    </script>
+</body>
+</html>

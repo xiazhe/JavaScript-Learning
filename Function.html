@@ -2,25 +2,74 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+    <title>函数</title>
     <meta charset="utf-8" />
 </head>
 <body>
     <script>
         function call(log) {
-            console.log(arguments)
+            var __name__ = "call";
+            //this.name = "call function";
+
+            this.desc = "test for function.";
+
+            console.log(arguments);
             console.log(log);
+
+            return this.desc;
         }
 
 
-        call('123', { name: 'Lucker', age: 123 });
+        //call('123', { name: 'Lucker', age: 123 });
+        //Arguments[2] / ["123", Object]
+        //"123"
 
 
 
         //console.log(call.toString());
         //function call(log) {
+        //    console.log(arguments)
         //    console.log(log);
         //}
+
+        //console.log(call.__name__);  //undefined
+
+        //console.log(call.name); //"call"
+
+        //console.log(call.desc); //undefined
+
+        //var callA = call('123');
+        //console.log(callA.desc); //Function.html:40 Uncaught TypeError: Cannot read property 'desc' of undefined
+
+        //var callB = call();
+        //console.log(callB); //"test for function."
+
+        function isFunction(func) {
+            return typeof func === 'function';
+        }
+
+        //console.log(isFunction(call)); //true
+
+        function MyObject(name, message) {
+            this.name = String(name);
+            this.message = String(message);
+        }
+
+        MyObject.prototype.getName = function () {
+            return this.name;
+        }
+
+        MyObject.prototype.getMessage = function () {
+            return this.message;
+        }
+
+        //var myObj =new MyObject('JavaScript Object', 'do something');
+        //console.log(myObj.getName()); //"JavaScript Object"
+
+        //console.log(myObj.getMessage()); // "do something"
+        
+        //console.log(new MyObject("abc", "Lor").getName()); // "abc"
+
 
 
 

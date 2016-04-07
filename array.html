@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -11,18 +11,20 @@
     if(arr&&arr.length > 0){
         console.log("true");
     }
-    console.log(arr.length);
+
+    console.log(arr.length); //0
 
     if(arr instanceof Array){
         //do something to array
     }
 
+    //判断是否为数组
     if(Array.isArray(arr)){
         //nonsupport ie6/7/8
     }
 
     //Scope Safe Constructors
-    console.log(Object.prototype.toString.call(arr)); //"[object Array]"
+    console.log(Object.prototype.toString.call(arr)); // "[object Array]"
 
     function isArray(value){
         return Object.prototype.toString().call(value) == "[Object Array]";

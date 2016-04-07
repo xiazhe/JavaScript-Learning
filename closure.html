@@ -9,14 +9,31 @@
         閉包是由函式和與其相關的參照環境組合而成的實體。
         <br />
         https://developer.mozilla.org/zh-TW/docs/Web/JavaScript/Obsolete_Pages/Obsolete_Pages/Obsolete_Pages/%E9%96%89%E5%8C%85%E7%9A%84%E9%81%8B%E7%94%A8
+        https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
     </p>
-    <script>
+    <p>
+        <h2>
+            IIFE、闭包和模块
+        </h2>
+        https://www.zybuluo.com/mwumli/note/326520
+    </p>
+
+    <p>
+        <h2>在循环中建立闭包:　常见的错误</h2>
+    </p>
+    <p id="help">這裡會顯示有用的提示</p>
+    <p>E-mail: <input type="text" id="email" name="email" /></p>
+    <p>姓名: <input type="text" id="name" name="name" /></p>
+    <p>年齡: <input type="text" id="age" name="age" /></p>
+
+    <script type="text/javascript">
         'use strict';
         //    闭包包含环境部分，它是个只有两项的list，这两项分别是：
         //    (1)环境
         //    (2)一个标识符或者标识符列表
         //    以及控制部分，他是个只有一项的list，唯一的项是个AE
 
+        // Part I
         var global = "Global scope";
 
         function init() {
@@ -31,8 +48,156 @@
         //init();     // "Mozilla"
         //displayName();  // closure.html:31 Uncaught ReferenceError: displayName is not defined
 
+        //var myFunc = init();
+        //myFunc(); // "Mozilla"
 
-        // (立即调用函数表达式 IIFE / 也叫自执行的匿名函数 Self-executing anonymous function)
+        //閉包是一種特殊的物件，其中結合了兩樣東西︰函數，和函數所建立的環境。
+        //環境由任意的局域變數所組成，這些變數是由在閉包建立的時間點上存在於作用域裡的所有變數。
+        //既然如此，myFunc 就是結合了 displayName 函數和閉包建立之後就存在的 "Mozilla" 字串這兩者的閉包。
+
+
+        function makeAdder(x) {
+            return function (y) {
+                return x + y;
+            };
+        }
+
+        var add5 = makeAdder(5);
+        var add10 = makeAdder(10);
+
+        console.log(add5(2));    // 7
+        console.log(add10(2));   // 12
+
+        //在這個範例中，我們已經定義了函數 makeAdder(x)，可接受單一參數 x，並返回新的函數。返回的函數會接受單一參數 y，並返回 x 和 y 的合。
+
+        //就本質而言，makeAdder 是函數的製造機 - 他會建立可以把指定的值和他們的參數相加的函數。在上例中，我們使用了我們的函數製造機來建立兩個新的函數 - 一個給他自己的參數加上 5，另一個則加上 10。
+
+        //add5 和 add10 兩個都是閉包。他們共享相同的函數本體的定義，但保存了不同的環境變數。在 add5 的環境中，x 是 5。至於互有關連的 add10，x 是 10。
+
+        //实用的闭包
+        //閉包讓你把一些資料（環境）和可操作資料的函數聯繫在一起。這一點明顯和物件導向程式設式並行不悖，物件可讓我們把一些資料（物件的屬性）和一個以上的方法聯繫在一起。
+
+        //使用閉包模擬私有的方法
+
+        //像 Java 這類語言可以把方法宣告為私有的，意思是這些方法只能被同一類別的其他方法所呼叫。
+
+        //JavaScript 並不提供做這些事的原生方式，但可以使用閉包來模擬私有方法。私有方法不只是對限制代碼的存取這方面有用︰同時也是管理你的全域命名空間的強大方式，把非必要的方法堆在公開的界面裡。
+
+        var Counter = (function () {
+            var privateCounter = 0;
+            function changeBy(val) {
+                privateCounter += val;
+            }
+
+            return {
+                increment: function () {
+                    changeBy(1);
+                },
+                decrement: function () {
+                    changeBy(-1);
+                },
+                value: function () {
+                    return privateCounter;
+                }
+            }
+        })();
+
+        //alert(Counter.value()); // 0
+        //Counter.increment();
+        //Counter.increment();
+        //alert(Counter.value()); // 2
+        //Counter.decrement();
+        //alert(Counter.value()); // 1
+
+        //在此完成了很多事。在上一個範例中，每一個閉包都有他自己的環境；此處我們建立了由三個函數所共享的單一環境︰Counter.increment、Counter.decrement、Counter.value。
+        //共享的環境是建立在無名函數的本體內，無名函數一經定義就會開始執行。環境內含兩個私有項︰稱作 privateCounter 的變數，以及稱作 changeBy 的函數。這兩個私有項都不能在無名函數外部被直接存取。相對的，必須由三個公開的函數來存取這些私有項，這三個函數是從無名函數的封裝器所返回的。
+        //這三個公開的函數共享閉包的同一個環境。感謝 JavaScript 的辭彙作用域，這三個函數都能存取 privateCounter 變數和 changeBy 函數。
+        //按照這個方式來運用閉包，可以得到通常是附加在物件導向程式設計裡的資料隱藏和封裝的好處。
+
+        //在循環中建立閉包︰常見的錯誤
+
+        //在 JavaScript 1.7 引入 let 關鍵字以前，閉包常見的問題出現在當閉包是在循環內部建立的時候。
+
+        //Exmaple 错误的写法
+        //function showHelp(help) {
+        //    document.getElementById('help').innerHTML = help;
+        //}
+
+
+        //function setupHelp() {
+        //    var helpText = [
+        //        { 'id': 'email', 'help': '你的 email地址' },
+        //        { 'id': 'name', 'help': '你的完整姓名' },
+        //        { 'id': 'age', 'help': '你的年龄 (你必须大于16岁)'}
+        //    ];
+
+        //    for (var i = 0; i < helpText.length; i++) {
+        //        var item = helpText[i];
+        //        document.getElementById(item.id).onfocus = function () {
+        //            showHelp(item.help);
+        //        }
+        //    }
+        //}
+
+        //setupHelp();
+
+        //helpText 陣列定義了三個有用的提示，每一個都和文件中的輸入欄位的 ID 連繫在一起。循環會在這些定義裡巡回一圈，給每一個顯示相關連的說明的方法使用 onfocus 事件。
+
+        //如果你試著執行這個代碼，你會發現他並不如預期般的運作。不管你把焦點放在哪一個欄位上，都會顯示關於你的年齡的訊息。
+
+        //這其中的原因是代入給 onfocus 的函數是閉包；這些閉包是由函數的定義和從 setupHelp 函數的作用域所捕捉到的環境所組成的。這三個閉包已經建立了，但每一個都共享同一個環境。每次執行 onfocus 的 Callback 的時候，循環執行的是他自己的閉包，以及指向 helpText 列表中的最後一項的變數 item（由三個閉包所共享）。
+
+
+        //PS: 循环建立了三个闭包, 三个闭包共享了同一个环境. help 参数指向了最后一项的变量item;
+
+        //本例的解決方法是使用更多的閉包︰特別是使用稍早已描述過的函數製造機︰
+
+
+        //正确的写法
+        //這次就如預期般運作。而不是所有的 Callback 都共享單一的環境，makeHelpCallback 給每一個 help 建立新的環境，此處的 help 參照了相對應的 helpText 陣列的字串。
+        function showHelp(help) {
+            document.getElementById('help').innerHTML = help;
+        }
+
+        function makeHelpCallback(help) {
+            return function () {
+                showHelp(help);
+            };
+        }
+
+        function setupHelp() {
+            var helpText = [
+                { 'id': 'email', 'help': '你的 email地址' },
+                { 'id': 'name', 'help': '你的完整姓名' },
+                { 'id': 'age', 'help': '你的年龄 (你必须大于16岁)' }
+            ];
+
+            for (var i = 0; i < helpText.length; i++) {
+                var item = helpText[i];
+                document.getElementById(item.id).onfocus = makeHelpCallback(item.help);
+            }
+        }
+
+        setupHelp();
+
+        //如果你使用 JavaScript 1.7 以上的版本，你可以使用 let 關鍵字建立具有區塊層級作用域的變數來解決這個問題︰
+
+        //for (var i = 0; i < helpText.length; i++) {
+        //    let item = helpText[i];
+        //    document.getElementById(item.id).onfocus = function () {
+        //        showHelp(item.help);
+        //    }
+        //}
+
+        //let 關鍵字使 item 變數改用具有區塊層級的作用域來建立，導致 for 循環每一次反復都能建立新的參考。意思是每一個閉包都會捕捉到個別的變數，解決因為共享同一環境所引起的問題。
+
+
+        //闭包对脚本运行的性能有负面影响
+
+
+
+        // Part II
+        // (立即调用函数表达式 IIFE / 也叫自执行的匿名函数 Self-executing anonymous function) 避免全局作用域的污染
         // 执行上下文/作用域/Scope/环境
         (function () {
             //init();   // "Mozilla"
@@ -40,8 +205,9 @@
 
 
 
+
         })();
-                
+
 
         // ! ~ - + 皆可
         !function () {
@@ -68,7 +234,7 @@
             //counter(); // 2
 
 
-           
+
 
 
         }();
@@ -79,91 +245,37 @@
 
         //http://www.zhihu.com/question/19554716
         var foo = (function () {
+            // “闭包”内的函数可以访问 secret 变量，而 secret 变量对于外部却是隐藏的
             var secret = "secret";
             return {
                 get_secret: function () {
+                    // 通过定义的接口来访问 secret
                     return secret;
                 },
                 set_secret: function (new_secret) {
+                    // 通过定义的接口来修改 secret
                     secret = new_secret;
                 }
             }
         }());
 
-        foo.get_secret();               // secret
+        foo.get_secret();               // 得到 'secret'
         foo.secret;                     // Type error
         foo.set_secret("a new secret")  // set foo.secret
         foo.get_secret();               // "a new secret"
 
 
-        // 闭包的写法
+        //引用 Douglas Crockford [1] :
+        //之所以可能通过这种方式在 JavaScript 种实现公有，私有，特权变量正是因为闭包，闭包是指在 JavaScript 中，内部函数总是可以访问其所在的外部函数中声明的参数和变量，即使在其外部函数被返回（寿命终结）了之后。
 
 
+        //关于为什么在 JavaScript 中闭包的应用都有关键词“return”，引用 JavaScript 秘密花园中的一段话：
+        //闭包是 JavaScript 一个非常重要的特性，这意味着当前作用域总是能够访问外部作用域中的变量。 因为 函数 是 JavaScript 中唯一拥有自身作用域的结构，因此闭包的创建依赖于函数。
 
+        //闭包就是由函数创造的一个词法作用域，里面创建的变量被引用后，可以在这个词法环境之外自由使用。
+        //https://zh.wikipedia.org/w/index.php?title=%E9%97%AD%E5%8C%85_%28%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%29&variant=zh-cn
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //闭包通常用来创建内部变量，使得这些变量不能被外部随意修改，同时又可以通过指定的函数接口来操作。
 
 
 
