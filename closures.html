@@ -36,7 +36,7 @@
             }
         };
 
-        local.getNameFunction()();
+        //local.getNameFunction()();
 
 
         // 运行结果:
@@ -46,6 +46,67 @@
         // 严格模式下运行结果:
         // Here is Local
         // Uncaught TypeError: Cannot read property 'name' of undefined
+
+        // 回调函数皆闭包
+
+        // 闭包的写法
+        // One
+        (function () {
+            var name = "local";
+            return function () {
+                return this.name;
+            }
+
+        })();
+
+        // Two
+        var mod1 = (function () {
+            return {
+                func1: function () {
+                    //do something
+                    console.log("func1");
+                },
+                func2: function () {
+                    //do something
+                },
+                // ...
+            };
+        })();
+
+        //mod1.func1(); // "func1"
+
+        // Three
+        function funcA() {
+            function funcB() {
+                //do something
+                console.log("Hello Closure!");
+            }
+            return funcB;
+        }
+
+        var testFunc = funcA();
+        //testFunc(); //Hello Closure!
+
+        // Four 将function作为值返回, 并且包含当前环境下的变量
+        var Circle = function () {
+            var obj = new Object();
+            obj.PI = 3.14159;
+
+            obj.area = function (r) {
+                return this.PI * r * r;
+            }
+
+            return obj;
+        }
+
+        var c = new Circle();
+        //console.log(c.area(1.0)); // "3.14159"
+
+        
+
+
+
+
     </script>
 </body>
 </html>

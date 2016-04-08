@@ -1,8 +1,8 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Immediately-Invoked Function Expression</title>
+    <title>Immediately-Invoked Function Expression - 立即调用的函数表达式</title>
 </head>
 <body>
 <p>
@@ -76,6 +76,12 @@
     //foo();
     //Uncaught RangeError: Maximum call stack size exceeded
 
+
+
+    // 可能放了几行注释——不知道是用自动化脚本合并的文件，还是哪里拷的函数。
+    ; (function () {
+        //do something
+    }())
     
 
 

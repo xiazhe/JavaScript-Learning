@@ -70,7 +70,17 @@
         
         //console.log(new MyObject("abc", "Lor").getName()); // "abc"
 
+        function Circle(r) {
+            this.r = r;
+        }
 
+        Circle.PI = 3.14159;
+        Circle.prototype.area = function () {
+            return Circle.PI * this.r * this.r;
+        }
+
+        var c = new Circle(2.0);
+        console.log(c.area()); // "12.56636"
 
 
     </script>
