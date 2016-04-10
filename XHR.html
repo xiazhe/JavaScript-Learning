@@ -7,6 +7,7 @@
 <body>
 <script>
     var xhr = new XMLHttpRequest();
+    //open(methods, url, boolean)  参数: 要发送的请求的类型("get"、"post"等)、请求的 URL 和表示是否异步发送请求的布尔值
     xhr.open("get", "example.txt", false);
     xhr.send(null);
 
@@ -15,6 +16,111 @@
     }else{
         alert("Request was unsuccessful:" + xhr.status);
     }
+
+    // 取消请求
+    xhr.abort();
+
+    //http://youmightnotneedjquery.com
+    // $.getJSON('/url', function(data){ //Success! })
+    var request = new XMLHttpRequest();
+    request.open('GET', '/api/url', true);
+
+    request.onload = function(){
+        if(request.status >= 200 && request.status < 400){
+            //Success!
+            var data = JSON.parse(request.responseText);
+        }else{
+            // We reached our target server, but is returned an error.
+        }
+
+    };
+
+    request.onerror = function(){
+        // There was a connection error of some sort
+    };
+
+    request.send();
+
+    // $.ajax({ type: 'POST', URL: '/URL', data: data });
+    // $.post(?)
+    var request = new XMLHttpRequest();
+    request.open('POST', '/URL', true);
+    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    request.send(data);
+
+
+    /*
+    $.ajax({
+        type: 'GET',
+        url: '/url',
+        success: function(resp){
+            //data
+        },
+        error: function(){
+            //error
+        }
+    });
+     */
+
+    var request = new XMLHttpRequest();
+    request.open('GET', '/URL', true);
+
+    request.onload = function(){
+        if(request.status >= 200 && request.status < 400){
+            var resp = request.responseText;
+        } else {
+            //
+        }
+    };
+
+    request.onerror = function(){
+        // error
+    };
+
+    request.send();
+
+    //XHR 工厂
+    function createXHR(){
+        if(typeof XMLHttpRequest != 'undefined'){
+            return new XMLHttpRequest();
+        } else if (typeof ActiveXObject != 'undefined'){
+            if(typeof arguments.callee.activeXString != 'string'){
+                var versions = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0", "MSXML2.XMLHttp"], i, len;
+                for(i=0, len=versions.length; i <len; i++){
+                    try{
+                        new ActiveXObject(versions[i]);
+                        arguments.callee.activeXString = versions[i];
+                        break;
+                    } catch(ex) {
+                        // continue
+                    }
+
+                }
+            }
+
+            return new ActiveXObject(arguments.callee.activeXString);
+        }else{
+            throw new Error("No XHR object available.")
+        }
+    }
+
+    //get
+    function requestGet(url, cb){
+        var request = createXHR();
+
+        request.open('GET', url, true);
+
+        request.onload = function(){
+            if(request.status >= 200 && request.status < 400){
+                var data = JSON.parse(request.responseText);
+                return data;
+            }else{
+                //
+            }
+        }
+
+    }
+
 </script>
 </body>
 </html>
