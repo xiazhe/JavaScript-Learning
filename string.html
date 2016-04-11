@@ -38,6 +38,19 @@
                         "string3..."].join("")
 
 
+        //JavaScript实现endsWith
+        String.prototype.endsWith = function(suffix) {
+            return this.indexOf(suffix, this.length - suffix.length) !== -1;
+        };
+
+        //or
+        function endsWith(str, suffix) {
+            return str.indexOf(suffix, str.length - suffix.length) !== -1;
+        }
+
+        //字符与ASCII码间的转换
+        console.log("\n".charCodeAt(0));//10
+        console.log(String.fromCharCode(65));//A
 
     </script>
 </body>
