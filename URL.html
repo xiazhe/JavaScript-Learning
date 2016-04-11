@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL 操作</title>
+</head>
+<body>
+    <script type="text/javascript">
+        // 取URL中的参数
+        function getParameterByName(name){
+            var match = RegExp('[?&]' + name + '=([^&]*)')
+                    .exec(window.location.search);
+            return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+        }
+
+        var name = getParameterByName('name');
+        console.log(name); // "lich"
+
+        // "/URL.html?name=lich"
+
+        var myUrl = "http://example.com/index.html?param=1&anotherParam=2";
+        var myOtherUrl = "http://example.com/index.html?url=" + encodeURIComponent(myUrl);
+
+        console.log(myOtherUrl);
+        //http://example.com/index.html?url=http%3A%2F%2Fexample.com%2Findex.html%3Fparam%3D1%26anotherParam%3D2
+
+
+    </script>
+</body>
+</html>

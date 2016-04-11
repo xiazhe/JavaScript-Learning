@@ -30,7 +30,32 @@
         return Object.prototype.toString().call(value) == "[Object Array]";
     }
 
+    // delete a array item
+    var abc = ['a', 'b', 'c'];
+    delete abc[0];
+    for(var i=0; i<abc.length; i++){
+        console.log(abc[i]);
+        /**
+         * undefined
+         * b
+         * c
+         */
+    }
 
+    /**
+     * array.splice(start, deleteCount[, item1[, item2[, ...]]])
+     * splice() 方法用新元素替换旧元素，以此修改数组的内容。
+     * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+    */
+     var def = ['d', 'e', 'f'];
+    def.splice(0, 1);
+    for(var i=0; i<def.length; i++){
+        console.log(def[i]);
+        /**
+         * e
+         * f
+         */
+    }
 
 
 

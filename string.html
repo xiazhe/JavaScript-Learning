@@ -9,17 +9,36 @@
         'use strict';
         var hello = "Hello World!";
 
+        //判断是否为 String
         var isString = function (value) {
             return typeof value === 'string';
         };
 
+        // 1, 判断是否为字符串 2, 转换为小写
         var lowercase = function (string) {
             return isString(string) ? string.toLowerCase() : string;
         };
 
-        console.log(lowercase(hello));
+//        console.log(lowercase(hello)); //"hello world!"
 
-        console.log(hello.length);
+//        console.log(hello.length); //12
+
+
+        //多行字符串的写法
+        var multi_string = 'string1...' +
+                        "string2..." +
+                        "string3...";
+
+        var multi_string2 = "string1...\
+                        string2...\
+                        string3...";
+
+        var multi_string3 = ["string1...",
+                        "string2...",
+                        "string3..."].join("")
+
+
+
     </script>
 </body>
 </html>

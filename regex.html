@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regex</title>
+</head>
+<body>
+    <script>
+        //正则匹配
+        var testStr="<div><img src='/a.jpg' alt='' /><span>test</span><img src='/b.jpg' alt='' /><span>TTest</span><img src='/c.png' alt='' /></div>";
+        var reg=/<img\ssrc='(.*?)'\s+alt=''\s*\/>/g;
+        var match=reg.exec(testStr),results=[];
+        while(match != null){
+            results.push(match[1]);
+            match=reg.exec(testStr);
+        }
+        console.log(results);
+        /*
+         Array ["/a.jpg", "/b.jpg", "/c.png"]
+         */
+    </script>
+</body>
+</html>

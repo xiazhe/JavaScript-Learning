@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        /**
+         * jQuery中return false相当于同时调用e.preventDefault 和 e.stopPropagation。
+         * 要注意的是，在原生js中，return false仅仅相当于调用了e.preventDefault。
+         */
+
+        $("#btn").click(function(e){
+
+            e.preventDefault();
+        });
+
+        $("#btn").click(function(){
+            return false;
+        });
+    </script>
+</body>
+</html>

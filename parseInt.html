@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+        //1/0的结果是Infinity, 19进制
+        console.log(parseInt(1/0, 19) === parseInt("Infinity", 19)); // true
+
+
+        //16进制与10进制相互转换
+        var sHex = (255).toString(16);
+        var iNum = parseInt('ff', 16);
+        //console.log(sHex); //'ff'
+        //console.log(iNum); //255
+    </script>
+</body>
+</html>
