@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>JavaScript Object Management</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        /*
+
+        refrence: https://developer.mozilla.org/zh-CN/docs/Add-ons/Overlay_Extensions/XUL_School/JavaScript_Object_Management
+
+        The first step to good JavaScript object management is having a namespace, 
+        or a JavaScript object that contains our code and data, that you know will 
+        not conflict with Firefox code or other extensions. 
+        Namespace declaration is best located in a file of its own, so that you 
+        have this one JS file that should be included in all of your XUL files.
+
+        */
+
+        /**
+        *  teafish namespace
+        */
+
+        if (typeof teafish == 'undefined') {
+            var teafish = {
+                _id: null,
+                // Initializes this object.
+                init: function () {
+                    //this.obsService = Cc["@tea.fish/observer-service; 1"].getService(Ci.nsIObserverService);
+                },
+                module: function () {
+
+                },
+                copy: function () {
+
+                },
+                create: function () {
+
+                },
+                clone: function () {
+
+                },
+                extend: function () {
+
+                },
+                options: function () {
+
+                },
+                log: function () {
+
+                },
+                match: function () {
+
+
+                }
+
+
+            };
+
+            teafish.init(); 
+
+
+        };
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
