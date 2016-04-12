@@ -1,9 +1,9 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>JavaScript Object Management</title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
 </head>
 <body>
     <script>
@@ -11,10 +11,10 @@
 
         refrence: https://developer.mozilla.org/zh-CN/docs/Add-ons/Overlay_Extensions/XUL_School/JavaScript_Object_Management
 
-        The first step to good JavaScript object management is having a namespace, 
-        or a JavaScript object that contains our code and data, that you know will 
-        not conflict with Firefox code or other extensions. 
-        Namespace declaration is best located in a file of its own, so that you 
+        The first step to good JavaScript object management is having a namespace,
+        or a JavaScript object that contains our code and data, that you know will
+        not conflict with Firefox code or other extensions.
+        Namespace declaration is best located in a file of its own, so that you
         have this one JS file that should be included in all of your XUL files.
 
         */
@@ -79,15 +79,25 @@
                 log: function () {
 
                 },
-                match: function () {
+                matchBrowser: function () {
+                    //浏览器检测
+                    var ua = navigator.userAgent, tem,
+                        M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*([\d\.]+)/i) || [];
+                    if (/trident/i.test(M[1])) {
+                        tem = /\brv[ :]+(\d+(\.\d+)?)/g.exec(ua) || [];
+                        return 'IE ' + (tem[1] || '');
+                    }
+                    M = M[2] ? [M[1], M[2]] : [navigator.appName, navigator.appVersion, '-?'];
+                    if ((tem = ua.match(/version\/([\.\d]+)/i)) != null) M[2] = tem[1];
 
-
+                    this._browser = M[0];
+                    this._browserVersion = M[1];
                 }
 
 
             };
 
-            teafish.init(); 
+            teafish.init();
 
 
         };

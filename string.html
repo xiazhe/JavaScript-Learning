@@ -19,9 +19,16 @@
             return isString(string) ? string.toLowerCase() : string;
         };
 
-//        console.log(lowercase(hello)); //"hello world!"
+        // 转换为大写
+        var uppercase = function (string) {
+            return isString(string) ? string.toUpperCase() : string;
+        };
 
-//        console.log(hello.length); //12
+        //console.log(lowercase(hello)); //"hello world!"
+        //console.log(uppercase(hello)); //"HELLO WORLD!"
+        //console.log(hello.length); //12
+
+
 
 
         //多行字符串的写法
@@ -39,7 +46,7 @@
 
 
         //JavaScript实现endsWith
-        String.prototype.endsWith = function(suffix) {
+        String.prototype.endsWith = function (suffix) {
             return this.indexOf(suffix, this.length - suffix.length) !== -1;
         };
 
