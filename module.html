@@ -59,64 +59,64 @@
 
         //http://www.cnblogs.com/TomXu/archive/2011/12/30/2288372.html
 
+        (function () {
+            //定义一个唯一的命名空间
+            if (!window.teafish) {
+                //window['teafish']
+                window.teafish = {};
+            }
+            //or 
+            //var teafish = window.teafish || (window.teafish = {});
 
-        if (!window.teafish) {
-            window.teafish = {};
-        }
+            //ojbect 挂载
+            function create(name, value) {
+                var obj = window.teafish;
+                nameParts = name ? name.split('.') : [];
+                var itemLength = nameParts.length;
+                for (var i = 0; i < nameParts.length; i++) {
+                    var part = nameParts[i];
+                    var item = obj[part];
+                    if (!item) {
+                        item = (value && i + 1 == itemLength) ? value : {};
+                        obj[part] = item;
+                    }
+                    obj = item;
 
-        //ojbect 挂载
-        function create(name, value) {
-            var obj = window.teafish;
-            nameParts = name ? name.split('.') : [];
-            var itemLength = nameParts.length;
-            for (var i = 0; i < nameParts.length; i++) {
-                var part = nameParts[i];
-                var item = obj[part];
-                if (!item) {
-                    item = (value && i + 1 == itemLength) ? value : {};
-                    obj[part] = item;
                 }
-                obj = item;
 
-            }
+                return obj;
+            };
 
-            return obj;
-        };
+            //module 创建
+            function module(target, source, overwrite) {
+                return copy(
+                    typeof target == 'string' ? create(target) : target,
+                    source,
+                    overwrite
+                    );
+            };
 
-        //module 创建
-        function module(target, source, overwrite) {
-            return copy(
-                typeof target == 'string' ? create(target) : target,
-                source,
-                overwrite
-                );
-        };
-
-        //object copy
-        function copy(target, source, overwrite, transform) {
-            for (var key in source) {
-                if (overwrite || typeof target[key] === 'undefined') {
-                    target[key] = transform ? transform(source[key]) : source[key];
+            //object copy
+            function copy(target, source, overwrite, transform) {
+                for (var key in source) {
+                    if (overwrite || typeof target[key] === 'undefined') {
+                        target[key] = transform ? transform(source[key]) : source[key];
+                    }
                 }
-            }
-            return target;
-        };
+                return target;
+            };
 
-        teafish.module = module;
+            teafish.module = module;
 
-        teafish.module("api", {
-            name: "API module",
-            get: {
+            teafish.module("api", {
+                name: "API module",
+                get: {
 
-            }
-        });
+                }
+            });
 
-        console.log(teafish.api.name); // "API module"
-
-
-
-
-
+            console.log(teafish.api.name); // "API module"
+        })();
 
 
     </script>

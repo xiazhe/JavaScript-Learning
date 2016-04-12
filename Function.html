@@ -7,6 +7,11 @@
 </head>
 <body>
     <script>
+        "use strict";
+        /**
+        *  Simple
+        *  arguments: 参数集
+        */
         function call(log) {
             var __name__ = "call";
             //this.name = "call function";
@@ -18,7 +23,6 @@
 
             return this.desc;
         }
-
 
         //call('123', { name: 'Lucker', age: 123 });
         //Arguments[2] / ["123", Object]
@@ -50,6 +54,11 @@
 
         //console.log(isFunction(call)); //true
 
+
+        /**
+        *  prototype 属性使您有能力向对象添加属性和方法。
+        *  https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain
+        */
         function MyObject(name, message) {
             this.name = String(name);
             this.message = String(message);
@@ -63,12 +72,14 @@
             return this.message;
         }
 
-        //var myObj =new MyObject('JavaScript Object', 'do something');
+        var myObj =new MyObject('JavaScript Object', 'do something');
         //console.log(myObj.getName()); //"JavaScript Object"
-
-        //console.log(myObj.getMessage()); // "do something"
-        
+        //console.log(myObj.getMessage()); // "do something"        
         //console.log(new MyObject("abc", "Lor").getName()); // "abc"
+        //console.log(MyObject.prototype); //"Object { constructor: function(name, message), getMessage: function(), getName: function(), __proto__: {} }"
+        //console.log(typeof myObj); // "object"
+        //console.log(myObj instanceof MyObject); // true
+
 
         function Circle(r) {
             this.r = r;
@@ -80,7 +91,13 @@
         }
 
         var c = new Circle(2.0);
-        console.log(c.area()); // "12.56636"
+        //console.log(c.area()); // "12.56636"
+
+
+        //全局属性 Infinity 是一个数值，表示无穷大。
+        //console.log(Infinity); "Infinity"
+
+        //回调函数 callback
 
 
     </script>
