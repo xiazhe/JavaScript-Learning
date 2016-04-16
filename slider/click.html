@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        #area {
+            height: 600px;
+            width: 600px;
+            background: #bee2ea;
+        }
+        
+
+    </style>
+    <script type="text/javascript" src="hammer.js"></script>
+</head>
+<body>
+    <div id="area">
+
+    </div>
+
+    <script>
+        var el = document.querySelector("#area");
+        
+        el.onclick = function(ev){
+            console.log(ev);
+            el.innerText = ev.clientX + " " + ev.clientY;
+        }
+
+    </script>
+</body>
+</html>

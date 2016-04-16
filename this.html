@@ -7,7 +7,21 @@
 </head>
 <body>
     <script type="text/javascript">
+        // this 指向 window 对象
+    	(function(root){
+    		console.log(root); // ‘Window’
+    	})(this);
 
+    	function say(str){
+    		var that = this;
+    		var name = "say function";
+    		console.log(this);
+    		console.log(str);
+    		console.log(that);
+    	};
+
+    	//window 全局环境
+    	say('hello');
     </script>
 </body>
 </html>
