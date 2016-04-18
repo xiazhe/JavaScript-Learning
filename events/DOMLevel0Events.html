@@ -1,0 +1,23 @@
+<!DOCTYPE>
+<html>
+<head>
+</head>
+<body>
+     <button type="button" id="btn">Submit</button>
+     <p></p>
+     <script>
+         var btn = document.getElementById('btn');
+         var p = document.querySelector('p');
+         btn.onclick = function(ev){
+             p.innerText = ev;
+             console.log('button click');
+         };
+         
+         btn.onclick = function(ev){
+             console.log(ev);
+         }
+         
+         //使用 onclick 事件绑定只会运行最后一个绑定的function.
+     </script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 {
-  "name": "JavaScript-Learning",
+  "name": "JavaScript Learning",
   "version": "0.0.1",
   "description": "",
   "repository": {},
@@ -11,7 +11,7 @@
     "grunt": "~0.4.1",
 
     "gulp": "^3.9.1",
-    "gulp-load-plugins": "",
+    "gulp-load-plugins": "*",
     "gulp-webserver": "^0.9.1",
     "gulp-livereload": "^3.8.1",
     "gulp-less": "^3.0.5",

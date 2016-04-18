@@ -1,0 +1,23 @@
+<!DOCTYPE>
+<html>
+<head>
+</head>
+<body>
+     <button type="button" id="btn">Submit</button>
+     <p></p>
+     <script>
+         var btn = document.getElementById('btn');
+         var p = document.querySelector('p');
+         btn.addEventListener('click', function(ev){
+             p.innerText = ev;
+             console.log('button click');
+         });
+         
+         btn.addEventListener('click', function(ev){
+             console.log(ev);
+         });
+         
+         //使用 addEventListener 绑定可以运行多个function.
+     </script>
+</body>
+</html>

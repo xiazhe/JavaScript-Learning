@@ -1,0 +1,24 @@
+{
+  "name": "JavaScript Learning",
+  "version": "0.0.1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "*",
+    "angular-route":"*",
+    "angular-resource":"*",
+    "angular-animate":"*",
+    "angular-ui-router": "*",
+    "bootstrap": "*",
+    "angular-bootstrap":"*",
+    "components-font-awesome":"*",
+    "simple-line-icons":"*",
+    "moment":"*",
+    "ckeditor": "^4.4.0",
+    "iscroll": "*",
+    "hammerjs": "*"
+  }
+}
