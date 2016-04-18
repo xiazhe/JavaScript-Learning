@@ -1,0 +1,25 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>IE DOM Event Object</title>
+</head>
+
+<body>
+    <button type="button" id="btn">Submit</button>
+    <script>
+        var btn = document.getElementById('btn');
+             
+             btn.onclick = function(ev){
+                 console.log(ev.srcElement);
+                 console.log(window.event.srcElement === this);
+             };
+             
+        btn.attachEvent('onclick', function(ev){
+            //取消冒泡
+            window.event.cancelBubble = true;
+        });
+    </script>
+</body>
+
+</html>

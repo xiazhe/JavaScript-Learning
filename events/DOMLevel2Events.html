@@ -18,6 +18,16 @@
          });
          
          //使用 addEventListener 绑定可以运行多个function.
+         
+         function handler(){
+           console.log('handler');  
+         };
+         
+         btn.addEventListener('click', handler, false);
+         
+         btn.removeEventListener('click', handler, false);
+         
+         
      </script>
 </body>
 </html>

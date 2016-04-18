@@ -1,0 +1,35 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>UI Events</title>
+    </head>
+    <style>
+        body {
+            height: 150%;
+        }
+    </style>
+    <script src='eventutil.js'></script>
+    <body>
+         <script>
+             document.body.onload = function(){
+                 console.log('document load over.')
+             };
+             
+             document.body.onresize = function(ev){
+                 console.log('document resize.');
+             };
+             
+             document.body.onscroll = function(){
+                 console.log('document scroll');
+             };
+             
+             function eventSupport(event, version){
+                 return document.implementation.hasFeature(event, version);
+             };
+             
+             console.log(eventSupport('HTMLEvents', '2.0')); //true
+             console.log(eventSupport('UIEvent', '3.0'));    //true
+             
+         </script>
+    </body>
+</html>
