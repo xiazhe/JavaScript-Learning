@@ -1,11 +1,11 @@
 /**
-         * event handle module
-         * IE Event handle: attachEvent, detachEvent 
-         */
+ * event handle module
+ * IE Event handle: attachEvent, detachEvent 
+ */
 (function (window) {
     if (!window.eventUtil) {
         window.eventUtil = {};
-    }
+    };
 
     function addEventHandler(element, eventType, handler) {
         if (element.addEventListener) {
@@ -72,6 +72,40 @@
         }
     };
 
+    function getRelatedTarget(event) {
+        if (event.relatedTarget) {
+            return event.relatedTarget;
+        } else if (event.toElement) {
+            return event.toElement;
+        } else if (event.fromElement) {
+            return event.fromElement;
+        } else {
+            return null;
+        }
+    };
+
+    function getbutton(event) {
+        if (document.implementation.hasFeature('MouseEvents', '2.0')) {
+            return event.button;
+        } else {
+            switch (event.button) {
+                case 0:
+
+                case 1:
+                case 3:
+                case 5:
+                case 7:
+                    return 0;
+                case 2:
+                case 6:
+                    return 2;
+                case 4:
+                    return 1;
+            }
+
+        }
+    };
+
     function extend(dest, src, merge) {
         for (var key in src) {
             if (dest[key] !== undefined && merge) {
@@ -87,6 +121,7 @@
         removeEventHandler: removeEventHandler,
         formatEvent: formatEvent,
         getEvent: getEvent,
+        getRelatedTarget: getRelatedTarget,
         extend: extend
     });
 

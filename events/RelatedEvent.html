@@ -1,0 +1,33 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title></title>
+        <style>
+        #area {
+            height: 300px;
+            width: 300px;
+            background: #abc;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="area">
+            
+        </div>
+        
+         <script>
+             var area = document.getElementById('area');
+             
+             var box = document.body;
+             
+             area.addEventListener('mouseover', function(ev){
+                 console.log(ev.relatedTarget); //body
+             });
+             
+             box.addEventListener('mouseout', function(ev){
+                 console.log(ev.relatedTarget); //div#area
+             });
+             
+         </script>
+    </body>
+</html>

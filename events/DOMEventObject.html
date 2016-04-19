@@ -8,29 +8,32 @@
          <script>
              var btn = document.getElementById('btn');
              btn.onclick = function(ev){
+                 console.log(btn);
                  console.log(ev.type); //'click'
+                 console.log(ev.button); //0
+                 console.log(ev);
              };
              
              //this == ev.currentTarget
              btn.addEventListener('click', function(ev){
-                 console.log(ev.type); //'click'  
-                 console.log(ev.bubbles); //'true'
-                 console.log(ev.cancelable); //'true'
-                 console.log(ev.currentTarget); //[Log] <button type=​"button" id=​"btn">​Submit​</button>​ (DOMEventObject.html, line 18)
-                 console.log(ev.defaultPrevented); //'false'
-                 console.log(ev.detail); //1
-                 console.log(ev.eventPhase); //2 ; 
-                 console.log(ev.preventDefault());
-                 console.log(ev.target);
-                 console.log(this);
+                //  console.log(ev.type); //'click'  
+                //  console.log(ev.bubbles); //'true'
+                //  console.log(ev.cancelable); //'true'
+                //  console.log(ev.currentTarget); //[Log] <button type=​"button" id=​"btn">​Submit​</button>​ (DOMEventObject.html, line 18)
+                //  console.log(ev.defaultPrevented); //'false'
+                //  console.log(ev.detail); //1
+                //  console.log(ev.eventPhase); //2 ; 
+                //  console.log(ev.preventDefault());
+                //  console.log(ev.target);
+                //  console.log(this);
                  
              }, false);
              
              document.body.onclick = function(event){
-                 console.log(event.currentTarget === document.body); // true
-                 console.log(event.target === this); // false
-                 console.log(this === document.body); // true
-                 console.log(event.target === document.getElementById('btn')); // true
+                //  console.log(event.currentTarget === document.body); // true
+                //  console.log(event.target === this); // false
+                //  console.log(this === document.body); // true
+                //  console.log(event.target === document.getElementById('btn')); // true
                  
              };
              
