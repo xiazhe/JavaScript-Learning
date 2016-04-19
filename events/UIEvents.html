@@ -1,35 +1,58 @@
 <!DOCTYPE>
 <html>
-    <head>
-        <title>UI Events</title>
-    </head>
-    <style>
-        body {
-            height: 150%;
-        }
-    </style>
-    <script src='eventutil.js'></script>
-    <body>
-         <script>
-             document.body.onload = function(){
-                 console.log('document load over.')
-             };
-             
-             document.body.onresize = function(ev){
-                 console.log('document resize.');
-             };
-             
-             document.body.onscroll = function(){
-                 console.log('document scroll');
-             };
-             
-             function eventSupport(event, version){
-                 return document.implementation.hasFeature(event, version);
-             };
-             
-             console.log(eventSupport('HTMLEvents', '2.0')); //true
-             console.log(eventSupport('UIEvent', '3.0'));    //true
-             
-         </script>
-    </body>
+
+<head>
+    <title>UI Events</title>
+</head>
+<style>
+    body {
+        height: 150%;
+    }
+</style>
+<script src='eventutil.js'></script>
+
+<body>
+    <script>
+        //load event
+        document.body.onload = function(){
+            console.log('document load.');
+        };
+        
+        EventUtil.addEventHandler(window, 'load', function(event){
+            console.log('window load.');
+        });
+        
+        //resize event
+        document.body.onresize = function(ev){
+            console.log('document resize.');
+        };
+        
+        EventUtil.addEventHandler(window, 'resize', fucntion(){
+        console.log('resized'); 
+        });
+        
+        //scroll event
+        document.body.onscroll = function(){
+            console.log('document scroll');
+        };
+        
+        EventUtil.addEventHandler(window, 'scroll', funcion(){
+           if(document.compatMode == 'CSS1Compat'){
+               console.log(document.documentElement.scrollTop);
+           } else {
+               console.log(document.body.scrollTop);
+           }
+        });
+        
+        function eventSupport(event, version){
+            return document.implementation.hasFeature(event, version);
+        };
+        
+        console.log(eventSupport('HTMLEvents', '2.0')); //true
+        console.log(eventSupport('UIEvent', '3.0'));    //true
+        console.log(eventSupport('MouseEvents', '2.0'));
+        console.log(eventSupport('MouseEvent', '3.0'));
+    </script>
+</body>
+
 </html>

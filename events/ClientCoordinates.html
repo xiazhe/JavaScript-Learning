@@ -1,0 +1,41 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>Client Coordinates</title>
+
+    <style>
+        #wrapper {
+            width: 300px;
+            height: 300px;
+            background: #abc;
+        }
+    </style>
+
+    <script src='eventutil.js'></script>
+</head>
+
+<body>
+    <div id="wrapper">
+
+    </div>
+    <script>
+        /**
+         * JavaScript 高级程序设计 （3） 
+         * 13.4.3
+         */
+        var wrapper = document.getElementById('wrapper');
+        
+        eventUtil.addEventHandler(wrapper, 'click', function(event){
+            event = eventUtil.getEvent(event);
+            console.log('Client Coordinates: ' + event.clientX + ',' + event.clientY);
+        });
+        
+        eventUtil.addEventHandler(document.body, 'mousemove', function(ev){
+            console.log('clientX: ' + ev.clientX + ', clientY' + ev.clientY);
+            console.log('pageX: ' + ev.pageX + ', pageY: ' + ev.pageY);
+        });
+    </script>
+</body>
+
+</html>

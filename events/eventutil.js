@@ -9,7 +9,7 @@
 
     function addEventHandler(element, eventType, handler) {
         if (element.addEventListener) {
-            element.addEventListenser(eventType, handler, false);
+            element.addEventListener(eventType, handler, false);
         } else if (element.attachEvent) {
             element.attachEvent('on' + eventType, handler);
         } else {
