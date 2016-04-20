@@ -106,6 +106,25 @@
         }
     };
 
+    function getWheelDelta(ev) {
+        if (event.wheelDelta) {
+            //opera
+            // return (client.engine.opera && client.engine.opera < 9.5 ?
+            //     -event.wheelDelta : event.wheelDelta);
+            return -event.wheelDelta;
+        } else {
+            return -event.wheelDelta * 40;
+        }
+    };
+    
+    function getCharCode(ev){
+        if(typeof event.charCode == 'number'){
+            return ev.charCode;
+        } else {
+            return ev.keyCode;
+        }
+    };
+
     function extend(dest, src, merge) {
         for (var key in src) {
             if (dest[key] !== undefined && merge) {

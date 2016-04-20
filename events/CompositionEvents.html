@@ -1,0 +1,32 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Composition Events</title>
+        <script src="eventutil.js"></script>
+    </head>
+    <body>
+         <input type="text" name="username" value="" id="username" />
+         <script>
+             var username = document.getElementById('username');
+             
+             eventUtil.addEventHandler(username, 'compositionstart', function(ev){
+                 event = eventUtil.getEvent(ev);
+                 console.log(event);
+             });
+             
+             eventUtil.addEventHandler(username, 'compositionupdate', function(ev){
+                 event = eventUtil.getEvent(ev);
+                 console.log(event);
+             });
+             
+             eventUtil.addEventHandler(username, 'compositionend', function(ev){
+                 event = eventUtil.getEvent(ev);
+                 console.log(event);
+             });
+             
+             var isSupported = document.implementation.hasFeature('CompositionEvent', '3.0');
+             console.log(isSupported);
+             
+         </script>
+    </body>
+</html>

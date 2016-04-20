@@ -1,0 +1,19 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title></title>
+        <script src="eventutil.js"></script>
+    </head>
+    <body>
+         <input type="text" name="username" value="" id="username" >
+         
+         <script>
+             var username = document.getElementById('username');
+             
+             eventUtil.addEventHandler(username, 'textInput', function(ev){
+                 event = eventUtil.getEvent(ev);
+                 console.log(event);
+             });
+         </script>
+    </body>
+</html>
