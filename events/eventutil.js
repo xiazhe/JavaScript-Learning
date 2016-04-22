@@ -124,6 +124,26 @@
             return ev.keyCode;
         }
     };
+    
+    function getTarget(ev){
+        return ev.target || ev.srcElement;
+    };
+    
+    function preventDefault(ev){
+        if(ev.preventDefault){
+            ev.preventDefault();
+        } else {
+            ev.returnValue = null;
+        }
+    };
+    
+    function stopPropagation(ev){
+        if(ev.stopPropagation){
+            ev.stopPropagation();
+        } else {
+            ev.cancelBubble = true;
+        }
+    };
 
     function extend(dest, src, merge) {
         for (var key in src) {
@@ -141,6 +161,9 @@
         formatEvent: formatEvent,
         getEvent: getEvent,
         getRelatedTarget: getRelatedTarget,
+        getTarget: getTarget,
+        preventDefault: preventDefault,
+        stopPropagation: stopPropagation,
         extend: extend
     });
 

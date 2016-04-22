@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>filter - Example</title>
+
+    <script src="../angular.min.js"></script>
+    <script type="text/javascript">
+        //JavaScript 中计算Float数有误差。
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', []).
+            controller('EventController', ['$scope', function ($scope) {
+                $scope.num = 5229476.699999999;
+            }]);
+        })(window.angular);
+    </script>
+</head>
+
+<body ng-app="exampleApp">
+<div ng-controller="EventController">
+    <h1>filter</h1>
+    <span ng-bind="num|number:2"></span>
+</div>
+</body>
+</html>

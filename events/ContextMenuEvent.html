@@ -1,0 +1,56 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>HTML5 contextmenu Event</title>
+        <script src="eventutil.js"></script>
+        
+        <style>
+        #content {
+            
+        }
+        
+        #menu {
+            position: absolute;
+            visibility: hidden;
+            background-color: silver;
+        }
+        </style>
+    </head>
+    <body>
+         <ul id="menu">
+             <li><a href="#">tea</a></li>
+             <li><a href="#">fish</a></li>
+             <li><a href="#">www</a></li>
+         </ul>
+        <div id="content">
+            Right click or Ctrl+click me to get a custom context menu.
+            <br />
+            Click anywhere else to get the default context menu
+        </div>
+        
+        <script>
+            eventUtil.addEventHandler(window, 'load', function(){
+                var menu = document.getElementById('menu'), content = document.getElementById('content');
+                    
+                eventUtil.addEventHandler(content, 'contextmenu', function(ev){
+                    console.log(ev.type);
+                    console.log(ev.target);
+                    event = eventUtil.getEvent(ev);
+                    eventUtil.preventDefault(event);
+                    
+                    menu.style.left = event.clientX + 'px';
+                    menu.style.top = event.clientY + 'px';
+                    menu.style.visibility = 'visible';
+                    
+                });
+                
+                eventUtil.addEventHandler(document, 'click', function(ev){
+                    menu.style.visibility = 'hidden';
+                });
+                
+                
+                
+            });
+        </script>
+    </body>
+</html>

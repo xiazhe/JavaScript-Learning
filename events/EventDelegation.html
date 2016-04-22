@@ -1,0 +1,28 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Event Delegation</title>
+        <script src="eventutil.js"></script>
+    </head>
+    <body>
+         <ul id="list">
+             <li id="gosomewhere">Go somewhere</li>
+             <li id="dosomething">Do something</li>
+             <li id="sayhi">say Hi</li>
+         </ul>
+         
+         <script>
+             var list = document.getElementById('list');
+             
+             eventUtil.addEventHandler(list, 'click', function(ev){
+                 var event = eventUtil.getEvent(ev);
+                 
+                 var target = eventUtil.getTarget(event);
+                 
+                 console.log(target);
+                 
+                 console.log(target.id);
+             });
+         </script>
+    </body>
+</html>

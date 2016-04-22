@@ -1,0 +1,17 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>beforeunload event</title>
+        <script src="eventutil.js"></script>
+    </head>
+    <body>
+         <script>
+             eventUtil.addEventHandler(window, 'beforeunload', function(ev){
+                 event = eventUtil.getEvent(ev);
+                 var message = 'leave this page?';
+                 event.returnValue = message;
+                 return message;
+             });
+         </script>
+    </body>
+</html>

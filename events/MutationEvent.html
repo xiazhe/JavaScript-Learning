@@ -1,0 +1,48 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>Mutation Events 变动事件</title>
+        <script src="eventutil.js"></script>
+    </head>
+    <body>
+         <ul id="list">
+             <li>item one</li>
+             <li>item two</li>
+             <li>item three</li>
+             <li>item four</li>
+             <li>item five</li>
+             <li>item six</li>
+         </ul>
+         <script>
+             /**
+              * 已废弃 2016-04-21
+              */
+             
+             eventUtil.addEventHandler(window, 'load', function(){
+                 var list = document.getElementById('list');
+                 
+                 eventUtil.addEventHandler(document, 'DOMSubtreeModified', function(ev){
+                     console.log(ev.type);
+                     console.log(ev.target);
+                 });
+                 
+                 eventUtil.addEventHandler(document, 'DOMNodeRemoved', function(ev){
+                     console.log(ev.type);
+                     console.log(ev.target);
+                     console.log(ev.relatedNode);
+                 });
+                 
+                 eventUtil.addEventHandler(list.firstChild, 'DOMNodeRemovedFromDocument', function(ev){
+                     console.log(ev.type);
+                     console.log(ev.target);
+                 });
+                 
+                 list.parentNode.removeChild(list);
+             });
+             
+             
+             
+             
+         </script>
+    </body>
+</html>

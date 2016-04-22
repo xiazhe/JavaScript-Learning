@@ -1,0 +1,21 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>HasChange Event</title>
+        <script src="eventutil.js"></script>
+    </head>
+    <body>
+         
+         <script>
+             //only support IE8+, Firefox 3.6+
+             eventUtil.addEventHandler(window, 'haschange', function(ev){
+                 console.log(ev.oldURL + " , "  + ev.newURL);
+                 console.log('Current hash: ' + location.hash);
+             });
+             
+             var isSupported = ('onhashchange' in window) && (document.documentMode === undefined || document.documentMode > 7);
+             
+             console.log('isSupported: ' + isSupported);
+         </script>
+    </body>
+</html>

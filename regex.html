@@ -14,10 +14,17 @@
             results.push(match[1]);
             match=reg.exec(testStr);
         }
-        console.log(results);
+        //console.log(results);
         /*
          Array ["/a.jpg", "/b.jpg", "/c.png"]
          */
+        
+        
+        
+        //replace(/,/g,"") 替换 ， 为空
+        var num = parseFloat('123,4456,789.123'.replace(/,/g,''));
+        console.log(num); //1234456789.123
+        
     </script>
 </body>
 </html>

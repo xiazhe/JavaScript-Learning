@@ -16,17 +16,17 @@ gulp.task('webserver', function () {
             fallback: 'index.html'
         }));
         
-    // gulp.start('watch');
+     gulp.start('watch');
 });
 
 // watch
 gulp.task('watch', function(){
-   gulp.watch('**/*.html');
-   gulp.watch('**/*.js');
-   gulp.watch('**/*.css');
+   gulp.watch(['events/*.html', 'angular/**/*.html']);
+   gulp.watch(['events/*.js']);
+   gulp.watch(['events/*.css']);
    plugins.livereload.listen();
     
-   gulp.watch('**/*.html')
+   gulp.watch(['events/*.html', 'angular/**/*.html'])
        .on('change', plugins.livereload.changed)
        .on('error', errorHandler);
 });

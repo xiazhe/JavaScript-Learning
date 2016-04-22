@@ -1,0 +1,44 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>DOM Content Loaded Event</title>
+        <script src="eventutil.js" ></script>
+    </head>
+    <body>
+         
+         <script>
+             /**
+              * DOMContentLoaded
+              * support: IE9+
+              * 在load事件之前执行
+              */
+             eventUtil.addEventHandler(window, 'DOMContentLoaded', function(ev){
+                 console.log('DOM Content loaded.');
+             });
+             
+             
+             setTimeout(function(){
+                 
+             }, 0);
+             
+             
+             eventUtil.addEventHandler(window, 'load', function(ev){
+                 var script = document.createElement('script');
+                 
+                 eventUtil.addEventHandler(script, 'readystatechange', function(ev){
+                     var event = eventUtil.getEvent(ev);
+                     var target = eventUtil.getTarget(ev);
+                     
+                     if(target.readyState == 'loaded' || target.readyState == 'complete'){
+                         eventUtil.removeEventHandler(target, 'readystatechange', arguments.callee);
+                         console.log('script loaded');
+                     }
+                     
+                 });
+                 
+                 script.src= 'example.js';
+                 document.body.appendChild(script);
+             });
+         </script>
+    </body>
+</html>
