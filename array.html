@@ -1,80 +1,227 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head lang="en">
     <meta charset="UTF-8">
     <title>判断 array 的长度</title>
 </head>
+
 <body>
-<script>
-    var arr = [];
+    <script>
+        var arr = [];
 
-    if(arr&&arr.length > 0){
-        console.log("true");
-    }
-
-    console.log(arr.length); //0
-
-    if(arr instanceof Array){
-        //do something to array
-    }
-
-    //判断是否为数组
-    if(Array.isArray(arr)){
-        //nonsupport ie6/7/8
-    }
-
-    //Scope Safe Constructors
-    console.log(Object.prototype.toString.call(arr)); // "[object Array]"
-
-    function isArray(value){
-        return Object.prototype.toString().call(value) == "[Object Array]";
-    }
-
-    // delete a array item
-    var abc = ['a', 'b', 'c'];
-    delete abc[0];
-    for(var i=0; i<abc.length; i++){
-        console.log(abc[i]);
-        /**
-         * undefined
-         * b
-         * c
-         */
-    }
-
-    /**
-     * array.splice(start, deleteCount[, item1[, item2[, ...]]])
-     * splice() 方法用新元素替换旧元素，以此修改数组的内容。
-     * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
-    */
-     var def = ['d', 'e', 'f'];
-    def.splice(0, 1);
-    for(var i=0; i<def.length; i++){
-        console.log(def[i]);
-        /**
-         * e
-         * f
-         */
-    }
-
-    //advance
-    function isArray(value) {
-        if (typeof value == "undefined") return false;
-
-        if (value instanceof Array || (!(value instanceof Object) &&
-             (Object.prototype.toString.call((value)) == '[object Array]') ||
-             typeof value.length == 'number' &&
-             typeof value.splice != 'undefined' &&
-             typeof value.propertyIsEnumerable != 'undefined' &&
-             !value.propertyIsEnumerable('splice')
-            )) {
-            return true;
+        if(arr&&arr.length > 0){
+            console.log("true");
         }
 
-        return false;
-    }
+        console.log(arr.length); //0
 
+        if(arr instanceof Array){
+            //do something to array
+        }
 
-</script>
+        /**
+         * 判断是否为数组
+         * Array.isArray
+         * Object.prototype.toString().call(value) == "[Object Array]"
+         */
+        if(Array.isArray(arr)){
+            //nonsupport ie6/7/8
+        }
+
+        //Scope Safe Constructors
+        console.log(Object.prototype.toString.call(arr)); // "[object Array]"
+
+        function isArray(value){
+            return Object.prototype.toString().call(value) == "[Object Array]";
+        };
+        
+        //advance 原理同上， 做了更多判断
+        function isArray(value) {
+            if (typeof value == "undefined") return false;
+
+            if (value instanceof Array || (!(value instanceof Object) &&
+                (Object.prototype.toString.call((value)) == '[object Array]') ||
+                typeof value.length == 'number' &&
+                typeof value.splice != 'undefined' &&
+                typeof value.propertyIsEnumerable != 'undefined' &&
+                !value.propertyIsEnumerable('splice')
+                )) {
+                return true;
+            }
+
+            return false;
+        };
+
+        /**
+         * 存取函数
+         * indexOf 查找传进来的参数在目标数组中是否存在。如果目标数组包含该参数,就返回该元素在数组中的索引;如果不包含,就返回 -1。
+         * indexOf() 函数总是返回第一个与参数相同的元素的索引。有另外一个功能与之类似的函数: lastIndexOf()
+         * lastIndexOf(),该函数返回相同元素中最后一个元素的索引,如果没找到相同元素,则返回 -1。
+         */
+        var names = ['David', 'Cynthia', 'Raymond', 'Clayon', 'David', 'Jennifer'];
+        var position = names.indexOf('Raymond');
+        console.log(position); //2
+        console.log(names.lastIndexOf('David'));
+        
+        //有两个方法可以将数组转化为字符串:join() 和 toString()。
+        var namestr = names.join();
+        console.log(namestr);
+        namestr = names.toString();
+        console.log(namestr);
+        
+        //concat() 和 splice() 方法允许通过已有数组创建新数组。concat 方法可以合并多个数组
+        //创建一个新数组,splice() 方法截取一个数组的子集创建一个新数组
+        
+        //为数组添加元素:push() 和 unshift()
+        //push 添加新元素到数组结尾
+        //unshift() 方法可以将元素添加在数组的开头
+        names.push('Django');
+        names[names.length] = 'Flask';
+        
+        names.unshift('Kevin');
+        
+
+        // 删除元素
+        var abc = ['a', 'b', 'c'];
+        delete abc[0];
+        for(var i=0; i<abc.length; i++){
+            console.log(abc[i]);
+            /**
+             * undefined
+             * b
+             * c
+             */
+        }
+
+        //使用 pop() 方法可以删除数组末尾的元素:
+        abc.pop();
+        
+        //shift() 方法可以删除数组的第一个元素,
+        abc.shift();
+        
+        //pop() 和 shift() 方法都将删掉的元素作为方法的 返回值返回,因此可以使用一个变量来保存删除的元素
+        var firstItem = abc.shift();
+        
+        /**
+         * array.splice(start, deleteCount[, item1[, item2[, ...]]])
+         * splice() 方法用新元素替换旧元素，以此修改数组的内容。
+         * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+        */
+        var def = ['d', 'e', 'f'];
+        def.splice(0, 1);
+        for(var i=0; i<def.length; i++){
+            console.log(def[i]);
+            /**
+             * e
+             * f
+             */
+        }
+        
+        //数组排序
+        //reverse(),该方法将数组中元素的顺序进行翻转。
+        var numbers = [1, 2, 3, 4, 5];
+        numbers.reverse();
+        
+        //如果元素是字符串类型则使用 sort()
+        names.sort();
+        
+        //迭代数组
+        //for 循环
+        var nums = [1,2,3,4,5,6,7,8];
+        for(var i = 0; i< nums.length; i++){
+            console.log(nums[i]);
+        }
+        
+        //不产生新数组的迭代器方法
+        //forEach()
+        function square(num){
+            console.log(nums);
+        };
+        
+        nums.forEach(square);
+        
+        //every(),该方法接受一个返回值为布尔类型的函数,对数组中的每 个元素使用该函数。如果对于所有的元素,该函数均返回 true,则该方法返回 true。
+        function isEven(num){
+            return num % 2 == 0;
+        };
+        
+        var even = nums.every(isEven);
+        
+        //some() 方法也接受一个返回值为布尔类型的函数,只要有一个元素使得该函数返回 true, 该方法就返回 true。
+        var someEven = nums.some(isEven);
+        
+        //reduce() 方法接受一个函数,返回一个值。
+        //该方法会从一个累加值开始,不断对累加值和数组中的后续元素调用该函数,直到数组中的最后一个元素,最后返回得到的累加值。
+        function add(runningTotal, currentValue){
+            return runningTotal + currentValue;
+        };
+        
+        var total = nums.reduce(add);
+        console.log(total);
+        
+        //reduce() 方法也可以用来将数组中的元素连接成一个长的字符串
+        function concat(accumulatedString, item){
+            return accumulatedString + item;
+        };
+        
+        var words = ['apple', 'box', 'circle', 'doctor', 'enter'];
+        var sentence = words.reduce(concat);
+        console.log(sentence); //appleboxcircledoctorenter
+        
+        //reduceRight() 方法, 从右到左执行
+        var sentence = words.reduceRight(concat);
+        console.log(sentence); //enterdoctorcircleboxapple
+        
+        
+        //返回新数组的迭代器方法
+        //有两个迭代器方法可以产生新数组:map() 和 filter()。
+        //map() 和 forEach() 有点儿像,对 数组中的每个元素使用某个函数。
+        //两者的区别是 map() 返回一个新的数组,该数组的元素 是对原有元素应用某个函数得到的结果。
+        function curve(grade){
+            return grade += 5;
+        };
+        
+        var grades = [77, 34, 54, 68, 90];
+        var newGrades = grades.map(curve);
+        
+        //字符串数组
+        function first(word){
+            return word[0];
+        };
+        
+        var words = ['for', 'you', 'infomation'];
+        var newWords = words.map(first);
+        // console.log(newWords); //Array [ "f", "y", "i" ]
+        
+        //filter() 和 every() 类似,传入一个返回值为布尔类型的函数。
+        //和 every() 方法不同的是, 当对数组中的所有元素应用该函数,结果均为 true 时,该方法并不返回 true,
+        //而是返回 一个新数组,该数组包含应用该函数后结果为 true 的元素。
+        //过滤不符合条件的项
+        function isOdd(num){
+            return num % 2 != 0;
+        };
+        
+        var odds = nums.filter(isOdd);
+        
+        // 过滤字符串
+        function afterc(org){
+            var filterText = 'ice';
+            if(org.indexOf(filterText) > -1){
+                return true;
+            }
+            
+            return false;
+        };
+        
+        var titles = ['recieve', 'deceice', 'percieve', 'deceit', 'concieve'];
+        
+        var misspelled = titles.filter(afterc);
+        console.log(misspelled);
+        
+        
+        
+    </script>
 </body>
+
 </html>

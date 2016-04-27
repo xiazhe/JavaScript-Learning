@@ -1,0 +1,75 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>List Class</title>
+    <script src="list.js"></script>
+</head>
+
+<body>
+
+    <script>
+        
+        var names = new List();
+        names.append("Clayton");
+        names.append("Raymond");
+        names.append("Cynthia");
+        names.append("Jennifer");
+        names.append("Bryan");
+        names.append("Danny");
+        
+        console.log(names.toString()); //Array [ "Clayton", "Raymond", "Cynthia", "Jennifer", "Bryan", "Danny" ]
+        
+        names.front();
+        // console.log(names.getElement()); //"Clayton"
+        // console.log(names.currPos()); //0
+        
+        names.next();
+        // console.log(names.getElement()); //"Raymond"
+        // console.log(names.currPos()); //1
+        // console.log(names.length()); //6
+        
+        //max size: 5  
+        // 死循环
+        // for(names.front(); names.currPos() < names.length(); names.next()){
+        //     console.log(names.currPos());
+        //     console.log(names.getElement());
+        // }
+        
+        names.front(); // pos: 0
+        for(var i=0; i < names.length() - 1; ++i){
+            names.next();
+            // console.log(names.currPos());
+            // console.log(names.getElement());
+        }
+        
+        // names.end();
+        // console.log(names.currPos()); //5
+        // names.next(); //5 不会再增加。 所以永远都不会大于或等于 name.length()
+        
+        
+        names.end(); // pos: 5
+        for(var i=names.currPos(); i >= 0; --i){
+            console.log(names.currPos());
+            console.log(names.getElement());
+            names.prev();
+        }
+        
+        // 5 list.html:200:1
+        // Danny list.html:201:1
+        // 4 list.html:200:1
+        // Bryan list.html:201:1
+        // 3 list.html:200:1
+        // Jennifer list.html:201:1
+        // 2 list.html:200:1
+        // Cynthia list.html:201:1
+        // 1 list.html:200:1
+        // Raymond list.html:201:1
+        // 0 list.html:200:1
+        // Clayton
+        
+        
+    </script>
+</body>
+
+</html>

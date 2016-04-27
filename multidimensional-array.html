@@ -1,0 +1,124 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>multidimensional array</title>
+    </head>
+    <body>
+         <script>
+             //二维数组
+             var persons = [['zhangsan', 10],['lisi', 20],['wangwu', 30]];
+            //  console.log(persons[0][1]); //10
+             
+             //simple
+             var twod = [];
+             var rows = 5;
+             for(var i =0; i<rows; i++){
+                 twod[i] = [];
+             }
+             
+            //  console.log(twod); //Array [ Array[0], Array[0], Array[0], Array[0], Array[0] ]
+            //  console.log(twod[0][0]); // undefined undefined
+             
+             //初始化一组二维数组
+             Array.matrix = function(numrows, numcols, initial){
+                 var arr = [];
+                 
+                 for(var i = 0; i<numrows; ++i){
+                     var columns = [];
+                     for(var j = 0; j<numcols; ++j){
+                         columns[j] = initial;
+                     }
+                     
+                     arr[i] = columns;
+                 }
+                 
+                 return arr;
+             };
+             
+             var nums = Array.matrix(5, 5, 0);
+            //  console.log(nums[1][1]); //0
+            // console.log(nums); //Array [ Array[5], Array[5], Array[5], Array[5], Array[5] ]
+             
+             
+            /**
+             * 处理元素
+             * 遍历固定元素个数的二维数组
+             *  */ 
+            var grades = [[89, 77, 78],[76, 82, 81],[91, 94, 89]];
+            var total = 0;
+            var averge = 0.0;
+            
+            for(var row = 0; row < grades.length; ++row){
+                for(var col = 0; col < grades[row].length; ++col){
+                    //console.log(grades[row][col]);
+                }
+            }
+            
+            // 89 multidimensional-array.html:50:21
+            // 77 multidimensional-array.html:50:21
+            // 78 multidimensional-array.html:50:21
+            // 76 multidimensional-array.html:50:21
+            // 82 multidimensional-array.html:50:21
+            // 81 multidimensional-array.html:50:21
+            // 91 multidimensional-array.html:50:21
+            // 94 multidimensional-array.html:50:21
+            // 89 multidimensional-array.html:50:21
+            
+            //元素个数不可控的多维数组处理
+            var scores = [[89, 77], [76, 82, 81],[91, 94, 89, 99]];
+            
+            
+            
+            var multiArray = [[[1, 2, 3], [4, 5, 6], 1], [1, 2, 3], [[1, 2], 3]];
+            
+            //死循环
+            // var obj = multiArray;
+            // multiArray.push(obj);
+            
+            //迭代器 遍历数组所有的元素
+            function iteratorArr(arr){
+                for(var i=0; i< arr.length; ++i){
+                    if(Array.isArray(arr[i])){
+                        iteratorArr(arr[i]);
+                    } else {
+                        console.log(arr[i]);
+                    }
+                }
+            };
+            
+            iteratorArr(multiArray);
+            
+            //常见的JSON数据格式
+            var responseDataPagnation = {
+                totalcount: 100,
+                pageSize: 10,
+                pageCount: 10,
+                pageIndex: 1,
+                //...
+                result:[
+                    {
+                        name: "zhangsan",
+                        age: 10
+                    },
+                    {
+                        name: "lisi",
+                        age: 20
+                    }
+                    //...
+                ]
+            };
+            
+            var responseData = [
+                {
+                    name: "zhangsan"
+                },
+                {
+                    name: "lisi"
+                }
+                //...
+            ];
+            
+            
+         </script>
+    </body>
+</html>
