@@ -1,0 +1,31 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>tree - Example</title>
+
+    <script src="angular.min.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="ngchart.js"></script>
+    <script src="ngtopo.js"></script>
+
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', ['ui.missionsky.chart', 'ui.missionsky.chart1']).
+              controller('EventController', ['$scope', function ($scope) {
+                  
+              }]);
+        })(window.angular);
+    </script>
+</head>
+
+<body ng-app="exampleApp">
+    <div ng-controller="EventController">
+        <script ng-init="topoData =[{name:'主机1',value:1,children:[{name:'主机2',value:2},{name:'主机3',value:3,children:[{name:'主机3-1',value:31},{name:'主机3-2',value:32}]},{name:'主机4',value:4},{name:'主机5',value:5},{name:'主机6',value:6},{name:'主机7',value:7},{name:'主机8',value:8},{name:'主机9',value:9},{name:'主机10',value:10},{name:'主机11',value:11},{name:'主机12',value:12},{name:'主机13',value:13},{name:'主机14',value:14},{name:'主机15',value:15}]}];"></script>
+
+        <coolead-topo class="ms-modal" style="height:330px;width:1550px;display: inline-block;"  chart-data="topoData"></coolead-topo>
+    </div>
+</body>
+</html>
