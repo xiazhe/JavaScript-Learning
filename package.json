@@ -9,6 +9,14 @@
   "devDependencies": {
     "bower": "^1.7.7",
     "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.3",
+    "grunt-contrib-uglify": "~0.2.1",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-strip": "~0.2.1",
+    "grunt-contrib-concat": "~0.5.0",
+    "grunt-contrib-connect": "~1.0.1",
 
     "gulp": "^3.9.1",
     "gulp-load-plugins": "*",
