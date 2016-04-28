@@ -1,0 +1,192 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+         <script>
+             /**
+              * 多叉树 multiway tree
+              * 将 list 转换为 tree
+              * 把数据库中的层次数据转换成JSON格式的字符串 (多叉树结构的对象树)
+              * 对树中每一个层次的节点按照某一属性（比如分支机构编号）进行排序
+              * 三步：
+              *     1、 构造无序的多叉树结构
+              *     2、 实现兄弟节点横向排序方法
+              *     3、 实现先序遍历方法，打印出JSON字符串
+              * http://blog.csdn.net/jimmy609/article/details/12204701
+              */
+             
+             var data = [{
+                    "cid" : "440305A0010001",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010004",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010005",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010006",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010007",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010008",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010009",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010010",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010011",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010012",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010013",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010014",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010015",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010016",
+                    "pid" : null,
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1999999999999999999999999999999999",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010018",
+                    "pid" : "440305A0010016",
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010019",
+                    "pid" : "440305A0010024",
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010022",
+                    "pid" : "440305A0010021",
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010026",
+                    "pid" : "440305A0010019",
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010027",
+                    "pid" : "440305A0010022",
+                    "buildid" : "440305A001",
+                    "meterid" : "440305A001M9999",
+                    "circuitname" : "监测仪表名称1",
+                    "qty" : null
+                }, {
+                    "cid" : "440305A0010029",
+                    "pid" : "440305A0010001",
+                    "buildid" : "440305A001",
+                    "meterid" : "",
+                    "circuitname" : "aaaaaaaaaaaaaaaaaaaaaaa",
+                    "qty" : null
+                }];
+                
+                var root = {
+                    name: 'root',
+                    value: 0,
+                    children: []
+                };
+                
+                // for(var i=0; i < data.length; ++i){
+                //     if(data[i].pid == null){
+                //         root.children.push(data[i]);
+                //     }else{
+                //         addToTree(parentId, data[i]);
+                //     }
+                // };
+                
+                // //找不到parentId 的情况下 无法添加
+                // function addToTree(id, item){
+                    
+                // };
+                
+                // 使用List 类处理， 将层级数据放倒List中，已被匹配的项从List中移除，减少循环次数，加快效率
+                
+                
+                
+                
+                
+                console.log(root.children);
+                
+                
+         </script>
+    </body>
+</html>

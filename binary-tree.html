@@ -1,0 +1,70 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>二叉树</title>
+    </head>
+    <body>
+         <p>
+             <b>二叉树上进行查找非常快, 二叉树添加或删除元素也非常快.</b>
+             二叉树是一种特殊的树,它的子节点个数不超过两个。二叉树具有一些特殊的计算性质, 使得在它们之上的一些操作异常高效。
+         </p>
+         <script>
+             (function(){
+                 
+                 /**
+                  * Node Class
+                  */
+                  function Node(data, left, right){
+                      this.data = data;
+                      this.left = left;
+                      this.right = right;
+                      this.show = show;
+                  };
+                  
+                  function show(){
+                      return this.data;
+                  };
+                  
+                  /**
+                   * BST Class 二叉查找树(BST)
+                   */
+                  function BST(){
+                      this.root = null;
+                      this.insert = insert;
+                      this.inOrder = inOrder;
+                  };
+                  
+                  function insert(data){
+                      var n = new Node(data, null, null);
+                      if(this.root == null){
+                          this.root = n;
+                      } else {
+                          var current = this.root;
+                          var parent;
+                          
+                          while(true){
+                              parent = current;
+                              
+                              if(data < current.data){
+                                  current = current.left;
+                                  if(current == null){
+                                      parent.left = n;
+                                      break;
+                                  }
+                              } else {
+                                  current = current.right;
+                                  if(current == null){
+                                      parent.right = n;
+                                      break;
+                                  }
+                              }
+                          }
+                      }
+                  };
+                  
+                  
+                 
+             })();
+         </script>
+    </body>
+</html>

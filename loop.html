@@ -1,0 +1,47 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+         <script>
+             var i = 0;
+             
+             while(true){
+                 ++i;
+                 
+                 if(i>100){
+                     break;
+                 }
+                 
+                 console.log(i);
+             };
+             
+             //for in array
+             var names = ['joy', 'able', 'summer', 'nick'];
+             
+             for(var i in names){
+                 console.log(i);
+                 console.log(names[i]);
+             };
+             
+             for(var i=0; i < names.length; ++i){
+                 console.log(names[i]);
+             }
+             
+             //for in object
+             var person = {
+                 name: 'joy',
+                 age: 23,
+                 height: 178,
+                 weight: 140,
+                 parents: ['able', 'summer']
+             };
+             
+             for(var item in person){
+                 console.log(item);
+             }
+             
+         </script>
+    </body>
+</html>
