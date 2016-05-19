@@ -5,12 +5,22 @@
         <script src="eventutil.js"></script>
     </head>
     <body>
+        
+        111
          <script>
+             
              eventUtil.addEventHandler(window, 'beforeunload', function(ev){
                  event = eventUtil.getEvent(ev);
                  var message = 'leave this page?';
                  event.returnValue = message;
+                 
+                 document.write("before unload");
                  return message;
+             });
+             
+             
+             eventUtil.addEventHandler(window, 'load', function(ev){
+                 document.write("page load.");
              });
          </script>
     </body>

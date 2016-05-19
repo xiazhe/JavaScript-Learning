@@ -116,29 +116,29 @@
             return -event.wheelDelta * 40;
         }
     };
-    
-    function getCharCode(ev){
-        if(typeof event.charCode == 'number'){
+
+    function getCharCode(ev) {
+        if (typeof event.charCode == 'number') {
             return ev.charCode;
         } else {
             return ev.keyCode;
         }
     };
-    
-    function getTarget(ev){
+
+    function getTarget(ev) {
         return ev.target || ev.srcElement;
     };
-    
-    function preventDefault(ev){
-        if(ev.preventDefault){
+
+    function preventDefault(ev) {
+        if (ev.preventDefault) {
             ev.preventDefault();
         } else {
             ev.returnValue = null;
         }
     };
-    
-    function stopPropagation(ev){
-        if(ev.stopPropagation){
+
+    function stopPropagation(ev) {
+        if (ev.stopPropagation) {
             ev.stopPropagation();
         } else {
             ev.cancelBubble = true;

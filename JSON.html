@@ -1,0 +1,37 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <title>JSON 操作</title>
+    <script src="toJson.js"></script>
+</head>
+
+<body>
+    <script>
+        /**
+         * JSON stringify
+         * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/JSON/stringify
+         ＊ JSON.stringify(value[, replacer [, space]])
+        */
+        
+        JSON.stringify({}); // '{}'
+        JSON.stringify(true); // 'true'
+        JSON.stringify("foo"); // 'foo'
+        JSON.stringify([]);
+        JSON.stringify([1, 'foo', false]);
+        JSON.stringify({x : 5});
+        
+        // JSON.stringify();
+        
+    
+        var obj = {
+            name: 'li',
+            age: 25,
+            children: ['joy', 'lily']
+        };
+        
+        console.log(toJson(obj));
+    </script>
+</body>
+
+</html>
