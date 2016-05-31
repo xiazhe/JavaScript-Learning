@@ -1,0 +1,38 @@
+<html>
+    <head>
+        
+    </head>
+    <body>
+         <script>
+             //value type   Undefined, Null, Boolean, Number, String
+             var v1 = undefined;
+             
+             var v2 = null;
+             
+             var v3 = true;
+             
+             var v4 = 10;
+             
+             var v5 = "abc";
+             
+             //refrence type
+             var obj = new Object();
+             obj.name = "Teafish";
+             
+             console.log(obj.contructor); //function Object() { [native code] }
+             console.log(obj.hasOwnProperty("name")); //true
+             console.log(obj.isPrototypeOf(Object)); //false
+             
+             function Person(){
+                 this.name;
+                 this.age;
+             }
+             
+             var zhangsan = new Person();
+             
+             console.log(zhangsan.isPrototypeOf(Person));
+             
+             
+         </script>
+    </body>
+</html>
