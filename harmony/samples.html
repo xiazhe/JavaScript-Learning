@@ -1,0 +1,61 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>ES6</title>
+    </head>
+    <body>
+         <script>
+             //const 常量声明
+             const MAX_SIZE = 25;
+             
+             //var MAX_SIZE = 10; //error
+             
+             //块级作用域
+             for(let i =0; i<10; i++){
+                 //
+             }
+             
+            //  alert(i); //not defined 
+            
+            var num = 5;
+            
+            // let(num=10, multiplier=2){
+            //     console.log(num*multiplier); // 20
+            // }
+            
+            // console.log(num); //5
+            
+            //剩余参数， 分布参数
+            //nums is a array
+            function sum(num1, num2, ...nums){
+                var result = num1 + num2;
+                
+                for(let i=0; i < nums.length; i++){
+                    result += nums[i];
+                }
+                
+                return result;
+            }
+            
+            // var result = sum(1,2,3,4,5,6,7,8);
+            // console.log(result); //36
+            
+            var result = sum(...[1,2,3,4,5,6,7,8]);
+            console.log(result); //36
+            
+            
+            //默认参数
+            function differ(num1, num2=2){
+                return num1 - num2;
+            }
+            
+            var result1 = differ(5);
+            var result2 = differ(5, 5);
+            
+            console.log(result1);//3
+            console.log(result2);//0
+            
+            
+         </script>
+    </body>
+</html>
