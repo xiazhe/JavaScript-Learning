@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <style>
+        #page-loader {
+            background: #303440;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            z-index: 999;
+        }
+
+        .fa-spin {
+            -webkit-animation: fa-spin 1.2s infinite linear;
+            animation: fa-spin 1.2s infinite linear;
+        }
+
+        .colored-border {
+            border-color: #fff;
+        }
+
+        .loader-icon {
+            background: none repeat scroll 0 0 #303440;
+            border-bottom: 4px solid rgba(19, 19, 19, 0.1) !important;
+            border-left: 4px solid rgba(19, 19, 19, 0.1) !important;
+            border-radius: 100px;
+            -moz-border-radius: 100px;
+            -webkit-border-radius: 100px;
+            -o-border-radius: 100px;
+            -ms-border-radius: 100px;
+            border-right: 4px solid rgba(19, 19, 19, 0.1) !important;
+            border-top: 4px solid;
+            height: 60px;
+            left: 50%;
+            margin: -20px 0 0 -20px;
+            position: absolute;
+            text-align: center;
+            top: 50%;
+            width: 60px;
+        }
+
+        .loader-icon {
+            top: 50%;
+            left: 50%;
+            right: 0;
+            position: absolute;
+            margin: -20px 0 0 -20px;
+            bottom: 0;
+        }
+
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+
+
+    </style>
+    <link href="css/font-awesome.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div id="page-loader">
+        <div class="loader-icon fa fa-spin colored-border" style=""></div>
+    </div>
+</body>
+</html>
