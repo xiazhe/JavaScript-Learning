@@ -16,12 +16,23 @@
             .logo path {
                 fill: red;
             }
+
+        .blue-kiwi {
+            fill: blue;
+        }
+
+        .gray {
+            fill: #ccc;
+        }
     </style>
+
+    <link rel="stylesheet" type="text/css" href="assets/svg-symbols.css" />
 </head>
 <body>
     <!-- https://css-tricks.com/using-svg/ -->
     <!-- https://css-tricks.com/icon-fonts-vs-svg/ -->
     <!-- https://io-meter.com/2014/07/20/replace-icon-fonts-with-svg/ -->
+    <!-- https://css-tricks.com/svg-sprites-use-better-icon-fonts/ -->
     <div>
         <h3>Using SVG as an &lt;img&gt;</h3>
         <!-- <img src="kiwi.svg" alt="Kiwi standing on oval" > big -->
@@ -91,6 +102,16 @@
 	    <h3>SVG Defs/Symbols</h3>
 		<svg class="icon">
           <use xlink:href="kiwi.svg#kiwi"></use>
+        </svg>
+        <p>
+            fill color and change size.
+        </p>
+        <svg class="blue-kiwi">
+            <use xlink:href="kiwi.svg#kiwi"></use>
+        </svg>
+        <p>demo 1</p>
+        <svg xmlns="http://www.w3.org/2000/svg" class="si-glyph-zoom-out blue-kiwi " >
+            <use xlink:href="assets/svg-symbols.svg#si-glyph-adjustment-horizon" fill="red"></use>
         </svg>
 	</div>
 </body>

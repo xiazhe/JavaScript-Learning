@@ -41,3 +41,10 @@ function errorHandler(error) {
 gulp.task('bower', function () {
     return plugins.bower({ cmd: 'update' });
 });
+
+//SVG symbols
+gulp.task('sprites', function () {
+  return gulp.src('webicon/svg-lib/svg/*.svg')
+    .pipe(plugins.svgSymbols())
+    .pipe(gulp.dest('webicon/assets'));
+});

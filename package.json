@@ -1,5 +1,5 @@
 {
-  "name": "JavaScript Learning",
+  "name": "JavaScript-Learning",
   "version": "0.0.1",
   "description": "",
   "repository": {},
@@ -30,6 +30,7 @@
     "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-bower": "^0.0.13",
-    "gulp-inject": "^4.0.0"
+    "gulp-inject": "^4.0.0",
+    "gulp-svg-symbols": "^1.0.0"
   }
 }
