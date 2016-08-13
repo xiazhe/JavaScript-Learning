@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<iframe id="uploadTrg" name="uploadTrg" height="0" width="0" frameborder="0" scrolling="yes"></iframe>
+<form id="myForm" action="http://192.168.0.202:8080/safety/api/hazardous/process/add" method="post" enctype="multipart/form-data"  target="uploadTrg">
+  File: <input type="file" name="solutionFile">
+    <input type="hidden" name="companyId" value="1" />
+	<input type="hidden" name="hazardousprocessId" value="3" />
+  <input type="submit" value="Submit" id="submitBtn"/>
+</form>
+
+
+<!--<form target="iframe-transport-11" action="/upload" method="POST" enctype="multipart/form-data" encoding="multipart/form-data" style="display: none;">-->
+  <!--<iframe name="iframe-transport-11" src="javascript:false;"></iframe>-->
+  <!--<input type="hidden" name="token" value="XXXXXXX">-->
+  <!--<input type="hidden" name="name" value="tech note"><input type="hidden" name="type" value="note">-->
+  <!--<input type="hidden" name="project" value="china"><input type="hidden" name="code" value="00001">-->
+  <!--<input id="customUpload" type="file" accept="acceptTypes" name="file">-->
+  <!--<iframe src="javascript:false;"></iframe>-->
+<!--</form>-->
+
+<script >
+document.cookie  = 'x-skywares-safety-token=!skywares-safety--#eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlck5hbWUiOiJhZG1pbiIsInJvbGVzIjpbXSwiZXhwaXJlIjoxNDcyODEyODg4MjIxfQ.UQ8iOTYGqPsP5laGRykpKZW-TaXNjaSf9Co05ouxolk'
+
+</script>
+
+</body>
+</html>
