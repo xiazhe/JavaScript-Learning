@@ -16,11 +16,13 @@
             text-overflow: ellipsis;
             max-width: 1px;
         }
-
+/* 字符串换行, 连续字母数字, word-break: break-all 强制换行 */
             .text-truncate:hover {
                 white-space: normal;
                 overflow: auto;
                 text-overflow: inherit;
+				  word-break: break-all; 
+
             }
 
 

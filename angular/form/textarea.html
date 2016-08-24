@@ -1,0 +1,64 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Example - collapse text</title>
+
+
+    <script src="../angular.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.0/angular-sanitize.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', ['ngSanitize']).
+              controller('EventController', ['$scope', function ($scope) {
+                  $scope.text = '';
+
+                  $scope.showText = '';
+
+                  $scope.convert = function () {
+                      //var find = '\n';
+                      //var re = new RegExp(find, 'g');
+
+
+
+                      //$scope.showText = $scope.text.replace(re, '<br />');
+                      $scope.showText = $scope.text.replace(new RegExp('\n', 'g'), '<br />');
+                  }
+
+
+              }])
+                .filter('newline', function () {
+                    return function (input) {
+                        return input.replace(new RegExp('\n', 'g'), '<br />');
+                    }
+                });
+        })(window.angular);
+    </script>
+
+
+</head>
+
+<body ng-app="exampleApp">
+    <div ng-controller="EventController">
+        <form name="formExample" novalidate>
+            <textarea ng-model="text" ng-change="convert()"></textarea>
+
+
+
+        </form>
+        <h3>未处理</h3>
+        {{showText}}
+        <h3>Controller 中处理</h3>
+        <p ng-bind-html="showText">
+            
+        </p>
+        <h3>过滤器 newline</h3>
+        <p ng-bind-html="text|newline">
+
+        </p>
+    </div>
+</body>
+
+</html>

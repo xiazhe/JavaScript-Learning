@@ -8,6 +8,7 @@
   <meta name="Description" content="">
   <title>Document</title>
   <script type="text/javascript">
+    //for ie9
   	function checkFile(){
   		var fileElement = document.getElementById("upload");
         var fileExtension = "";
@@ -25,7 +26,10 @@
   </script>
  </head>
  <body>
- 	<form action="" enctype="multipart/form-data" onsubmit = "return checkFile();">
+    <!-- http://stackoverflow.com/questions/4328947/limit-file-format-when-using-input-type-file -->
+  	<form action="" enctype="multipart/form-data" onsubmit = "return checkFile();">
+	    <!-- accept -->
+		<!-- (IE 10+, Edge, Chrome, Firefox 42+) -->
   		<input type="file" name="upload" id="upload" accept="image/jpeg, image/png">
   		<input type="submit" />
   	</form>
