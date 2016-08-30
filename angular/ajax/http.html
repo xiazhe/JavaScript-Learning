@@ -1,0 +1,190 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$http - Example</title>
+    <script src="../angular.min.js"></script>
+    <script type="text/javascript">
+        // AngularJS权威教程 P15
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', [])
+            .controller('EventController', ['$scope', '$http', function ($scope, $http) {
+
+                $scope.users = [];
+                $scope.user;
+                //basic use
+                //$http({ method: 'GET', url: 'api/users.json' }).success(function (data, status, headers, config) {
+                //    $scope.users = data;
+                //}).error(function (data, status, headers, config) {
+                //    console.log(data);
+                //});
+
+                $scope.getUsers = function () {
+                    //移到Service 中公用
+                    var promise = $http({ method: 'GET', url: 'api/users.json' });
+
+
+                    promise.then(function (resp) {
+                        if (resp.status == 200) {
+                            $scope.users = resp.data;
+                        }
+                    }, function (error) {
+                        console.log(error);
+                    });
+                };
+
+                $scope.getUser = function (username) {
+                    var promise = $http({ method: 'GET', url: 'api/' + username + '.json' });
+
+                    promise.then(function (resp) {
+                        if (resp.status == 200) {
+                            $scope.user = resp.data;
+                        }
+                    }, function (error) {
+                        console.log(error);
+                    });
+                };
+
+                $scope.getUsers();
+
+            }])
+            .factory('userService', ['$http', '$q', function ($http, $q) {
+                var service = {};
+
+                service.getList = function () {
+                    var defer = $q.defer();
+
+                    var url = 'api/users.json';
+
+                    var requestBody = { method: 'GET', url: url };
+
+                    $http(requestBody).success(function (data, status, headers, config, statusText) {
+                        defer.resolve(data);
+                    }).error(function (data, status, headers, config, statusText) {
+                        defer.reject(data);
+                    })
+
+                    return defer.promise;
+                };
+
+                service.getUser = function (userId) {
+                    var defer = $q.defer();
+
+                    var url = 'api/user.json';
+
+                    var requestBody = { method: 'GET', url: url };
+
+                    $http(requestBody).success(function (data, status, headers, config, statusText) {
+                        defer.resolve(data);
+                    }).error(function (data, status, headers, config, statusText) {
+                        defer.reject(data);
+                    })
+
+                    return defer.promise;
+                }
+
+
+                return service;
+            }])
+            .factory('myInterceptor', function ($q) {
+                // 拦截器
+                // 任何时候如果我们想要为请求添加全局功能，例如身份验证、错误处理等，在请求发送给服
+                // 务器之前或者从服务器返回时对其进行拦截，是比较好的实现手段。
+
+                var interceptor = {
+                    'request': function (config) {
+                        // 成功的请求方法
+                        console.log('成功的请求方法');
+                        return config; // 或者 $q.when(config);
+                    },
+                    'response': function (response) {
+                        // 响应成功
+                        console.log('响应成功');
+                        return response; // 或者 $q.when(config);
+                    },
+                    'requestError': function (rejection) {
+                        console.log('请求发生了错误');
+                        // 请求发生了错误，如果能从错误中恢复，可以返回一个新的请求或promise
+                        return response; // 或新的promise
+                        // 或者，可以通过返回一个rejection来阻止下一步
+                        // return $q.reject(rejection);
+                    },
+                    'responseError': function (rejection) {
+                        console.log('响应发生了错误');
+                        // 请求发生了错误，如果能从错误中恢复，可以返回一个新的响应或promise
+                        return rejection; // 或新的promise
+                        // 或者，可以通过返回一个rejection来阻止下一步
+                        // return $q.reject(rejection);
+                    }
+                };
+                return interceptor;
+            })
+            .config(function ($httpProvider) {
+                // 设置$httpProvider
+                // 设置拦截器
+                $httpProvider.interceptors.push('myInterceptor');
+
+                // 设置 header
+                $httpProvider.defaults.headers.common['X-Requested-By'] = 'MyAngularApp';
+
+
+            });
+
+        })(window.angular);
+    </script>
+</head>
+
+<body ng-app="exampleApp">
+    <div ng-controller="EventController">
+
+        <ul>
+            <li ng-repeat="user in users">
+                {{user.fullname}}
+            </li>
+        </ul>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>username</th>
+                    <th>fullname</th>
+                    <th>age</th>
+                    <th>phone</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td><a href ng-click="getUser(user.username)">{{user.id}}</a></td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.fullname}}</td>
+                    <td>{{user.age}}</td>
+                    <td>{{user.phone}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ul>
+            <li>{{user.username}}</li>
+            <li>{{user.fullname}}</li>
+            <li>{{user.age}}</li>
+            <li>{{user.phone}}</li>
+        </ul>
+
+    </div>
+
+    <style>
+        td, tr, th {
+            padding: 0 10px;
+            margin: 0;
+            border: 1px solid #ccc;
+        }
+
+        li {
+            list-style: none;
+        }
+    </style>
+</body>
+</html>
