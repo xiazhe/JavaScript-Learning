@@ -95,12 +95,19 @@
                 var interceptor = {
                     'request': function (config) {
                         // 成功的请求方法
-                        console.log('成功的请求方法');
+                        console.log('请求方法:' + angular.toJson(config));
                         return config; // 或者 $q.when(config);
                     },
                     'response': function (response) {
                         // 响应成功
-                        console.log('响应成功');
+                        console.log('响应成功:' + angular.toJson(response));
+
+                        if (response.status != 200) {
+                            // 状态码不为200 时, 统一处理
+                            console.log(response.statusText);
+                            return;
+                        }
+
                         return response; // 或者 $q.when(config);
                     },
                     'requestError': function (rejection) {

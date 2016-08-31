@@ -5,15 +5,29 @@
     <meta charset="UTF-8">
     <title>demo - Example</title>
     <script src="../angular.min.js"></script>
+    <script src="../angular-1.4.0/angular-resource.js"></script>
     <script type="text/javascript">
+        //https://docs.angularjs.org/api/ngResource/service/$resource
+        //https://en.wikipedia.org/wiki/Representational_state_transfer
         (function (angular) {
             'use strict';
-            angular.module('exampleApp', []).
-              controller('EventController', ['$scope', function ($scope) {
+            angular.module('exampleApp', ['ngResource'])
+                .controller('EventController', ['$scope', '$resource', function ($scope, $resource) {
+                    var User = $resource('api/:username.json', {  }, {
+                        query: { method: 'get', params: { username: '@username' }, isArray: true, cancellable: true }
+                    });
 
+                    $scope.users = User.query({username: 'users'});
 
+                    $scope.getUser = function (username) {
+                        $scope.user = User.get({ username: username.toLowerCase() });
+                    }
 
-              }]);
+                }])
+                .config(['$resourceProvider', function ($resourceProvider) {
+                    // Don't strip trailing slashes from calculated URLs
+                    $resourceProvider.defaults.stripTrailingSlashes = false;
+                }]);
 
         })(window.angular);
     </script>
@@ -21,8 +35,48 @@
 
 <body ng-app="exampleApp">
     <div ng-controller="EventController">
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>username</th>
+                    <th>fullname</th>
+                    <th>age</th>
+                    <th>phone</th>
+                </tr>
 
+            </thead>
+            <tbody>
+                <tr ng-repeat="user in users">
+                    <td><a href ng-click="getUser(user.username)">{{user.id}}</a></td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.fullname}}</td>
+                    <td>{{user.age}}</td>
+                    <td>{{user.phone}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <ul>
+            <li>{{user.username}}</li>
+            <li>{{user.fullname}}</li>
+            <li>{{user.age}}</li>
+            <li>{{user.phone}}</li>
+        </ul>
 
     </div>
+
+
+    <style>
+        td, tr, th {
+            padding: 0 10px;
+            margin: 0;
+            border: 1px solid #ccc;
+        }
+
+        li {
+            list-style: none;
+        }
+    </style>
 </body>
 </html>
