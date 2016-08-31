@@ -62,6 +62,17 @@
         console.log("\n".charCodeAt(0));//10
         console.log(String.fromCharCode(65));//A
 
+        //textarea 的内容在html 中显示, 换行
+        
+        function transferTextArea(obj) {
+            console.log(obj.value);
+            var content = obj.value;
+            var html = content.replace(new RegExp('\n', 'g'), '<br />');
+            document.getElementById('content').innerHTML = html;
+        }
+
     </script>
+    <textarea oninput="transferTextArea(this)"></textarea>
+    <div id="content"></div>
 </body>
 </html>
