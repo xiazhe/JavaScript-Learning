@@ -6,6 +6,9 @@
 </head>
 <body>
     <script>
+        //never use a for in loop to enumerate over an array. 
+        //http://stackoverflow.com/questions/1963102/what-does-the-jslint-error-body-of-a-for-in-should-be-wrapped-in-an-if-statemen
+
         ['mousemove MSPointerMove pointermove', 'click'].forEach(function (eventName) {
             console.log(eventName);
         });

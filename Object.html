@@ -57,41 +57,46 @@
             // Handle Array
             if (obj instanceof Array) {
                 var copy = [];
-                for (var i = 0, var len = obj.length; i < len; ++i) {
+                var len = obj.length;
+                for (var i = 0; i < len; ++i) {
                     copy[i] = clone(obj[i]);
                 }
-            return copy;
-        }
+                return copy;
 
-        // Handle Object
-        if (obj instanceof Object) {
-            var copy = {};
-            for (var attr in obj) {
-                if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
             }
-            return copy;
-        }
 
-        throw new Error("Unable to copy obj! Its type isn't supported.");
+            // Handle Object
+            if (obj instanceof Object) {
+                var copy = {};
+                for (var attr in obj) {
+                    if (obj.hasOwnProperty(attr)) copy[attr] = clone(obj[attr]);
+                }
+                return copy;
+            }
+
+            throw new Error("Unable to copy obj! Its type isn't supported.");
         }
 
 
         //通过原型继承创建一个新对象
-        function inherit(p){
-            if(!p){
+        function inherit(p) {
+            if (!p) {
                 throw TypeError("p is not an object or null");
             }
-            if(Object.create){
+            if (Object.create) {
                 return Object.create(p);
             }
-            var t=typeof p;
-            if(t !== "object" && t !== "function"){
+            var t = typeof p;
+            if (t !== "object" && t !== "function") {
                 throw TypeError("p is not an object or null");
             }
-            function f(){};
-            f.prototype=p;
+            function f() { };
+            f.prototype = p;
             return new f();
         }
+
+
+
 
 
     </script>

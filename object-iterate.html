@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        var person = {
+            name: "尼古拉斯.赵四",
+            age: 15,
+            gender: 'male'
+        };
+
+        for (var variable in person) {
+            //确认属性非原型属性.
+            if (person.hasOwnProperty(variable)) {
+                console.log(person[variable]);
+            }
+        }
+
+    </script>
+</body>
+</html>
