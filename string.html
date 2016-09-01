@@ -45,7 +45,7 @@
 
         var multi_string3 = ["string1...",
                         "string2...",
-                        "string3..."].join("")
+                        "string3..."].join("");
 
 
         //JavaScript实现endsWith
@@ -62,8 +62,7 @@
         console.log("\n".charCodeAt(0));//10
         console.log(String.fromCharCode(65));//A
 
-        //textarea 的内容在html 中显示, 换行
-        
+        //textarea 的内容在html 中显示, 换行        
         function transferTextArea(obj) {
             console.log(obj.value);
             var content = obj.value;
@@ -72,6 +71,7 @@
         }
 
     </script>
+    <!-- onchange: 失去焦点时触发. -->
     <textarea oninput="transferTextArea(this)"></textarea>
     <div id="content"></div>
 </body>
