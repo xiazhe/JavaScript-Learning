@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        'use strict';
+        function test() {
+            if(1==1){
+                var name = "余文乐";
+            }
+            console.log(name);
+
+
+            for (var i = 0; i < 10; i++) {
+                var j = 10 - i;
+            }
+
+            console.log(i); //10
+            console.log(j); //1
+
+        }
+
+        test();
+
+        console.log(name); // ''  window.name
+
+
+        //function 中, if/for 语句中定义的变量, function 环境中可访问.
+    </script>
+</body>
+</html>

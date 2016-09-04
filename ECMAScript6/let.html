@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>let和const命令</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        //http://es6.ruanyifeng.com/#docs/let
+
+        // 基本用法
+        {
+            let a = 10;
+            var b = 1;
+        }
+
+        //console.log(a);//let.html:15 Uncaught ReferenceError: a is not defined
+        //console.log(b);  //1
+
+        // for 循环
+        var arr = [1, 2, 3, 4, 5, 6, 7, 8];
+
+        for (let i = 0; i < arr.length; i++) { }
+
+        //console.log(i);  //let.html:22 Uncaught ReferenceError: i is not defined
+        //http://es6-features.org/#Constants
+
+        var a = [];
+        for (let i = 0; i < 10; i++) {
+            a[i] = function () {
+                console.log(i);
+            };
+        }
+        a[6](); // 6
+
+
+        // 不存在变量提升, 先声明, 后使用
+        console.log(foo); // 输出undefined
+        console.log(bar); // 报错ReferenceError
+
+        var foo = 2;
+        let bar = 2;
+
+        // 暂时性死区  temporal dead zone TDZ
+        var tmp = 123;
+
+        if (true) {
+            tmp = 'abc'; // ReferenceError
+            let tmp;
+        }
+        // 上面代码中，存在全局变量tmp，但是块级作用域内let又声明了一个局部变量tmp，
+        // 导致后者绑定这个块级作用域，所以在let声明变量前，对tmp赋值会报错。
+        // ES6明确规定，如果区块中存在let和const命令，这个区块对这些命令声明的变量，
+        // 从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。
+
+        if (true) {
+            // TDZ开始
+            tmp = 'abc'; // ReferenceError
+            console.log(tmp); // ReferenceError
+
+            let tmp; // TDZ结束
+            console.log(tmp); // undefined
+
+            tmp = 123;
+            console.log(tmp); // 123
+        }
+
+
+
+
+
+    </script>
+</body>
+</html>
