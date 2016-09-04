@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -6,10 +6,10 @@
 </head>
 <body>
 <iframe id="uploadTrg" name="uploadTrg" height="0" width="0" frameborder="0" scrolling="yes"></iframe>
-<form id="myForm" action="http://192.168.0.202:8080/safety/api/hazardous/process/add" method="post" enctype="multipart/form-data"  target="uploadTrg">
+<form id="myForm" action="api/url" method="post" enctype="multipart/form-data"  target="uploadTrg">
   File: <input type="file" name="solutionFile">
-    <input type="hidden" name="companyId" value="1" />
-	<input type="hidden" name="hazardousprocessId" value="3" />
+    <input type="hidden" name="id" value="1" />
+	<input type="hidden" name="no" value="3" />
   <input type="submit" value="Submit" id="submitBtn"/>
 </form>
 
@@ -24,7 +24,7 @@
 <!--</form>-->
 
 <script >
-document.cookie  = 'x-skywares-safety-token=!skywares-safety--#eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidXNlck5hbWUiOiJhZG1pbiIsInJvbGVzIjpbXSwiZXhwaXJlIjoxNDcyODEyODg4MjIxfQ.UQ8iOTYGqPsP5laGRykpKZW-TaXNjaSf9Co05ouxolk'
+document.cookie  = 'token=TaXNjaSf9Co05ouxolk'
 
 </script>
 
