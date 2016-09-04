@@ -1,0 +1,23 @@
+<html>
+
+<head>
+    <title>closure</title>
+</head>
+
+<body>
+    <script>
+            function init() {
+                var name = "Mozilla";
+                function displayName() {
+                    alert(name);
+                }
+                
+                return displayName;
+            }
+
+            var i = init();
+
+         </script>
+</body>
+
+</html>

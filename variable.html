@@ -6,38 +6,53 @@
 </head>
 <body>
 <script>
-    function test(){
-        a = 2; //2
-    };
+    // function test(){
+    //     a = 2; //2
+    // };
 
-    test();
+    // test();
 
-    window.b = "hi"; //"hi"
+    // window.b = "hi"; //"hi"
 
-    //不使用 var 等於沒有聲明變量, 而是相當於訪問了 window 的屬性
-    //和在 window 下聲明變量的區別在於, 訪問 window 的屬性創建的變量可以 delete，在全局作用域下直接聲明的變量不可以 delete
+    // //不使用 var 等於沒有聲明變量, 而是相當於訪問了 window 的屬性
+    // //和在 window 下聲明變量的區別在於, 訪問 window 的屬性創建的變量可以 delete，在全局作用域下直接聲明的變量不可以 delete
 
-    delete b; //true
+    // delete b; //true
 
-    //b; //Uncaught ReferenceError: b is not defined
+    // //b; //Uncaught ReferenceError: b is not defined
 
-    (function(){
-        c = "hi";
-    }());
+    // (function(){
+    //     c = "hi";
+    // }());
 
-    c; //"hi"
+    // c; //"hi"
 
-    delete c; //true
+    // delete c; //true
 
-    //c; //Uncaught ReferenceError: c is not defined
+    // //c; //Uncaught ReferenceError: c is not defined
 
-    var a = "hi";
+    // var a = "hi";
 
-    a; //"hi"
+    // a; //"hi"
 
-    delete a; //false
+    // delete a; //false
 
-    a; //"hi"
+    // a; //"hi"
+
+
+    name = "window"; //global
+
+    function changeName(){
+
+        var _this = this;
+        var name = "local";
+
+        console.log(name);
+        console.log(window.name);
+    }
+
+    changeName();
+
 
 
 </script>
