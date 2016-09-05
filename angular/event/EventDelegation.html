@@ -1,0 +1,33 @@
+<!DOCTYPE>
+<html ng-app="exampleApp">
+    <head>
+        <title>Event Delegation</title>
+        <!-- <script src="eventutil.js"></script> -->
+        <script src="../angular.min.js"></script>
+
+    </head>
+    <body>
+        <div ng-controller="EventController">
+             <ul id="list" ng-click="catchClick($event);">
+                 <li id="gosomewhere">Go somewhere</li>
+                 <li id="dosomething">Do something</li>
+                 <li id="sayhi">say Hi</li>
+             </ul>
+         </div>
+         <script>
+             (function (angular) {
+                'use strict';
+                angular.module('exampleApp', []).
+                  controller('EventController', ['$scope', function ($scope) {
+                    $scope.catchClick = function(event){
+                        console.log(event.target);
+                        console.log(event.target.id);
+                    }
+
+
+                  }]);
+
+            })(window.angular);
+         </script>
+    </body>
+</html>

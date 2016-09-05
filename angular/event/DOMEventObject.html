@@ -1,0 +1,66 @@
+<!DOCTYPE>
+<html ng-app="exampleApp">
+    <head>
+        <title>DOMEventObject - Example</title>
+        <script src="../angular.min.js"></script>
+    </head>
+    <body>
+    <h3>pure event</h3>
+        <button type="button" id="btn">Submit</button>
+         <script>
+             var btn = document.getElementById('btn');
+             btn.onclick = function(ev){
+                 console.log(btn);
+                 console.log(ev.type); //'click'
+                 console.log(ev.button); //0
+                 console.log(ev);
+             };
+             
+             //this == ev.currentTarget
+             btn.addEventListener('click', function(ev){
+                //  console.log(ev.type); //'click'  
+                //  console.log(ev.bubbles); //'true'
+                //  console.log(ev.cancelable); //'true'
+                //  console.log(ev.currentTarget); //[Log] <button type=​"button" id=​"btn">​Submit​</button>​ (DOMEventObject.html, line 18)
+                //  console.log(ev.defaultPrevented); //'false'
+                //  console.log(ev.detail); //1
+                //  console.log(ev.eventPhase); //2 ; 
+                //  console.log(ev.preventDefault());
+                //  console.log(ev.target);
+                //  console.log(this);
+                 
+             }, false);
+             
+             document.body.onclick = function(event){
+                //  console.log(event.currentTarget === document.body); // true
+                //  console.log(event.target === this); // false
+                //  console.log(this === document.body); // true
+                //  console.log(event.target === document.getElementById('btn')); // true
+                 
+             };
+             
+             
+             (function (angular) {
+                'use strict';
+                angular.module('exampleApp', []).
+                  controller('EventController', ['$scope', function ($scope) {
+                        $scope.submit = function (event) {
+                            // body...
+                            console.log(event);
+                        }
+
+
+                  }]);
+
+            })(window.angular);
+             
+         </script>
+
+         <div ng-controller="EventController">
+             <h3>AngularJS event</h3>
+             <p>
+                <button type="button" id="done" ng-click="submit($event)">Submit</button>
+            </p>
+        </div>
+    </body>
+</html>
