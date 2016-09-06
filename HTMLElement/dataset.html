@@ -1,0 +1,40 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>data-*</title>
+        <!-- <script src="../events/eventutil.js"></script> -->
+    </head>
+    <body>
+         <div id="user" data-id="1234567890" data-user="johndoe" data-date-of-birth>John Doe
+
+         <script type="text/javascript">
+            //https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLElement/dataset
+            //get dataset(data-*)
+            //brower support (IE11)
+
+            var el = document.querySelector('#user');
+
+            // el.id == 'user'
+            // el.dataset.id === '1234567890'
+            // el.dataset.user === 'johndoe'
+            // el.dataset.dateOfBirth === ''
+
+            //el.dataset.dateOfBirth = '1960-10-03'; // set the DOB.
+
+            // 'someDataAttr' in el.dataset === false
+
+            //el.dataset.someDataAttr = 'mydata';
+            // 'someDataAttr' in el.dataset === true
+
+
+
+            //In IE9
+            //http://stackoverflow.com/questions/7127896/problem-using-elem-dataset-with-ie-and-jsfiddle
+            var user = {};
+
+            user.id = el.getAttribute('data-id');
+
+            console.log(user.id);
+         </script>
+    </body>
+</html>
