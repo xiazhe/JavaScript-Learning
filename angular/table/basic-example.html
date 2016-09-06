@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>ngTable - Example</title>
+    <script src="../angular.min.js"></script>
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.min.css">
+    <script src="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.js"></script>
+
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', ["ngTable"]).
+              controller('EventController', ['$scope', 'NgTableParams', function ($scope, NgTableParams) {
+                var self = this;
+                var data = [{name: "Moroni", age: 50} /*,*/];
+                self.tableParams = new NgTableParams({}, { dataset: data});
+
+
+              }]);
+
+        })(window.angular);
+    </script>
+</head>
+
+<body ng-app="exampleApp">
+    <div ng-controller="EventController as vm">
+
+        <table ng-table="vm.tableParams" class="table" show-filter="true">
+            <tr ng-repeat="user in $data">
+                <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
+                    {{user.name}}</td>
+                <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
+                    {{user.age}}</td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+</html>
