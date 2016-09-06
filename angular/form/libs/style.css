@@ -1,0 +1,45 @@
+
+.xt-validation-summary {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.xt-validation-inline {
+    color: red;
+    margin-top: 5px;
+    display: inline-block;
+}
+
+.xt-validation-inline .xt-validation-item:before {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    content: "\e101";
+    margin-right: 5px;
+}
+
+/* ==== Utility classes ===== */
+
+input.ng-dirty.ng-invalid,
+select.ng-dirty.ng-invalid,
+textarea.ng-dirty.ng-invalid {
+    border: 1px solid red;
+}
+
+.ng-submitted input.ng-invalid,
+.ng-submitted select.ng-invalid,
+.ng-submitted textarea.ng-invalid {
+    border: 1px solid red;
+}
+
+input.ng-dirty.ng-valid,
+select.ng-dirty.ng-valid,
+textarea.ng-dirty.ng-valid {
+    border: 1px solid green;
+}

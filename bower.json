@@ -19,6 +19,7 @@
     "moment":"*",
     "ckeditor": "^4.4.0",
     "iscroll": "*",
-    "hammerjs": "*"
+    "hammerjs": "*", 
+    "xtform": "*"
   }
 }

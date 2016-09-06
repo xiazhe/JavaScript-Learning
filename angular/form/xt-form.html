@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" ng-app="exampleApp">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo - Example</title>
+
+    
+
+    <link rel="stylesheet" href="style.css" >
+
+    <script src="libs/jquery/dist/jquery.js"></script>
+    <script src="libs/angular/angular.min.js"></script>
+
+    <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+    <script src="libs/bootstrap/dist/js/bootstrap.js"></script>
+
+    
+    <script src="libs/xtform/xtForm.tpl.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', ['xtForm']).
+              controller('EventController', ['$scope', function ($scope) {
+
+
+
+              }]);
+
+        })(window.angular);
+    </script>
+</head>
+
+<body>
+    <div ng-controller="EventController">
+        <!-- <form name="inlineForm" xt-form ng-submit="save(inlineForm)" role="form" novalidate>
+
+            <label for="inlineUsername">Username</label>
+            <input name="username" type="text" class="form-control"
+                id="inlineUsername" placeholder="Required field"
+                ng-model="model.username" required>
+            <xt-validation-inline for="inlineUsername"></xt-validation-inline>
+
+            <label for="inlineEmail">Email</label>
+            <input name="email" type="email" ng-model="model.email"
+                class="form-control" id="inlineEmail"
+                placeholder="Must be valid email" required>
+            <xt-validation-inline for="inlineEmail"></xt-validation-inline>
+
+            <label for="inlineNumber">Number</label>
+            <input name="number" type="number" ng-model="model.number"
+                class="form-control" id="inlineNumber"
+                placeholder="Must be between 0 and 6" min="0" max="6">
+            <xt-validation-inline for="inlineNumber"></xt-validation-inline>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form> -->
+
+        <div class="container">
+    <div class="row">
+        <div class="page-header">
+            <h1>Sample form</h1>
+        </div>
+    </div>
+    <div class="row">
+        <form class="form-horizontal" role="form" xt-form novalidate>
+            <div class="form-group">
+                <label for="u1" class="col-sm-2 control-label">Username</label>
+
+                <div class="col-sm-10">
+                    <input name="username" type="text" xt-validate class="form-control" id="u1" placeholder="Username" ng-model="model1.username" required>
+                                    <xt-validation-inline for="u1"></xt-validation-inline>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email1" class="col-sm-2 control-label">Email</label>
+
+                <div class="col-sm-10">
+                    <input name="email" type="email" ng-model="model1.email" xt-validate class="form-control" id="email1" placeholder="Email">
+                                    <xt-validation-inline for="email1"></xt-validation-inline>
+
+                </div>
+
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-default">Sign in</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+    </div>
+
+<!-- div class=form-group -->
+
+
+</body>
+</html>
