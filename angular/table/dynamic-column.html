@@ -11,24 +11,40 @@
     <script src="https://cdn.rawgit.com/esvit/ng-table/1.0.0/dist/ng-table.js"></script>
 
     <script type="text/javascript">
+    //http://ng-table.com/#/sorting/demo-sorting-basic
     //http://stackoverflow.com/questions/25958745/how-to-add-dynamic-column-in-ng-table-using-complex-object-or-json
         //http://plnkr.co/edit/lO8FhO?p=preview
         (function (angular) {
             'use strict';
             angular.module('exampleApp', ["ngTable"]).
-              controller('EventController', ['$scope', 'NgTableParams', function ($scope, NgTableParams) {
+              controller('EventController', ['$scope', 'NgTableParams', '$filter', function ($scope, NgTableParams, $filter) {
                 var self = this;
+                
                 var data = [
                     {name: "Moroni", age: 50,address:{coun:'USA',state:'sd'}},
                     {name: "Tiancum", age: 43,address:{coun:'UK',state:'sda'}},
                 ];
-                self.tableParams = new NgTableParams({}, { dataset: data});
+
 
                 self.columns = [
-                    { title: 'Name', field: 'name', visible: true, filter: { 'name': 'text' } },
-                    { title: 'Age', field: 'age', visible: true },
-                    { title: 'country', field: 'add', visible: true,subfield:'coun' }
+                    { title: 'Name', field: 'name', show: true, filter: { 'name': 'text' }, sortable: "name" },
+                    { title: 'Age', field: 'age', show: true, sortable: "age" },
+                    { title: 'country', field: 'address', show: true,subfield:'coun', sortable: "address" }
                 ];
+
+                self.tableParams = new NgTableParams({
+                    page: 1,            // show first page
+                    count: 10,          // count per page
+                    filter: {
+                        name: 'M'       // initial filter
+                    }
+
+                }, { 
+                    total: data.length,
+                    dataset: data
+                });
+
+
 
 
               }]);
@@ -39,27 +55,15 @@
 
 <body ng-app="exampleApp">
     <div ng-controller="EventController as vm">
+        <h3>demo</h3>
+         <table ng-table-dynamic="vm.tableParams with vm.columns" class="table" show-filter="true">
+           
+            <tr ng-repeat="user in $data">
+                <td ng-repeat="column in vm.columns">
+                    {{user[column.field][column.subfield] || user[column.field]}}
+                </td>
+            </tr>
 
-        <table ng-table="vm.tableParams" class="table" show-filter="true">
-            <thead>
-                <tr>
-                    <th ng-repeat="column in vm.columns" ng-show="column.visible"
-                        class="text-center sortable" ng-class="{
-                            'sort-asc': tableParams.isSortBy(column.field, 'asc'),
-                            'sort-desc': tableParams.isSortBy(column.field, 'desc')
-                          }"
-                        ng-click="tableParams.sorting(column.field, tableParams.isSortBy(column.field, 'asc') ? 'desc' : 'asc')">
-                        {{column.title}}
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="user in $data">
-                    <td ng-repeat="column in vm.columns" ng-show="column.visible" sortable="column.field">
-                        {{user[column.field][column.subfield] || user[column.field]}}
-                    </td>
-                </tr>
-            <tbody>
 
         </table>
 
