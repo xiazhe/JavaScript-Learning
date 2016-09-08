@@ -7,13 +7,13 @@
 
     ExampleController.$inject = ['$scope'];
     function ExampleController($scope) {
-        var vm = this;
+        var self = this;
         
 
-        activate();
+        init();
 
         ////////////////
 
-        function activate() { }
+        function init() { }
     }
 })();

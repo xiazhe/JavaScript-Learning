@@ -1,19 +1,67 @@
 <!DOCTYPE HTML >
 <html>
     <head>
-        <title>input type test</title>
+        <title>input type</title>
     </head>
     <body>
-        <label>input type=number</label> <input type="number" id="number" onblur="getValue(this)" />
+    <!-- <input> https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input -->
+        <label>input type=number</label> 
+        <input type="number" id="number" onblur="getValue(this)" />
         <br />
-        <label>input type=tel</label> <input type="tel" id="telephone"  onblur="getValue(this)"  />
+
+        <label>input type=text</label> 
+        <input type="text" id="text"  onblur="getValue(this)"  />
         <br />
-        <label>input type=color</label> <input type="color" id="color"  onblur="getValue(this)"  />
+
+        <input type="password" />
+
+        <label>input type=date</label> 
+        <input type="date" id="date"  onblur="getValue(this)"  />
+
+
+        <input type="datetime" />
+
+        <input type="datetime-local" />
+
+        <input type="month" />
+
+        <input type="week" />
+
+        <input type="time" />
+
+
         <br />
-        <label>input type=date</label> <input type="date" id="date"  onblur="getValue(this)"  />
+
+
+
+        <input type="checkbox" />
+
+        <input type="radio" />
+
+        <input type="range" />
+
+        <input type="search" />
+
+        <input type="email" />
+
+        <input type="file" accept="audio/*, video/*, image/*" />
+
+        <input type="image" />
+
+        <label>input type=tel</label> 
+        <input type="tel" id="telephone"  onblur="getValue(this)"  />
         <br />
-        <label>input type=text</label> <input type="text" id="text"  onblur="getValue(this)"  />
+        <label>input type=color</label> 
+        <input type="color" id="color"  onblur="getValue(this)"  />
         <br />
+
+        <input type="url" />
+
+        <input type="button" value="submit"/>
+
+
+        <input type="reset" value="submit"/>
+
     <script>
         function getValue(obj){
             console.log(obj.value);
