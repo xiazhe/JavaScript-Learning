@@ -16,8 +16,16 @@
             angular.module('exampleApp', ["ngTable"]).
               controller('EventController', ['$scope', 'NgTableParams', function ($scope, NgTableParams) {
                 var self = this;
-                var data = [{name: "Moroni", age: 50} /*,*/];
-                self.tableParams = new NgTableParams({}, { dataset: data});
+                var data = [
+                    {name: "Moroni", age: 50},
+                    {name: "Simon", age: 43},
+                    {name: "Jacob", age: 27},
+                    {name: "Nephi", age: 29},
+                    {name: "Christian", age: 34},
+                    {name: "Tiancum", age: 43},
+                    {name: "Jacob", age: 27}
+                ];
+                self.tableParams = new NgTableParams({count: 2}, { dataset: data});
 
 
               }]);
@@ -30,7 +38,7 @@
     <div ng-controller="EventController as vm">
 
         <table ng-table="vm.tableParams" class="table" show-filter="true">
-            <tr ng-repeat="user in $data">
+            <tr ng-repeat="user in $data" class="animate">
                 <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
                     {{user.name}}</td>
                 <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">

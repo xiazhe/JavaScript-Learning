@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array.prototype.sort()</title>
+</head>
+<body>
+    <script>
+    //https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+    var items = [
+      { name: 'Edward', value: 21 },
+      { name: 'Sharpe', value: 37 },
+      { name: 'And', value: 45 },
+      { name: 'The', value: -12 },
+      { name: 'Magnetic' },
+      { name: 'Zeros', value: 37 }
+    ];
+
+    items.sort(function (a, b) {
+      if (a.value > b.value) {
+        return 1;
+      }
+      if (a.value < b.value) {
+        return -1;
+      }
+      // a 必须等于 b
+      return 0;
+    });
+
+    console.log(items);
+
+   </script>
+</body>
+</html>
