@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>Hold the front page</h1>
+    <p>This first paragraph leads you in.</p>
+    <p>Now you get the nitty-gritty of the story.</p>
+    <p>The most important information is delivered first.</p>
+    <h1>Extra! Extra!</h1>
+    <p>Further developments are unfolding.</p>
+    <p>You can read all about it here.</p>
+    <script>
+        function getNextElement(node) {
+            if (node.nodeType == 1) {
+                return node;
+            }
+            if (node.nextSibling) {
+                return getNextElement(node.nextSibling);
+            }
+            return null;
+        }
+
+        function addClass(element, value) {
+            if (!element || !value) {
+                return;
+            }
+            if (!element.className) {
+                element.className = value;
+            } else {
+                element.className += " ";
+                element.className += value;
+            }
+        }
+
+
+        function init() {
+            var oldonload = window.onload;
+            if (typeof window.onload != 'function') {
+                window.onload = changeStyle;
+            } else {
+                window.onload = function () {
+                    oldonload();
+                    changeStyle();
+                }
+            }
+        }
+
+        function changeStyle() {
+            var headers = document.getElementsByTagName("h1");
+
+            for (var i = 0; i < headers.length; i++) {
+                var elem = getNextElement(headers[i].nextSibling);
+
+                addClass(elem, "intro");
+            }
+        }
+
+        init();
+
+    </script>
+    <style>
+        .intro {
+            color: red;
+        }
+    </style>
+</body>
+</html>

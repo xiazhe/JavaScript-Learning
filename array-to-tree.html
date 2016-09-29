@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Build tree array from flat array in javascript</title>
+</head>
+<body>
+    <script>
+    //http://stackoverflow.com/questions/18017869/build-tree-array-from-flat-array-in-javascript
+	    var nodes = [
+	    	// {
+	     //        "id": "12",
+	     //        "parentId": "0",
+	     //        "text": "Man",
+	     //        "level": "1",
+	     //        "children": null
+	     //    },
+	     //    {
+	     //        "id": "6",
+	     //        "parentId": "12",
+	     //        "text": "Boy",
+	     //        "level": "2",
+	     //        "children": null
+	     //    },
+	     //            {
+	     //        "id": "7",
+	     //        "parentId": "12",
+	     //        "text": "Other",
+	     //        "level": "2",
+	     //        "children": null
+	     //    },
+	     //    {
+	     //        "id": "9",
+	     //        "parentId": "0",
+	     //        "text": "Woman",
+	     //        "level": "1",
+	     //        "children": null
+	     //    },
+	     //    {
+	     //        "id": "11",
+	     //        "parentId": "9",
+	     //        "text": "Girl",
+	     //        "level": "2",
+	     //        "children": null
+	     //    }
+		    {
+		      "remark": null,
+		      "createBy": 0,
+		      "createUser": "admin",
+		      "updateBy": null,
+		      "updateUser": null,
+		      "createDate": 1473233240000,
+		      "updateDate": null,
+		      "deleteDate": null,
+		      "isDeleted": null,
+		      "version": 0,
+		      "id": 4,
+		      "no": "JNAJ",
+		      "name": "济南安监部门",
+		      "organizationAbb": "济南安监",
+		      "netregionId": 7,
+		      "sortId": 0,
+		      "parentId": 4,
+		      "isDirectlySupervise": false,
+		      "isGeneralSupervise": true,
+		      "isIndustrySupervise": false,
+		      "respPerson": 61,
+		      "respPhone": "18273367906",
+		      "respName": null
+		    },
+		    {
+		      "remark": null,
+		      "createBy": 0,
+		      "createUser": "admin",
+		      "updateBy": null,
+		      "updateUser": null,
+		      "createDate": 1473233240000,
+		      "updateDate": null,
+		      "deleteDate": null,
+		      "isDeleted": null,
+		      "version": 0,
+		      "id": 6,
+		      "no": "JNAJSJGBM",
+		      "name": "济南市直属监管部门",
+		      "organizationAbb": "济南直属",
+		      "netregionId": 7,
+		      "sortId": 0,
+		      "parentId": 4,
+		      "isDirectlySupervise": true,
+		      "isGeneralSupervise": false,
+		      "isIndustrySupervise": false,
+		      "respPerson": 64,
+		      "respPhone": "18966662020",
+		      "respName": null
+		    },
+		    {
+		      "remark": null,
+		      "createBy": 0,
+		      "createUser": "admin",
+		      "updateBy": null,
+		      "updateUser": null,
+		      "createDate": 1473233240000,
+		      "updateDate": null,
+		      "deleteDate": null,
+		      "isDeleted": null,
+		      "version": 0,
+		      "id": 7,
+		      "no": "JNAJHJGBM",
+		      "name": "济南市综合监管部门",
+		      "organizationAbb": "济南综合",
+		      "netregionId": 7,
+		      "sortId": 0,
+		      "parentId": 4,
+		      "isDirectlySupervise": false,
+		      "isGeneralSupervise": true,
+		      "isIndustrySupervise": false,
+		      "respPerson": 67,
+		      "respPhone": "13266666666",
+		      "respName": null
+		    },
+		    {
+		      "remark": null,
+		      "createBy": 0,
+		      "createUser": "admin",
+		      "updateBy": null,
+		      "updateUser": null,
+		      "createDate": 1473233240000,
+		      "updateDate": null,
+		      "deleteDate": null,
+		      "isDeleted": null,
+		      "version": 0,
+		      "id": 9,
+		      "no": "JNAJYJGBM",
+		      "name": "济南市行业监管部门",
+		      "organizationAbb": "济南行业",
+		      "netregionId": 7,
+		      "sortId": 0,
+		      "parentId": 4,
+		      "isDirectlySupervise": false,
+		      "isGeneralSupervise": false,
+		      "isIndustrySupervise": true,
+		      "respPerson": 68,
+		      "respPhone": "13288888888",
+		      "respName": null
+		    }
+	    ];
+
+	    //当根节点 ID 不为 0 则根据ID排序后取最小ID 为根节点
+	    nodes.sort(function(first, second){
+			if (first.id > second.id) {
+			    return 1;
+			  }
+			  if (first.id < second.id) {
+			    return -1;
+			  }
+			  // a 必须等于 b
+			  return 0;
+	    });
+
+	    // console.log(nodes);
+
+		var map = {}, node, roots = [];
+
+		if(nodes[0].id!==0){
+			roots = nodes[0];
+		}
+
+		for (var i = 0; i < nodes.length; i += 1) {
+		    node = nodes[i];
+		    node.children = [];
+		    map[node.id] = i; // use map to look-up the parents
+		    if (node.parentId !== 0) {
+		        node.parentId!==node.id ? nodes[map[node.parentId]].children.push(node) : null;
+		    } else {
+		        roots.push(node);
+		    }
+		}
+
+		console.log(nodes);
+		console.log(roots); // <-- there's your tree
+    </script>
+</body>
+</html>

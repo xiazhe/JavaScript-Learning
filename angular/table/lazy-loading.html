@@ -62,8 +62,8 @@
         <table ng-table="vm.tableParams" class="table" show-filter="true">
             <!-- class="animate-repeat"   -->
             <tr ng-repeat="user in $data"> 
-                <td title="'Name'" filter="{ name: 'text'}" sortable="'name'">
-                    {{user.name}}</td>
+                <td title="'Name'" filter="{ name: 'text'}" sortable="'name'" ng-bind='user.name'>
+                    </td>
                 <td title="'Age'" filter="{ age: 'number'}" sortable="'age'">
                     {{user.age}}</td>
             </tr>
