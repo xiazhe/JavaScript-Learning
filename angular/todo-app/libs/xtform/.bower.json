@@ -1,0 +1,38 @@
+{
+  "name": "xtform",
+  "version": "1.0.1",
+  "homepage": "https://github.com/refactorthis/xtform",
+  "authors": [
+    "refactorthis <www.brentmckendrick.com>"
+  ],
+  "description": "AngularJS tooltip form validation",
+  "main": "xtForm.js",
+  "keywords": [
+    "angularjs",
+    "form",
+    "validation",
+    "html5"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": ">=1.2",
+    "bootstrap": ">=2.0",
+    "jquery": ">=1.0"
+  },
+  "_release": "1.0.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.0.1",
+    "commit": "2b010e937c1af3fb6b3d20c11618472a8bea4da3"
+  },
+  "_source": "https://github.com/refactorthis/xtform.git",
+  "_target": "*",
+  "_originalSource": "xtform"
+}

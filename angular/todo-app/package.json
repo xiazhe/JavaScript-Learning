@@ -1,0 +1,27 @@
+{
+  "name": "angular-demo",
+  "description": "",
+  "version": "0.0.1",
+  "repository": { },
+  "license": "",
+  "homepage": "http://www.tea.fish",
+  "dependencies": { },
+  "devDependencies": {
+    "bower": "^1.7.7",
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "*",
+    "gulp-webserver": "^0.9.1",
+    "gulp-livereload": "^3.8.1",
+    "gulp-less": "^3.0.5",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.5.3",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-bower": "^0.0.13",
+    "gulp-inject": "^4.0.0",
+    "gulp-svg-symbols": "^1.0.0"
+  }
+
+}

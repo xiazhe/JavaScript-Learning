@@ -1,0 +1,35 @@
+{
+  "name": "ng-confirm",
+  "version": "1.1.0",
+  "dependencies": {
+    "angular": "^1.4.7",
+    "jquery": "^2.1.4"
+  },
+  "main": "dist/ng-confirm.js",
+  "ignore": [
+    "example/",
+    "node_modules/",
+    "vendor/",
+    "test/",
+    ".eslintrc",
+    ".gitignore",
+    ".editorconfig",
+    ".bowerrc"
+  ],
+  "keywords": [
+    "angular",
+    "confirm",
+    "button",
+    "click"
+  ],
+  "homepage": "https://github.com/MrBoolean/angular-confirm",
+  "_release": "1.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.1.0",
+    "commit": "b2e1d61b5b819140a786099ea6ff91e4d1e0bd03"
+  },
+  "_source": "https://github.com/MrBoolean/angular-confirm.git",
+  "_target": "*",
+  "_originalSource": "angular-confirm"
+}

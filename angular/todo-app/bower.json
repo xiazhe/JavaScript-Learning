@@ -1,0 +1,25 @@
+{
+  "name": "angular-demo",
+  "version": "0.0.1",
+  "ignore": [
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "*",
+    "bootstrap": "*",
+    "angular-bootstrap": "",
+    "ng-table": "*",
+    "angular-upload": "*",
+    "jQuery": "*",
+    "echarts": "*",
+    "ckeditor": "*",
+    "Font-Awesome": "*",
+    "zepto": "*",
+    "pace": "*",
+    "angular-confirm": "*",
+    "angular-breadcrumb": "*",
+    "xtform": "*"
+  }
+}
