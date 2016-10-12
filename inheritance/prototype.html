@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        //https://robertnyman.com/2008/10/06/javascript-inheritance-how-and-why/
+        //https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new
+        //https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/prototype
+        function Being() {
+            this.living = true;
+        }
+
+        Being.prototype.breathes = function () {
+            return true;
+        };
+
+        Robert.prototype = new Being;
+
+        //JSON.stringify(new Being)
+        //"{"living":true}"
+
+        function Robert() {
+            this.blogs = true;
+        }
+
+        Robert.prototype.getsBored = function () {
+            return "You betcha";
+        };
+
+        var me = new Robert();
+
+        console.log(me.getsBored());
+
+
+        console.log(me.breathes());
+
+
+
+    </script>
+</body>
+</html>
