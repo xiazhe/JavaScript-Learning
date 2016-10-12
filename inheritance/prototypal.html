@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>6.3.4 原型式继承 --- JavaScript 高级程序设计</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        // Prototypal Inheritance in JavaScript
+        function object(o) {
+            function F() { }
+            F.prototype = o;
+            return new F();
+        }
+
+
+        //定义一个person 对象.
+        var person = {
+            name: "Nicholas",
+            friends: ["Shelby", "Court", "Van"]
+        };
+
+        //实例化一个新的Person对象名称为 anotherPerson
+        var anotherPerson = object(person);
+        anotherPerson.name = "Greg";
+        anotherPerson.friends.push("Rob");
+
+        //实例化另一个新的Person对象名称为 yetAnotherPerson
+        var yetAnotherPerson = object(person);
+        yetAnotherPerson.name = "Linda";
+        yetAnotherPerson.friends.push("Barbie");
+
+        alert(person.friends);   //"Shelby,Court,Van,Rob,Barbie"
+    </script>
+</body>
+</html>

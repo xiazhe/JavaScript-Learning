@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>继承与原型链</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain">继承与原型链</a>
+    <script>
+        //Polyfill
+        //https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf
+        //chrome和火狐中有效，IE无效
+        Object.setPrototypeOf = Object.setPrototypeOf || function (obj, proto) {
+            obj.__proto__ = proto;
+            return obj;
+        }
+
+        o = {
+            a: 1,
+            b: 2
+        }
+
+        //__proto__: {
+        //        b: 3,
+        //        c: 4
+        //}
+
+        Object.setPrototypeOf(o, {
+            b: 3,
+            c: 4
+        });
+
+
+
+    </script>
+</body>
+</html>

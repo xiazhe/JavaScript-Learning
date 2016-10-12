@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        var o = {
+            a: 2,
+            m: function () {
+                return this.a + 1;
+            },
+            ar: [1, 2, 3]
+        };
+
+        console.log(o.m()); // 3
+        // 当调用 o.m 时,'this'指向了o.
+
+        var p = Object.create(o);
+        // p是一个对象, p.[[Prototype]]是o.
+
+        p.a = 12; // 创建 p 的自身属性a.
+        console.log(p.m()); // 13
+
+        p.ar.push(4);
+
+        // 调用 p.m 时, 'this'指向 p.
+        // 又因为 p 继承 o 的 m 函数
+        // 此时的'this.a' 即 p.a，即 p 的自身属性 'a'
+        console.log(o.ar);
+
+    </script>
+</body>
+</html>
