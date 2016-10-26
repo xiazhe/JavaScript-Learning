@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -15,17 +17,9 @@
 
         var date = ((now.getDate()<10) ? '0' : '') + now.getDate();
 
-        function fourdigits(number) {
-            return (number < 1000) ? number + 1900 : number;
-        }
-
-        var today = days[now.getDay()] + ',' +
-            months[now.getMonth()] + ' ' +
-            date + ',' +
-            (fourdigits(now.getYear()));
-
-        document.write(today);
-        //Friday,October 21,2016
+        //half year ago
+        var halfYearAgo = new Date(now.setMonth(now.getMonth() - 6) * 1000);
+        document.write(halfYearAgo);
 
 
         
