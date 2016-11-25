@@ -22,6 +22,20 @@
 
                 $scope.getUsers = function () {
                     //移到Service 中公用
+                    //添加request 头部信息
+                    // var promise = $http({ 
+                    //     method: 'put',
+                    //     headers: {
+                    //        'Content-Type': 'application/json',
+                    //        'token': 'string',
+                    //        // 'X-Requested-By': 'MyAngularApp',
+                    //        // 'Access-Control-Allow-Origin': '*',
+                    //        // 'X-Requested-with': 'MyAngularApp'
+                    //      },
+                    //      url: 'url' });
+
+
+
                     var promise = $http({ method: 'GET', url: 'api/users.json' });
 
 
