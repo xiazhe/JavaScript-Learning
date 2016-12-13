@@ -1,0 +1,304 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>tree - Example</title>
+    <link href="libs/bootstrap-3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="libs/ztree-v3/css/awesomeStyle/awesomeStyle.css" rel="stylesheet" type="text/css" />
+    <link href="libs/ztree-v3/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css" />
+    <link href="libs/ztree-v3/css/awesomeStyle/awesomeStyle.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/font-awesome.css" rel="stylesheet" />
+
+    <script type="text/javascript" src="libs/jquery-2.2.3/jquery.js"></script>
+    <script src="libs/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="libs/angular-1.5.7/angular.js"></script>
+    <script type="text/javascript" src="libs/angular-1.5.7/angular-animate.js"></script>
+    <script type="text/javascript" src="libs/angular-1.5.7/angular-sanitize.js"></script>
+    <script type="text/javascript" src="libs/angular-1.5.7/angular-cookies.js"></script>
+    <script type="text/javascript" src="libs/angular-1.5.7/i18n/angular-locale_zh-cn.js"></script>
+
+    <script type="text/javascript" src="libs/ztree-v3/js/jquery.ztree.all.js"></script>
+
+    <script src="tree/ng-ztree.js"></script>
+    <script src="tree/ng-ztree-dropdown.js"></script>
+    <script src="tree/ng-ztree-dropdown-multiple.js"></script>
+
+
+    <script type="text/javascript">
+        $.ajaxSetup({
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader("Token", "FuHCLyY46");
+            }
+        });
+
+
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', ['ui.missionsky.ztree']).
+              controller('EventController', ['$scope', function ($scope) {
+                  var ctrl = this;
+
+                  ctrl.treeData = [
+                      {
+                          "id": 1,
+                          "name": "tree1 - item1",
+                          "parentId": 0
+
+                      },
+                      {
+                          "id": 2,
+                          "name": "tree1 - item2",
+                          "parentId": 0
+
+                      },
+                      {
+                          "id": 3,
+                          "name": "tree1 - item3",
+                          "parentId": 0
+
+                      },
+                      {
+                          "id": 4,
+                          "name": "tree1 - item4",
+                          "parentId": 1
+                      },
+                      {
+                          "id": 5,
+                          "name": "tree1 - item5",
+                          "parentId": 1
+                      },
+                      {
+                          "id": 6,
+                          "name": "tree1 - item6",
+                          "parentId": 1
+                      },
+                      {
+                          "id": 7,
+                          "name": "tree1 - item7",
+                          "parentId": 1
+                      },
+                      {
+                          "id": 8,
+                          "name": "tree1 - item8",
+                          "parentId": 1
+                      }
+                  ];
+
+                  //tree demo 1
+                  ctrl.demo1Data = [
+                      {
+                          "id": "01",
+                          "name": "n1",
+                          "isParent": true
+                      },
+                      {
+                          "id": "02",
+                          "name": "n2",
+                          "isParent": false
+                      },
+                      {
+                          "id": "03",
+                          "name": "n3",
+                          "isParent": true
+                      },
+                      {
+                          "id": "04",
+                          "name": "n4",
+                          "isParent": false
+                      }
+                  ];
+                  ctrl.treeCheckNodeIds = [0];
+                  ctrl.treeParams = {
+                      enableEdit: false,
+                      rootName: 'root',
+                      onSelectNode: onSelectNode,
+                      enableCheck: true,
+                      onCheckedNode: onCheckedNode,
+                      enableAsync: true,
+                      asyncUrl: 'http://localhost:8000/angular/tree/demo.json',
+                      asyncMethod: 'get'
+                  };
+                  function onCheckedNode($defer, event, treeNode, allCheckedNodes) {
+                      console.log(allCheckedNodes);
+                  }
+
+                  function onSelectNode($defer, treeNode) {
+                      console.log(treeNode);
+                  }
+
+
+
+
+                  //tree demo 2 --- dropdown
+                  ctrl.dropdownParams = {
+                      enableAsync: true,
+                      asyncUrl: 'http://localhost:8000/angular/tree/demo.json',
+                      asyncMethod: 'get'
+                  };
+                  ctrl.treeid = undefined;
+                  ctrl.isLastNode = false;//树节点是否是最底层项
+                  ctrl.multipleData = [
+                    {
+                        "id": 1,
+                        "name": "role1",
+                        "status": 1,
+                        "roleDesc": null,
+                        "level": 0
+                    },
+                    {
+                        "id": 2,
+                        "name": "role2",
+                        "status": 1,
+                        "roleDesc": null,
+                        "level": 1
+                    },
+                    {
+                        "id": 3,
+                        "name": "role3",
+                        "status": 1,
+                        "roleDesc": null,
+                        "level": 1
+                    },
+                    {
+                        "id": 5,
+                        "name": "test",
+                        "status": 1,
+                        "roleDesc": "测试角色",
+                        "level": 3
+                    },
+                    {
+                        "id": 7,
+                        "name": "dd",
+                        "status": 1,
+                        "roleDesc": "22",
+                        "level": 3
+                    },
+                    {
+                        "id": 9,
+                        "name": "最大长度最大长度最大长度最大长度最大长度最大长度最大长度最大长度最大长度最大长度最大长度最大长度最大",
+                        "status": 1,
+                        "roleDesc": "最大长度最大长度最大长度最大长度最大长度最大长度最大长度最大长度最大长度最大长度",
+                        "level": 3
+                    },
+                    {
+                        "id": 10,
+                        "name": "新增角色",
+                        "status": 1,
+                        "roleDesc": null,
+                        "level": 2
+                    },
+                    {
+                        "id": 11,
+                        "name": "22",
+                        "status": 1,
+                        "roleDesc": null,
+                        "level": 2,
+                        "parentId": 1
+                    }
+                  ];
+                  ctrl.onSelect = function (node) {
+                      console.log(node);
+
+                  };
+
+              }]);
+
+        })(window.angular);
+    </script>
+
+    <style>
+        .ztree {
+            overflow: auto;
+            height: 100%;
+        }
+
+            .ztree li {
+                padding-left: 0px !important;
+            }
+
+                .ztree li a {
+                    padding: 1px 3px 10px 0;
+                }
+
+            .ztree ul {
+                padding-left: 8px !important;
+            }
+
+        .ztree-dropdown-container .dropdown-menu {
+            max-height: 350px;
+            overflow-y: auto;
+        }
+
+        .ztree-dropdown {
+            border-color: #ECECEC;
+            border-style: solid;
+            border-width: 1px;
+            min-width: 200px;
+            background-color: #ffffff;
+            padding: 6px;
+            padding-left: 15px;
+            border-radius: 2px;
+            margin-bottom: 5px;
+            text-align: left;
+            font-size: 12px;
+        }
+
+            .ztree-dropdown[disabled] {
+                background-color: #eee;
+                opacity: 1;
+                border-color: #CCC;
+                border-style: solid;
+                border-width: 1px;
+                width: 95%;
+                padding: 6px;
+                border-radius: 2px;
+            }
+
+            .ztree-dropdown .text-span {
+                min-width: 150px;
+                display: inline-block;
+            }
+
+
+
+        .inline-tree {
+            display: inline-block;
+        }
+
+            .inline-tree .ztree-dropdown {
+                border: 1px solid #CCCCCC;
+            }
+
+        .tree-filter {
+            margin-top: 10px;
+        }
+
+        .tree-filter-select {
+            display: inline;
+        }
+    </style>
+</head>
+
+<body ng-app="exampleApp">
+    <div ng-controller="EventController as vm">
+        <h1>Tree</h1>
+
+        <ul class="ztree" ng-ztree="vm.treeParams" tree-check-node-ids="vm.treeCheckNodeIds"
+            tree-data="vm.demo1Data"></ul>
+
+        <h1>Tree dropdown</h1>
+        <div ng-ztree-dropdown="vm.dropdownParams" id="tree"
+                           class="inline-tree  search-select tree-filter-select"
+                           item-data="vm.demo1Data"
+                           ng-model="vm.treeid"
+                           on-select="vm.onSelect(node)"></div>
+
+        <h1>Tree dropdown multiple</h1>
+        <ng-ztree-dropdown-multiple item-data="vm.multipleData" ng-model="checkedNodes"></ng-ztree-dropdown-multiple>
+
+
+    </div>
+</body>
+</html>

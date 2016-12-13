@@ -1,0 +1,14 @@
+<div class="dropdown ztree-dropdown-container">
+    <button class="ztree-dropdown dropdown-toggle" ng-disabled="ngDisabled" type="button" id="dropdownMenu1"
+            data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="true">
+        <span class="text-span">{{treeDropCtrl.selectName}}</span>
+        <span class="caret"></span>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenu1">
+        <ul id="{{id}}" class="ztree" ng-ztree="treeDropCtrl.treeParams" select-node-id="selectNodeId"
+            tree-data="itemData">
+
+        </ul>
+    </div>
+</div>
