@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>判断是否为数组</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        /**
+         * 判断是否为数组
+         * Array.isArray
+         * Object.prototype.toString().call(value) == "[Object Array]"
+         */
+        if (Array.isArray(arr)) {
+            //nonsupport ie6/7/8
+        }
+
+        //支持IE9-
+        function isArray(value) {
+            return Object.prototype.toString.call(value) == "[object Array]";
+        };
+
+        //advance 原理同上， 做了更多判断, 支持IE9-
+        //function isArray(value) {
+        //    if (typeof value == "undefined") return false;
+
+        //    if (value instanceof Array || (!(value instanceof Object) &&
+        //        (Object.prototype.toString.call((value)) == '[object Array]') ||
+        //        typeof value.length == 'number' &&
+        //        typeof value.splice != 'undefined' &&
+        //        typeof value.propertyIsEnumerable != 'undefined' &&
+        //        !value.propertyIsEnumerable('splice')
+        //        )) {
+        //        return true;
+        //    }
+
+        //    return false;
+        //};
+
+        //demo
+        var arr = [];
+
+        console.log(isArray(arr));  // true
+        console.log(Object.prototype.toString.call(arr)); //[object Array]
+
+        //console.log(Object.prototype.toString().call(arr));  //isArray.html:46 Uncaught TypeError: Object.prototype.toString(...).call is not a function
+
+    </script>
+</body>
+</html>
