@@ -7,6 +7,7 @@
 <body>
 <script>
     /**
+     * http://www.cnblogs.com/purediy/archive/2012/12/02/2798454.html
       * 获得指定数组的所有组合
       * 一维数组
       */
@@ -47,7 +48,7 @@
         var resultArrs = [],
                 flagArr = [],
                 isEnd = false,
-                i, j, leftCnt;
+                leftCnt;
 
         for (var i = 0; i < m; i++) {
             flagArr[i] = i < n ? 1 : 0;
@@ -87,12 +88,28 @@
     }
 
     //demo
-    var arr = getArr(3);
+    var arr = getArr(5);
     console.log(arr);                  //Array [ 1, 2, 3 ]
 
     var newArr = arrayCombine(arr);
-    console.log(newArr.toString());    // "1,2,3,1,2,1,3,2,3"
-    document.write(newArr)
+    console.log(newArr.toString());    // "1,2,3, 1,2,1, 3,2,3"  ? 212, 131,
+    document.write(newArr);
+
+    // 1,2,3,4,5,
+    // 1,2,1,3,2,
+    // 3,1,4,2,4,
+    // 3,4,1,5,2,
+    // 5,3,5,4,5,
+    // 1,2,3,1,2,
+    // 4,1,3,4,2,
+    // 3,4,1,2,5,
+    // 1,3,5,2,3,
+    // 5,1,4,5,2,
+    // 4,5,3,4,5,
+    // 1,2,3,4,1,
+    // 2,3,5,1,2,
+    // 4,5,1,3,4,
+    // 5,2,3,4,5
 
 
 </script>
