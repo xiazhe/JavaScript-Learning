@@ -13,7 +13,9 @@
 
         var months = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
 
-        var date = ((now.getDate()<10) ? '0' : '') + now.getDate();
+        var dates = [];
+
+        var date = ((now.getDate() < 10) ? '0' : '') + now.getDate();
 
         function fourdigits(number) {
             return (number < 1000) ? number + 1900 : number;
@@ -27,8 +29,32 @@
         document.write(today);
         //Friday,October 21,2016
 
+        function getLastDay(year, month) {
+            var new_year = year;    //取当前的年份
+            var new_month = month++;//取下一个月的第一天，方便计算（最后一天不固定）
+            if (month > 12) {
+                new_month -= 12;        //月份减
+                new_year++;            //年份增
+            }
+            var new_date = new Date(new_year, new_month, 1);                //取当年当月中的第一天
+            return (new Date(new_date.getTime() - 1000 * 60 * 60 * 24)).getDate();//获取当月最后一天日期
+        }
 
-        
+        //获取一个月的所有日期
+        function getAllDatesForAMonth(year, month) {
+            var lastDay = getLastDay(year, month);
+
+            var allDates = [];
+
+            for (var i = 0; i < lastDay; i++) {
+                allDates.push(i+1);
+            }
+
+            return allDates;
+        }
+
+
+
 
     </script>
 </body>
