@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>IE11, div(absolute) 的 z-index 未定义导致渲染错误并降低渲染速度 </title>
+    <meta charset="utf-8" />
+    <style>
+        .wrapper {
+            position: absolute;
+            top: 0px;
+            left: 260px;
+            right: 0;
+            overflow: auto;
+            height: 100%;
+            background: #000000;
+        }
+
+
+        .bar {
+            position: fixed;
+            top: 100px;
+            width: calc(100% - 100px);
+            height: 100px;
+            background: #ccc;
+            
+        }
+
+            *::-ms-backdrop, .bar{
+                background: #00ff21;
+            }
+
+        .bar2 {
+            position: fixed;
+            top: 201px;
+            width: calc(100% - 100px);
+            height: 100px;
+            background: #ff6a00;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+        <div class="bar">111</div>
+        <div style="padding-bottom: 44px;padding-top: 83px;">
+            <div class="bar2">222</div>
+        </div>
+    </div>
+</body>
+</html>

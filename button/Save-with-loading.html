@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <style>
+        /**
+        * Tuenti button interaction (reduced version for modern browsers with CSS animation support)
+        */
+        body {
+            font: 100% helvetica, sans-serif;
+            text-align: center;
+            padding: 3em 1em;
+            background: url(pattern.png);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .action {
+            position: relative;
+            overflow: hidden;
+            font-size: 11px;
+            color: #fff;
+            text-align: center;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: middle;
+            user-select: none;
+        }
+
+            .action > span {
+                height: 32px;
+                display: inline-block;
+                vertical-align: middle;
+                position: relative;
+                border: 1px solid;
+                border-radius: 4px;
+                box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.19);
+                border-color: #0F80AE #0F80AE #11698D #0F80AE;
+                background: linear-gradient(#169BD0, #0D7FAE);
+            }
+
+            .action:hover > span {
+                border-color: #0F79A3 #0F79A3 #0F6383 #0F79A3;
+                text-decoration: none;
+                background: linear-gradient(#1DA5DB, #0F87BA);
+                box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.24), 0 1px 2px 0 rgba(0, 0, 0, 0.11);
+            }
+
+            .action:active > span {
+                box-shadow: inset 0 2px 3px 0 rgba(0, 0, 0, 0.12), inset 0 -1px 2px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.11);
+                background: linear-gradient(#25A6DA, #209BCE);
+            }
+
+            .action b {
+                padding: 0 12px;
+                display: inline-block;
+                vertical-align: middle;
+                font-size: 13px;
+                font-weight: bold;
+                text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+                color: #fff;
+                line-height: 34px;
+            }
+
+            .action:active b {
+                color: #fff;
+                text-shadow: 0 1px 0 rgba(0, 0, 0, 0.35);
+            }
+
+            .action .act-indicator {
+                position: absolute;
+                width: 16px;
+                height: 12px;
+                top: 50%;
+                left: 50%;
+                z-index: 1;
+                margin: -8px 0 0 -6px;
+            }
+
+        .act-indicator.i-M-loader {
+            width: 20px;
+            height: 20px;
+            margin: -12px 0 0 -10px;
+        }
+
+        .action b {
+            transition: opacity .2s ease-out;
+        }
+
+        .act-success b {
+            transition-delay: 2.2s;
+        }
+
+        /* default state of icons */
+        .action .act-indicator {
+            top: -100%;
+        }
+
+        /* Move the spinner (slide in) and fade out the text */
+        .act-loading b {
+            opacity: .12;
+        }
+
+        .act-loading .act-indicator.i-M-loader {
+            top: 50%;
+            animation: loader .7s steps(8) infinite, slideInDown .4s both;
+        }
+
+        /* Move the feedback (success or error) */
+        .act-success .i-accept {
+            top: 50%;
+            animation: slideInDown .78s forwards, slideOutDown .4s 2s forwards;
+        }
+
+        /* Move the spinner  (slide out) */
+        .act-success .act-indicator.i-M-loader {
+            top: -100%;
+            animation: loader .7s steps(8) infinite, slideOutDown .45s .45s both;
+        }
+
+        /* Icons */
+        [class*=i-] {
+            display: inline-block;
+            vertical-align: middle;
+            background: url(sprite.png) no-repeat left top;
+            font: 0/0 a;
+            color: transparent;
+            width: 16px;
+            height: 16px;
+        }
+
+        [class*=i-M] {
+            width: 20px;
+            height: 20px;
+        }
+
+        .i-M-loader {
+            background: url(sprite.png) no-repeat;
+            animation: loader .7s steps(8) infinite;
+        }
+
+        .i-accept {
+            background-position: -77px -149px;
+        }
+
+
+        /* Keyframes declarations */
+        @keyframes slideInDown {
+            0% {
+                top: -100%;
+            }
+
+            60% {
+                top: -50%;
+            }
+
+            80% {
+                top: 65%;
+            }
+
+            100% {
+                top: 50%;
+            }
+        }
+
+        @keyframes slideInUp {
+            0% {
+                top: 250%;
+            }
+
+            60% {
+                top: 150%;
+            }
+
+            80% {
+                top: 35%;
+            }
+
+            100% {
+                top: 50%;
+            }
+        }
+
+        @keyframes slideOutDown {
+            0% {
+                top: 50%;
+            }
+
+            100% {
+                top: 150%;
+            }
+        }
+
+        @keyframes slideOutUp {
+            0% {
+                top: 50%;
+            }
+
+            100% {
+                top: -150%;
+            }
+        }
+
+        @keyframes loader {
+            from {
+                background-position: 0px -408px;
+            }
+
+            to {
+                background-position: -192px -408px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--双击多次提交bug-->
+    <a href="#" id="success" class="action">
+        <i class="act-indicator i-M-loader"></i>
+        <i class="act-indicator i-accept"></i>
+        <i class="act-indicator i-ignore"></i>
+        <span><b>Save the world</b></span>
+    </a>
+    <script>
+        var success = document.getElementById("success"),
+            addClass = function (el, cl) { el.className += ' ' + cl },
+            removeClass = function (el, cl) {
+                var regex = new RegExp('(?:\\s|^)' + cl + '(?:\\s|$)');
+                el.className = el.className.replace(regex, ' ');
+            }
+
+        success.addEventListener("click", function () {
+            removeClass(success, "act-success")
+            addClass(success, "act-loading")
+
+            //emulating delay after ajax request (2 seconds)
+            setTimeout(function () {
+                addClass(success, "act-success")
+                removeClass(success, "act-loading")
+            }, 2000)
+
+        })
+
+    </script>
+</body>
+</html>

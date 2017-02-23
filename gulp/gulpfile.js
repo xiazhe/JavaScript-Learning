@@ -148,7 +148,7 @@ gulp.task('compilehtml', function () {
                 //TypeError: Cannot read property 'toUpperCase' of undefined
             }
         }
-        
+
     }
 
     return gulp.src('src/hello.handlebars')
@@ -183,8 +183,8 @@ gulp.task('compilehtmlrev', function () {
 
                 var scripts = '';
                 for (var item in context.data.root) {
-                    
-                    scripts +='<script src="'+ item +'"></script> \n';
+
+                    scripts += '<script src="' + item + '"></script> \n';
                 }
 
                 return new handlebars.Handlebars.SafeString(scripts);
