@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+    <script>
+
+        var script = document.createElement("script")
+        script.type = "text/javascript";
+
+        //Firefox, Opera, Chrome, Safari 3+, IE 9+ support
+        //script.onload = function () {
+        //    console.log("Script loaded!");
+        //};
+
+        //IE 8-
+        //script.onreadystatechange = function () {
+        //    if (script.readyState == "loaded" || script.readyState == "complete") {
+        //        script.onreadystatechange = null;
+        //        alert("Script loaded.");
+        //    }
+        //};
+
+        //IE 
+        if (script.readyState) {
+            script.onreadystatechange = function () {
+                if (script.readyState == "loaded" || script.readyState == "complete") {
+                    script.onreadystatechange = null;
+                    console.log("IE: Script loaded!");
+                }
+            };
+        } else {
+            script.onload = function () {
+                console.log("Script loaded!");
+            };
+        }
+
+        
+        script.src = "console.js";
+        document.getElementsByTagName("head")[0].appendChild(script);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

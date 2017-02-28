@@ -1,5 +1,5 @@
-(function() {
-'use strict';
+(function () {
+    'use strict';
 
     angular
         .module('teafish')
@@ -8,9 +8,11 @@
     ExampleService.$inject = ['$scope'];
     function ExampleService($scope) {
         this.exposedFn = exposedFn;
-        
+
         ////////////////
 
-        function exposedFn() { }
+        function exposedFn() {
+
         }
+    }
 })();
