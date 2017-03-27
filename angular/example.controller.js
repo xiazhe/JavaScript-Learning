@@ -9,11 +9,16 @@
     function ExampleController($scope) {
         var self = this;
         
+        self.doSomeThing = doSomeThing;
 
         init();
 
         ////////////////
 
         function init() { }
+
+        function doSomeThing(){
+            console.log('do something');
+        }
     }
 })();
