@@ -19,7 +19,7 @@ gulp.task('webserver', function () {
     gulp.start('watch');
 });
 
-// watch
+// watch file change
 gulp.task('watch', function () {
     gulp.watch(['events/*.html', 'angular/**/*.html']);
     gulp.watch(['events/*.js']);
@@ -35,6 +35,44 @@ function errorHandler(error) {
     console.log(error.toString());
     this.emit('end');
 };
+
+//Server
+gulp.task('webserver', function () {
+    gulp.src('./').pipe(plugins.webserver({
+        livereload: true,
+        directoryListing: true,
+        open: true,
+        host: 'localhost',
+        port: 9000,
+        fallback: 'index.html'
+    }));
+
+    gulp.start('watch');
+});
+
+// LESS compile
+gulp.task('less', function () {
+    gulp.src('./styles/*.less')
+        .pipe(plugins.less())
+        .pipe(gulp.dest('./styles'));
+});
+
+// 合并 JS
+gulp.task('concat', function () {
+    gulp.src('src/**/*.js')
+       .pipe(plugins.concat('all.js'))  //合并后的文件名
+       .pipe(gulp.dest('dist/'));
+});
+
+// 压缩混淆 JS
+gulp.task('uglify', function () {
+    return gulp.src('dist/all.js')
+       .pipe(plugins.uglify({
+           //mangle: true,//类型：Boolean 默认：true 是否修改变量名
+           //mangle: {except: ['controller']}
+       }))
+       .pipe(gulp.dest('dist'));
+});
 
 
 // Bower
