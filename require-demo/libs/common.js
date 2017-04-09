@@ -12,6 +12,5 @@ define('common', ['jquery'], function($){
 
     }
 
-
     return changeMain;
 });

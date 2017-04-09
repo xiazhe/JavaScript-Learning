@@ -1,0 +1,52 @@
+<!DOCTYPE>
+<html>
+    <head>
+        <title>beforeunload event</title>
+        <script src="eventutil.js"></script>
+    </head>
+    <body>
+<script type="text/javascript">
+function selText()
+  {
+  document.getElementById('password1').select()
+  
+  }
+console.log(selText);
+console.log(document.getElementById("password1").select());
+</script>
+<form>
+<input type="password" id="password1" value="thgrt456" />
+<input type="button" onclick="selText()" value="Select text" />
+</form>
+
+        
+         <div class="mainbbox" id="mainList">
+             <ul>
+                 <li><input type="text" name="name"></li>
+                 <li><button id="redbtn">btnRed</button></li>
+             </ul>
+         </div>
+
+         <script type="text/javascript">
+             var button = document.getElementById("redbtn");
+             button.onclick = function(event){
+                alert("hello!");
+                stopCancelBubble(event);
+             };
+
+
+             var list = document.getElementById("mainList");
+             list.onclick = function(){
+                alert("you must go dea!");
+             };
+
+             function stopCancelBubble(e){
+                if( e || e.stopPropagation){
+                    e.stopPropagation();
+                }else{
+                    window.event.CancelBubble = true; 
+                }
+             }
+         </script>
+    </body>
+</html>
