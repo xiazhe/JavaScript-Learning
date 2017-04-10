@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>dirty check demo - Example</title>
+    <script src="../angular.min.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', []).
+            controller('EventController', ['$scope', function ($scope) {
+                var self = this;
+
+                $scope.doSomething = function () {
+                    console.log('do something!');
+                }
+
+                $scope.title = "Dirty check!";
+
+                $scope.getName = function () {
+                    console.log($scope.name);
+
+
+                    return $scope.name;
+                };
+
+                $scope.check = function () {
+                    //$scope.name = '111';
+                };
+
+                $scope.$watch('name', function (newVal) {
+                    console.log('do watch');
+                    $scope.title = newVal;
+                });
+
+            }]);
+
+        })(window.angular);
+
+
+// 每次修改input 的值触发三次getName函数
+    </script>
+</head>
+
+<body ng-app="exampleApp">
+  <div ng-controller="EventController">
+    <input type="text" ng-model="name" />
+    <br/>
+    getName(): {{getName()}}
+    <br />
+    <button type="button" ng-click="check()">Check按钮</button>
+    <br />
+    name: {{name}}
+    <br />
+    title: {{title}}
+
+  </div>
+</body>
+</html>

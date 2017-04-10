@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>demo - Example</title>
+    <script src="../angular.min.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', []).
+            controller('EventController', ['$scope', function ($scope) {
+                var self = this;
+
+                $scope.$watch('startDate', function (newValue){
+                    if(newValue <= $scope.startDate){
+                        $scope.endDate = oneDayAhead($scope.startDate);
+                    }
+                });
+
+
+            }]);
+
+        })(window.angular);
+
+        function oneDayAhead (dateToIncrement){
+            return dateToIncrement.setDate(dateToIncrement.getDate() + 1);
+        }
+    </script>
+</head>
+
+<body ng-app="exampleApp">
+<div ng-controller="EventController">
+    <form>
+        Start Date: <input type="date" ng-model="startDate" />
+        End Date: <input type="date" ng-modal="endDate" />
+    </form>
+
+</div>
+</body>
+</html>
