@@ -1,0 +1,45 @@
+<!-- https://docs.angularjs.org/api/ng/service/$interval#!
+    AngularJS's wrapper for window.setInterval. The fn function is executed every delay milliseconds.
+     -->
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Polling - Example</title>
+    <script src="../angular.min.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', []).
+              controller('EventController', ['$scope', '$interval', function ($scope, $interval) {
+                  var self = this;
+                  $scope.num = 0;
+
+                  var tick = $interval(function () {
+                      $scope.num++;
+                  }, 1000);
+
+                  $scope.stopTick = function () {
+                      if (angular.isDefined(tick)) {
+                          $interval.cancel(tick);
+                          tick = undefined;
+                      }
+                  };
+
+                  $scope.$on('$destroy', function () {
+                      $scope.stopTick();
+                  });
+
+              }]);
+
+        })(window.angular);
+    </script>
+</head>
+
+<body ng-app="exampleApp">
+    <div ng-controller="EventController">
+
+        <i ng-bind="num"></i>
+    </div>
+</body>
+</html>
