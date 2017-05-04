@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>tree to array</title>
+</head>
+
+<body>
+    <script>
+		function transformToArrayFormat(childKey, nodes) {
+            if (!nodes) return [];
+            var r = [];
+            if (isArray(nodes)) {
+                for (var i = 0, l = nodes.length; i < l; i++) {
+                    r.push(nodes[i]);
+                    if (nodes[i][childKey])
+                        r = r.concat(transformToArrayFormat(childKey, nodes[i][childKey]));
+                }
+            } else {
+                r.push(nodes);
+                if (nodes[childKey])
+                    r = r.concat(transformToArrayFormat(childKey, nodes[childKey]));
+            }
+            return r;
+        }
+
+
+        function isArray(value) {
+            if (typeof value == "undefined") return false;
+
+            if (value instanceof Array || (!(value instanceof Object) &&
+                (Object.prototype.toString.call((value)) == '[object Array]') ||
+                typeof value.length == 'number' &&
+                typeof value.splice != 'undefined' &&
+                typeof value.propertyIsEnumerable != 'undefined' &&
+                !value.propertyIsEnumerable('splice')
+                )) {
+                return true;
+            }
+
+            return false;
+        };
+
+        var tree = {
+			  "id": 1,
+			  "name": "root",
+			  "children": [
+			    {
+			      "id": 2,
+			      "parentId": 1,
+			      "name": "a-node"
+			    },
+			    {
+			      "id": 3,
+			      "parentId": 1,
+			      "name": "b-node",
+			      "children": [
+			        {
+			          "id": 4,
+			          "parentId": 3,
+			          "name": "b-1-node"
+			        },
+			      ]
+			    },
+			  ]
+			};
+
+        var arr = transformToArrayFormat('children', tree);
+
+        console.log(arr);
+    </script>
+</body>
+
+</html>
