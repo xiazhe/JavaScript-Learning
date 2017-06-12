@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stacked map</title>
+    <script src="../angular.min.js"></script>
+    <script src="stackedMap.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', ['ui.bootstrap.stackedMap']).
+              controller('EventController', ['$scope', '$$stackedMap', function ($scope, $$stackedMap) {
+                  var self = this;
+
+                  var stackMap = $$stackedMap.createNew();
+
+                  stackMap.add('name', 'Joy');
+                  stackMap.add('age', 26);
+                  stackMap.add('sex', 'male');
+
+                  console.log(stackMap.get('name'));
+
+                  console.log(stackMap.keys());
+
+                  console.log(stackMap.top());
+
+                  console.log(stackMap.length());
+
+
+
+
+              }]);
+
+        })(window.angular);
+    </script>
+</head>
+
+<body ng-app="exampleApp">
+    <div ng-controller="EventController">
+
+
+    </div>
+</body>
+</html>
