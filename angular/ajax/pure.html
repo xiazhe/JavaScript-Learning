@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax 原生</title>
+</head>
+
+<script type="text/javascript">
+
+    window.addEventListener('load', function () {
+        var box = document.getElementById("usertable");
+        function createXHR(){
+            if(typeof XMLHttpRequest != "undefined"){
+                return new XMLHttpRequest();
+            }else if( typeof ActiveXObject != "undefined"){
+                versions = ["MSXML2.XMLHttp.6.0", "MSXML2.XMLHttp.3.0", "MSXML2.XMLHttp"],
+                        i,len;
+                for(i = 0, len = versions.length; i < len; i++){
+                    try{
+                        new ActiveXObject(versions[i]);
+                        arguments.callee.activeXString == versions[i];
+                        break;
+                    }catch(ex) {
+
+                    }
+                }
+                return new ActiveXObject(arguments.callee.activeXString);
+            }else{
+                throw new Error("No XHR object avaliable")
+            }
+        }
+
+        var xhr = createXHR();
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState == 4){
+                if((xhr.status >= 200 && xhr.status <300) || xhr.status == 304){
+//                    userid.innerHTML = xhr.responseText;
+                    var kk = JSON.parse(xhr.responseText);
+                    var ul = document.createElement("ul");
+                    for(var i=0; i <= kk.length-1;i++){
+//                        document.write(kk[i].username + ",");
+                        var li = document.createElement("li");
+                        li.innerText = kk[i].username;
+                        ul.appendChild(li);
+
+                    }
+
+                    box.appendChild(ul);
+
+
+
+                }else {
+                    alert("Request was unsuccessful:" + xhr.status);
+                }
+            }
+        };
+        xhr.open("get","api/users.json",true);
+        xhr.send(null);
+    });
+
+</script>
+<body>
+<body>
+<div>
+
+    <div id="usertable">
+    </div>
+
+    <!--<ul>-->
+        <!--<li>-->
+            <!--{{user.fullname}}-->
+        <!--</li>-->
+    <!--</ul>-->
+
+    <!--<table>-->
+        <!--<thead>-->
+        <!--<tr>-->
+            <!--<th>id</th>-->
+            <!--<th>username</th>-->
+            <!--<th>fullname</th>-->
+            <!--<th>age</th>-->
+            <!--<th>phone</th>-->
+        <!--</tr>-->
+        <!--</thead>-->
+        <!--<tbody>-->
+        <!--<tr>-->
+            <!--<td><a href="getUser(user.username)" id="user-id"></a></td>-->
+            <!--<td data-username=""></td>-->
+            <!--<td data-fullname=""></td>-->
+            <!--<td data-userage=""></td>-->
+            <!--<td data-userphone=""></td>-->
+        <!--</tr>-->
+        <!--</tbody>-->
+    <!--</table>-->
+
+    <!--<ul>-->
+        <!--<li>{{user.username}}</li>-->
+        <!--<li>{{user.fullname}}</li>-->
+        <!--<li>{{user.age}}</li>-->
+        <!--<li>{{user.phone}}</li>-->
+    <!--</ul>-->
+
+</div>
+
+<style>
+    td, tr, th {
+        padding: 0 10px;
+        margin: 0;
+        border: 1px solid #ccc;
+    }
+
+    li {
+        list-style: none;
+    }
+</style>
+</body>
+</html>

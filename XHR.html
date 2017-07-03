@@ -68,6 +68,12 @@
     request.onload = function(){
         if(request.status >= 200 && request.status < 400){
             var resp = request.responseText;
+
+//            $("#box").text(resp);
+//            var box = $("#box");
+//            for(var i=0; i<resp.length; i++){
+//                box.append('<li>'+ resp[i].data + '</li>')
+//            }
         } else {
             //
         }
@@ -113,6 +119,7 @@
         request.onload = function(){
             if(request.status >= 200 && request.status < 400){
                 var data = JSON.parse(request.responseText);
+                cb();
                 return data;
             }else{
                 //

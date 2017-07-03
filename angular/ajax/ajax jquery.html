@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ajax jqurey</title>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.getJSON('api/users.json',function (json) {
+                for(var i = 0; i <= json.length -1; i ++){
+                        var li = document.createElement("li");
+                        li.innerHTML = json[i].fullname;
+                    $('ul').append(li);
+                }
+                
+                $('table').append($('ul'));
+
+
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="table">
+    <ul>
+    </ul>
+</div>
+</body>
+</html>
