@@ -1,0 +1,65 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>promise chaining demo - Example</title>
+    <script src="../angular.min.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', []).
+              controller('EventController', ['$scope', '$q', '$timeout', function ($scope, $q, $timeout) {
+                  $scope.outputLines = [];
+                  $scope.runAsync = function () {
+                      var asyncFn1 = function (data) {
+                          var deferred = $q.defer();
+
+                          $timeout(function () {
+                              console.log("Async fn1 " + data);
+                              $scope.outputLines.push("Async fn1 " + data);
+                              deferred.resolve("Async fn1 " + data);
+                          }, 1000);
+
+                          return deferred.promise;
+                      }
+
+                      var asyncFn2 = function (data) {
+                          var deferred = $q.defer();
+
+                          $timeout(function () {
+                              console.log("Async fn2 " + data);
+                              $scope.outputLines.push("Async fn2 " + data);
+                              deferred.reject("Async fn2 " + data);
+                          }, 1000);
+
+                          return deferred.promise;
+                      }
+
+                      function rejectFunc(error) {
+                          console.log("reject:" + error);
+                          console.log($scope.outputLines);
+                      }
+
+                      asyncFn1(1)
+                      .then(function (data) { return asyncFn2(data) }, rejectFunc)
+                      .then(function (data) { return asyncFn2(data) }, rejectFunc)
+                      .then(function (data) { return asyncFn2(data) }, rejectFunc);
+                  }
+
+
+
+                  $scope.runAsync();
+              }]);
+
+
+        })(window.angular);
+    </script>
+</head>
+
+<body ng-app="exampleApp">
+    <div ng-controller="EventController">
+
+    </div>
+</body>
+</html>
