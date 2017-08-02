@@ -1,0 +1,48 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>promise demo - Example</title>
+    <script src="../angular.min.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            'use strict';
+            angular.module('exampleApp', []).
+              controller('EventController', ['$scope', '$q', function ($scope, $q) {
+                  $scope.flag = true;
+                  $scope.handle = function () {
+                      var deferred = $q.defer();
+                      var promise = deferred.promise;
+
+                      promise.then(function (result) {
+                          alert("Success: " + result);
+                      }, function (error) {
+                          alert("Fail: " + error);
+                      });
+
+                      if ($scope.flag) {
+                          deferred.resolve("you are lucky!");
+                      } else {
+                          deferred.reject("sorry, it lost!");
+                      }
+                  }
+
+
+              }]);
+
+        })(window.angular);
+    </script>
+</head>
+
+<body ng-app="exampleApp">
+    <div ng-controller="EventController">
+        <label for="flag">
+            成功
+            <input id="flag" type="checkbox" ng-model="flag" /><br />
+        </label>
+        <hr />
+        <button ng-click="handle()">点击我</button>
+    </div>
+</body>
+</html>
