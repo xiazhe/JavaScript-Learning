@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -68,6 +68,11 @@
             var content = obj.value;
             var html = content.replace(new RegExp('\n', 'g'), '<br />');
             document.getElementById('content').innerHTML = html;
+        }
+
+        // 字符串倒序
+        function reverse(str) {
+            return str.split('').reverse().join('');
         }
 
     </script>
