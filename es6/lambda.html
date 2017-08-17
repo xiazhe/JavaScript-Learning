@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Arrow Function, Lambda表达式</title>
+	<meta charset="utf-8" />
+</head>
+<body>
+	<script type="text/javascript">
+	    // http://www.cnblogs.com/darrenji/p/4999646.html#c
+
+		// es 5
+		var helloWorld = function(name, greeting) {
+			return name + " " + greeting;
+		}
+
+
+		//es 6
+		var newGreeting = (name, greeting) => {
+			return name + " " + greeting;
+		}
+
+		console.log(newGreeting("darren", "hello"));
+
+
+		// 简化
+		var newGreeting = (name, greeting) => name + " " + greeting;
+
+		console.log(newGreeting("darren", "hello"));
+
+		// 如果只有一个参数，可以写成
+		var greeting = greeting => "Hello" + greeting;
+
+		// 如果没有参数，可以写成：
+		var greeting = () => "Hello World";
+
+
+		// 遍历一个数组，把数组内的元素变成大写。
+		var courses = ['hello', 'world'];
+		console.log(courses.map(course => {
+			return course.toUpperCase();
+		}));
+
+		// 对数组排序
+		var arr = [2, 9, 4, 5, 1, 7, 3];
+		var sortedArr = arr.sort((a,b) => a<b ? 1: -1);
+		console.log(sortedArr); //(7) [9, 7, 5, 4, 3, 2, 1]
+
+
+		// this 作用域
+		function Course() {
+			this.name = "";
+			this.description = "";
+			this.author = "";
+			this.getSummary = function() {
+				return this.name + ", " + this.description;
+			};
+
+			this.getDetails = function(){
+				window.setTimeout(() => { 
+					console.log(this.getSummary() + " " + this.author);
+				}, 1000);
+			}
+			
+		}
+
+		var course = new Course();
+		course.getDetails();
+	</script>
+</body>
+</html>
