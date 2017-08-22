@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>angular.element demo - Example</title>
+    <script src="../angular.min.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            //Note: Keep in mind that this function will not find elements by tag name / CSS selector. For lookups by tag name, try instead angular.element(document).find(...) or $document.find(), or use the standard DOM APIs, e.g. document.querySelectorAll().
+
+            'use strict';
+            angular.module('exampleApp', []).
+              controller('EventController', ['$scope', '$document', function ($scope, $document) {
+                var self = this;
+
+                var el = angular.element('<i class="fa fa-marker">this is a marker</i>');
+                $document.find('body').append(el);
+
+                console.log(el);
+
+                var shadow = angular.element(document.getElementsByClassName('fa-marker'));
+
+                console.log(shadow);
+
+                console.log(document.getElementsByClassName('fa-marker'));
+
+              }]);
+
+        })(window.angular);
+    </script>
+</head>
+
+<body ng-app="exampleApp">
+    <div ng-controller="EventController">
+
+
+    </div>
+</body>
+</html>
