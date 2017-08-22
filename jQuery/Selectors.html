@@ -1,10 +1,15 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>DOM 扩展 - 选择符 API</title>
 	<meta charset="utf-8" />
+    <script src="https://cdn.bootcss.com/jquery/2.2.3/jquery.js"></script>
 </head>
 <body>
+
+
+    <div id="myDiv">my div</div>
+
     https://www.w3.org/TR/selectors-api/
     <script>
     	// querySelector
@@ -13,6 +18,8 @@
 
 		// id myDiv
 		var myDiv = document.querySelector("#myDiv");
+		console.log(myDiv);
+
 		// class .selected
 		var selected = document.querySelector(".selected");
 		// class button
@@ -22,6 +29,24 @@
 		// querySelectorAll
 		//取得类为"selected"的所有元素
 		var selecteds = document.querySelectorAll(".selected");
+
+		var jqDOMMyDiv = $("#myDiv");
+
+		console.log(jqDOMMyDiv); // 一个包含上下文的数据
+
+		//jqDOMMyDiv[0]
+		// <div id=​"myDiv">​my div​</div>​
+
+        // jqDOMMyDiv.context
+        // #document
+
+        // jqDOMMyDiv.length
+		// 1
+
+		// jqDOMMyDiv.selector
+		// "#myDiv"
+
+
 
 
     </script>
