@@ -8,7 +8,7 @@
 <body>
     <!-- http://stackoverflow.com/questions/5916900/how-can-you-detect-the-version-of-a-browser -->
     <script>
-        var bowser = (function () {
+        var browser = (function () {
             var ua = navigator.userAgent, tem,
                 M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
 
@@ -28,11 +28,20 @@
 
         })();
 
-        console.log(bowser);
+        console.log(browser);
+
+        document.write(browser);
+
+        document.write('<br />');
+
+        document.write(navigator.userAgent);
 
         //Chrome: Chrome 49
         //IE9:  MSIE 9
 
     </script>
+
+
+    111
 </body>
 </html>

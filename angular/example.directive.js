@@ -5,8 +5,8 @@
         .module('teafish')
         .directive('exampleDirective', exampleDirective);
 
-    exampleDirective.$inject = ['$scope'];
-    function exampleDirective($scope) {
+    exampleDirective.$inject = [];
+    function exampleDirective() {
         // Usage:
         //
         // Creates:

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>localStorage</title>
+</head>
+<body>
+	<script type="text/javascript">
+		if(!window.localStorage){
+            console.log("浏览器不支持localstorage");
+        }
+
+        localStorage.setItem("kevin", { 'name': 'kevin', age: 10, sex: 'male' });
+
+        var kevin = localStorage.getItem('kevin');
+
+        console.log(kevin);
+	</script>
+</body>
+</html>
