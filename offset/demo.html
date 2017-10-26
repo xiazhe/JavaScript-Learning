@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>get offset top</title>
+    <meta charset="utf-8" />
+    <style>
+    #box {
+        height: 300px;
+        width: 300px;
+        border: 1px solid #ccc;
+        position: relative;
+    }
+
+    #btn {}
+    </style>
+</head>
+
+<body>
+</body>
+<div id="box">
+    <button id="btn">Submit</button>
+</div>
+<script>
+var btn = document.getElementById("btn"),
+    box = document.getElementById("box");
+
+btn.addEventListener('click', function() {
+    console.log(box.offsetTop, box.offsetLeft);
+    console.log(btn.offsetTop, btn.offsetLeft);
+
+});
+</script>
+
+</html>
