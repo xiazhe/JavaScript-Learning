@@ -10,7 +10,7 @@
             console.log("浏览器不支持localstorage");
         }
 
-        localStorage.setItem("kevin", { 'name': 'kevin', age: 10, sex: 'male' });
+        localStorage.setItem("kevin", JSON.stringify({ 'name': 'kevin', age: 10, sex: 'male' }));
 
         var kevin = localStorage.getItem('kevin');
 
