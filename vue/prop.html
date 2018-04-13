@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>组件组合</title>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <p>在 Vue 中，父子组件的关系可以总结为 prop 向下传递，事件向上传递。父组件通过 prop 给子组件下发数据，子组件通过事件给父组件发送消息。</p>
+    <div id="example-2">
+        <child message="hello!"></child>
+    </div>
+    <script>
+    Vue.component('child', {
+        // 声明 props
+        props: ['message'],
+        // 就像 data 一样，prop 也可以在模板中使用
+        // 同样也可以在 vm 实例中通过 this.message 来使用
+        template: '<span>{{ message }}</span>'
+    })
+
+    new Vue({
+        el: '#example-2'
+    })
+    </script>
+</body>
+
+</html>
