@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>data 必须是函数</title>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+        <div id="example-2">
+            <simple-counter></simple-counter>
+            <simple-counter></simple-counter>
+            <simple-counter></simple-counter>
+        </div>
+    <script>
+
+
+    Vue.component('simple-counter', {
+        template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+        // 技术上 data 的确是一个函数了，因此 Vue 不会警告，
+        // 但是我们却给每个组件实例返回了同一个对象的引用
+        data: function() {
+            return {
+                counter: 0
+            }
+        }
+    })
+
+    new Vue({
+        el: '#example-2'
+    })
+    </script>
+</body>
+
+</html>

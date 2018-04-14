@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>动态 Prop</title>
+    <meta charset="utf-8" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <p>与绑定到任何普通的 HTML 特性相类似，我们可以用 v-bind 来动态地将 prop 绑定到父组件的数据。每当父组件的数据变化时，该变化也会传导给子组件</p>
+    <div id="prop-example-2">
+        <input v-model="parentMsg">
+        <br>
+        <!-- <child v-bind:message="parentMsg"></child> -->
+        <child :message="parentMsg"></child>
+
+    </div>
+    <script>
+    Vue.component('child', {
+        // 声明 props
+        props: ['message'],
+        // 就像 data 一样，prop 也可以在模板中使用
+        // 同样也可以在 vm 实例中通过 this.message 来使用
+        template: '<span>{{ message }}</span>'
+    })
+
+    new Vue({
+        el: '#prop-example-2',
+        data: {
+            parentMsg: 'Message from parent'
+        }
+    })
+    </script>
+</body>
+
+</html>
