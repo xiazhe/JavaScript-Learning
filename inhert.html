@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <script>
+        function Animal(name){
+            this.name = name;
+            this.showName = function(){
+              console.log(this.name);
+            }
+        }
+
+        function Cat(name){
+            Animal.apply(this, [name]);
+        }
+        var cat = new Cat('GGG');
+        var mite = cat.showName();
+        console.log(mite);
+
+        var cc = Animal.call(cat, name);
+        console.log(cc);
+    </script>
+</body>
+</html>
