@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>function* 这种声明方式(function关键字后跟一个星号）会定义一个生成器函数 (generator function)，它返回一个 Generator 对象。</title>
+    <meta charset="utf-8" />
+</head>
+
+<body>
+    <script type="text/javascript">
+    function* quips(name) {
+        yield "你好 " + name + "!";
+        yield "希望你能喜欢这篇介绍 ES6 的译文";
+        if (name.startsWith("X")) {
+            yield "你的名字 " + name + " 首字母是 X，这很酷！ ";
+        }
+        yield "我们下次再见！ ";
+    }
+
+// > var iter = quips("jorendorff");
+// [object Generator]
+// > iter.next()
+// { value: "你好 jorendorff!", done: false }
+// > iter.next()
+// { value: "希望你能喜欢这篇介绍 ES6 的译文", done: false }
+// > iter.next()
+// { value: "我们下次再见！ ", done: false }
+// > iter.next()
+// { value: undefined, done: true }
+    </script>
+</body>
+
+</html>
